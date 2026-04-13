@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Thu Feb 19 2026 06:43:01 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="elyse-residence-dev.webflow.io" data-wf-page="69372e47ab695bf5546b46eb" data-wf-site="69372e47ab695bf5546b46ec"><head><meta charset="utf-8"/><title>GrandSpace — Premium Student Living in Stellenbosch</title><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Webflow" name="generator"/><link href="assets/css/elyse-residence-dev.webflow.shared.e334c3bd2.min.css" rel="stylesheet" type="text/css"/><style>/* visibility rule removed for local clone */
+<!DOCTYPE html><!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Thu Feb 19 2026 06:43:01 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="elyse-residence-dev.webflow.io" data-wf-page="69372e47ab695bf5546b46eb" data-wf-site="69372e47ab695bf5546b46ec"><head><meta charset="utf-8"/><title>Gradspace — Premium Student Living in Stellenbosch</title><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Webflow" name="generator"/><link href="assets/css/elyse-residence-dev.webflow.shared.e334c3bd2.min.css" rel="stylesheet" type="text/css"/><style>/* visibility rule removed for local clone */
   /* ═══════════════════════════════════════════════════
      GRADSPACE — Text Visibility & Word Integrity Fixes
      No word may be split across lines. Every word must
@@ -25,6 +25,39 @@
   }
   @media (max-width: 479px) {
     h1.hero-title { font-size: 3.5rem !important; }
+  }
+
+  /* Property modal — photos only, keep close button */
+  .modal-title,
+  .modal-description,
+  .modal-btn,
+  .modal-logo,
+  .modal-slide-info-wrap,
+  .modal-slide-info {
+    display: none !important;
+  }
+  .modal-info {
+    background: transparent !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    z-index: 100 !important;
+    padding: 1rem !important;
+  }
+  .modal-header-line {
+    display: none !important;
+  }
+  .modal-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .modal-layout-bg {
+    display: none !important;
+  }
+  .modal-slider-wrap {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   /* Global rule: never break a word mid-character across the whole site. */
@@ -692,7 +725,7 @@
     )
 
 
-    // 2. Буквы "GrandSpace" с 3D эффектом
+    // 2. Буквы "Gradspace" с 3D эффектом
       .to(
       titleSplit.chars,
       {
@@ -1961,6 +1994,17 @@
           areaText: 'finish',
         }
       ],
+      details: {
+        plans: [
+          { name: '3-Bedroom', size: '75m²', ensuite: 'All 3 en-suite', kitchen: 'Shared kitchen', outdoor: 'Outside living area' },
+          { name: '4-Bedroom', size: '107m²', ensuite: 'All 4 en-suite', kitchen: 'Kitchen', outdoor: 'Outside living area' },
+          { name: '6-Bedroom', size: '163m²', ensuite: '4 en-suite · 2 sharing bathroom', kitchen: 'Spacious kitchen', outdoor: 'Outside living area' },
+        ],
+        bedroom: ['Built-in cupboard', 'Built-in desk', '2 floating shelves', 'WiFi access', 'Private bedroom alarm', 'DSTV connection'],
+        bathroom: ['Mirror', 'Towel hook', 'Shower door', 'Tiles from floor to ceiling'],
+        security: ['24-hour armed response', 'CCTV cameras (outside areas)', 'LED perimeter lighting (day/night sensor)', 'Clearvu fencing on street boundary', 'Electric fence on perimeter', 'Burglar bars on bedroom windows', 'Lockable shutters on bedroom windows', 'Access control throughout', 'Private bedroom alarm', 'Alarm for living area'],
+        excluded: ['Electricity (prepaid — tenant\'s responsibility)', 'Bed & desk chair', 'Remote tag', 'DSTV subscription & decoder (satellite dish in place)', 'Parking (24 surface + 22 basement bays — enquire)'],
+      },
     },
     1: {
       title: 'Union House',
@@ -2079,6 +2123,14 @@
           areaText: 'finish',
         }
       ],
+      details: {
+        plans: [
+          { name: 'Two Buildings', size: '20 rooms', ensuite: 'Most bedrooms en-suite', kitchen: 'Furnished lounge & kitchen', outdoor: 'Communal courtyard' },
+        ],
+        services: ['Uncapped fibre Wi-Fi', '3× weekly communal cleaning', 'Water & rates included', 'Furnished lounge & kitchen', 'Dishwasher on-site', 'Laundry on-site'],
+        security: ['24-hour armed response'],
+        excluded: ['Electricity (prepaid)', 'Bedroom furniture'],
+      },
     },
     2: {
       title: 'Jonkerzicht',
@@ -2120,6 +2172,15 @@
           areaText: 'outdoor living',
         }
       ],
+      details: {
+        plans: [
+          { name: 'Upstairs', size: '', ensuite: '4 standard en-suite bedrooms', kitchen: '1 large en-suite bedroom', outdoor: '' },
+          { name: 'Downstairs', size: '', ensuite: 'Kitchen · Lounge · Dining area', kitchen: '1 standard en-suite bedroom', outdoor: 'Double garage · 2 tandem parking bays' },
+        ],
+        services: ['24hr guarded complex with controlled access', 'Partially furnished (common areas + kitchen)', 'Curtains included throughout', '4 secure remote-access parking bays', 'Private walled garden & covered braai', 'Washing machine included', 'Water included in rent', 'Garden service (fortnightly)'],
+        security: ['24-hour guarded complex', 'Controlled access throughout'],
+        excluded: ['Electricity (prepaid)', 'Bedroom furniture', 'WiFi (not included — arrange your own)'],
+      },
     },
     3: {
       title: 'Bergzicht 63',
@@ -2196,6 +2257,14 @@
           areaText: 'garden',
         },
       ],
+      details: {
+        plans: [
+          { name: 'Each Unit', size: '', ensuite: 'All bedrooms en-suite', kitchen: 'Fully equipped communal kitchen', outdoor: 'Shared living area' },
+        ],
+        services: ['Fibre Wi-Fi included', '3× weekly communal cleaning', 'Dishwasher on-site', 'Washing machine & dryer'],
+        security: ['Secure access control'],
+        excluded: ['Electricity (prepaid)', 'Bedroom furniture'],
+      },
     },
     4: {
       title: 'Akkerhof',
@@ -2209,6 +2278,14 @@
           areaText: 'property',
         },
       ],
+      details: {
+        plans: [
+          { name: 'Each Unit', size: '', ensuite: 'All bedrooms en-suite', kitchen: 'Fully equipped communal kitchen', outdoor: 'Shared lounge & dining area' },
+        ],
+        services: ['Fibre Wi-Fi included', '3× weekly communal cleaning', 'Dishwasher on-site', 'Washing machine & dryer', 'Secure access control'],
+        security: ['Secure access control'],
+        excluded: ['Electricity (prepaid)', 'Bedroom furniture'],
+      },
     },
     5: {
       title: 'The Vineyards',
@@ -2229,6 +2306,14 @@
           areaText: 'property',
         }
       ],
+      details: {
+        plans: [
+          { name: 'Each Unit', size: '', ensuite: 'All bedrooms en-suite', kitchen: 'Well-equipped communal kitchen', outdoor: 'Shared living areas · open farm setting' },
+        ],
+        services: ['Fibre Wi-Fi included', '3× weekly communal cleaning', 'Dishwasher on-site', 'Washing machine & dryer'],
+        security: ['Secure student accommodation'],
+        excluded: ['Electricity (prepaid)', 'Bedroom furniture'],
+      },
     },
     6: {
       title: '24 Cluver Road',
@@ -2242,6 +2327,14 @@
           areaText: 'property',
         },
       ],
+      details: {
+        plans: [
+          { name: 'Each Unit', size: '', ensuite: 'All bedrooms en-suite', kitchen: 'Well-appointed communal kitchen', outdoor: 'Shared living areas — premium finishes throughout' },
+        ],
+        services: ['Fibre Wi-Fi included', '3× weekly communal cleaning', 'Dishwasher on-site', 'Washing machine & dryer'],
+        security: ['Secure access — central Stellenbosch'],
+        excluded: ['Electricity (prepaid)', 'Bedroom furniture'],
+      },
     },
   };
 
@@ -2381,9 +2474,12 @@
         link.addEventListener('click', (e) => {
           e.preventDefault();
 
-          // ✅ Берем индекс из атрибута data-project-index
+          // Open photo lightbox instead
           const projectIndex = parseInt(link.dataset.projectIndex);
+          gsLightboxOpen(projectIndex);
+          return;
 
+          // ✅ Берем индекс из атрибута data-project-index
           if (projectIndex >= 0 && projectsData[projectIndex]) {
             this.open(projectIndex);
           }
@@ -2500,6 +2596,25 @@
 
       this.show();
       this.updateSlideInfo(0);
+
+      // Photos only — force hide all info after everything is rendered
+      const modal = this.modal;
+      requestAnimationFrame(() => {
+        ['.modal-title','.modal-description','.modal-btn','.modal-logo','.modal-slide-info-wrap','.modal-header-line','.modal-header','.modal-layout-bg'].forEach(sel => {
+          const el = modal.querySelector(sel);
+          if (el) el.style.setProperty('display','none','important');
+        });
+        const layout = modal.querySelector('.modal-layout');
+        if (layout) layout.style.setProperty('grid-template-columns','1fr','important');
+        const slider = modal.querySelector('.modal-slider-wrap');
+        if (slider) {
+          slider.style.setProperty('width','100vw','important');
+          slider.style.setProperty('height','100vh','important');
+          slider.style.setProperty('grid-column','1/-1','important');
+        }
+        const info = modal.querySelector('.modal-info');
+        if (info) info.style.setProperty('display','none','important');
+      });
     }
 
     updateModalContent(data) {
@@ -2508,6 +2623,25 @@
 
       if (title) title.textContent = data.title;
       if (description) description.textContent = data.description;
+
+      // Photos only — hide everything except the image slider
+      ['.modal-title','.modal-description','.modal-btn','.modal-logo','.modal-slide-info-wrap','.modal-header-line','.modal-header'].forEach(sel => {
+        const el = this.modal.querySelector(sel);
+        if (el) el.style.setProperty('display','none','important');
+      });
+      const info = this.modal.querySelector('.modal-info');
+      if (info) {
+        info.style.cssText = 'display:block!important;position:absolute!important;background:transparent!important;top:0!important;right:0!important;width:auto!important;z-index:100!important;padding:0!important;';
+      }
+      const layout = this.modal.querySelector('.modal-layout');
+      if (layout) layout.style.setProperty('grid-template-columns','1fr','important');
+      const slider = this.modal.querySelector('.modal-slider-wrap');
+      if (slider) {
+        slider.style.setProperty('width','100%','important');
+        slider.style.setProperty('grid-column','1/-1','important');
+      }
+      const bg = this.modal.querySelector('.modal-layout-bg');
+      if (bg) bg.style.setProperty('display','none','important');
     }
 
     createSlides(data) {
@@ -2720,6 +2854,20 @@
       this.modal.classList.add('is-open');
       this.modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+
+      // Photos only — hide all info, show full-width slider
+      ['.modal-title','.modal-description','.modal-btn','.modal-logo','.modal-slide-info-wrap','.modal-header-line'].forEach(sel => {
+        const el = this.modal.querySelector(sel);
+        if (el) el.style.setProperty('display', 'none', 'important');
+      });
+      const info = this.modal.querySelector('.modal-info');
+      if (info) {
+        info.style.cssText += ';position:absolute!important;background:transparent!important;top:0!important;right:0!important;width:auto!important;z-index:100!important;padding:1rem!important;';
+      }
+      const slider = this.modal.querySelector('.modal-slider-wrap');
+      if (slider) slider.style.cssText += ';width:100%!important;grid-column:1/-1!important;';
+      const layout = this.modal.querySelector('.modal-layout');
+      if (layout) layout.style.setProperty('grid-template-columns','1fr','important');
 
       // ✅ start open animation after layout
       requestAnimationFrame(() => {
@@ -3043,13 +3191,13 @@
     });
 
   });
-</script></div><div class="text-color-white-70"></div><div class="text-color-white-50"></div><div class="is-anim-active"></div></div><div class="page-wrapper"><header class="header"><div data-animation="over-right" class="nav w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="tiny" role="banner" data-duration="400" data-hero="nav" data-doc-height="1"><div class="nav-overlay"></div><div class="container nav-container"><a href="#" aria-label="adoptian logo" id="w-node-ae66f997-3241-e895-0ce4-f57471e13027-546b46eb" class="logo nav-logo w-nav-brand"><img width="160" height="26" alt="GrandSpace logo" src="assets/images/69388fa01bc6655a709f40a4_Logo.svg" loading="eager" data-logo="main" class="logo__img"/></a><nav role="navigation" class="nav__menu-wrap w-nav-menu"><div class="nav__menu-top"></div><div class="nav__menu"><ul role="list" class="nav__list"><li class="nav__list-item"><a href="#" data-project-index="0" data-open-modal="" class="nav__link w-inline-block"><div>The Factory</div></a></li><li class="nav__list-item"><a href="#" data-project-index="1" data-open-modal="" class="nav__link w-inline-block"><div>Union House</div></a></li><li class="nav__list-item"><a href="#" data-project-index="2" data-open-modal="" class="nav__link w-inline-block"><div>Jonkerzicht</div></a></li><li class="nav__list-item"><a href="#" data-project-index="3" data-open-modal="" class="nav__link w-inline-block"><div>Bergzicht 63</div></a></li><li class="nav__list-item"><a href="#" data-project-index="4" data-open-modal="" class="nav__link w-inline-block"><div>Akkerhof</div></a></li><li class="nav__list-item"><a href="#" data-project-index="5" data-open-modal="" class="nav__link w-inline-block"><div>The Vineyards</div></a></li><li class="nav__list-item"><a href="#" data-project-index="6" data-open-modal="" class="nav__link w-inline-block"><div>24 Cluver Road</div></a></li></ul><a href="#book-a-visit" class="btn nav-btn w-inline-block"><div>ENQUIRE NOW</div></a></div></nav><div class="burger w-nav-button"><div class="burger__box"><div class="burger__open w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+</script></div><div class="text-color-white-70"></div><div class="text-color-white-50"></div><div class="is-anim-active"></div></div><div class="page-wrapper"><header class="header"><div data-animation="over-right" class="nav w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="tiny" role="banner" data-duration="400" data-hero="nav" data-doc-height="1"><div class="nav-overlay"></div><div class="container nav-container"><a href="#" aria-label="adoptian logo" id="w-node-ae66f997-3241-e895-0ce4-f57471e13027-546b46eb" class="logo nav-logo w-nav-brand"><img width="160" height="26" alt="Gradspace logo" src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=2" loading="eager" data-logo="main" class="logo__img"/></a><nav role="navigation" class="nav__menu-wrap w-nav-menu"><div class="nav__menu-top"></div><div class="nav__menu"><ul role="list" class="nav__list"><li class="nav__list-item"><a href="#" data-project-index="0" data-open-modal="" class="nav__link w-inline-block"><div>The Factory</div></a></li><li class="nav__list-item"><a href="#" data-project-index="1" data-open-modal="" class="nav__link w-inline-block"><div>Union House</div></a></li><li class="nav__list-item"><a href="#" data-project-index="2" data-open-modal="" class="nav__link w-inline-block"><div>Jonkerzicht</div></a></li><li class="nav__list-item"><a href="#" data-project-index="3" data-open-modal="" class="nav__link w-inline-block"><div>Bergzicht 63</div></a></li><li class="nav__list-item"><a href="#" data-project-index="4" data-open-modal="" class="nav__link w-inline-block"><div>Akkerhof</div></a></li><li class="nav__list-item"><a href="#" data-project-index="5" data-open-modal="" class="nav__link w-inline-block"><div>The Vineyards</div></a></li><li class="nav__list-item"><a href="#" data-project-index="6" data-open-modal="" class="nav__link w-inline-block"><div>24 Cluver Road</div></a></li></ul><a href="#book-a-visit" class="btn nav-btn w-inline-block"><div>ENQUIRE NOW</div></a></div></nav><div class="burger w-nav-button"><div class="burger__box"><div class="burger__open w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
   <path d="M3.75 15H20.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M3.75 9H20.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div><div class="burger__close w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
   <path d="M18.0001 17.9999L6.00012 5.99997" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18.0002 5.99997L6.00012 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></div></div></div><div data-hero="line" class="nav-line"></div></div></div></header><main class="main-wrapper"><section class="hero"><div class="page-padding"><div class="container"><div class="wrap hero-wrap"><div class="heading hero-heading"><h1 data-hero="title" class="h1 hero-title" style="font-size:12rem;white-space:nowrap;letter-spacing:-0.02em;position:relative;top:2rem;left:-1.5rem;display:block;width:max-content;">GrandSpace</h1><div data-hero="content" class="hero-right"><div class="hero-right-heading"><div data-hero="title-min" class="h6 mob-h7">Closest to campus. <span class="span-inline-block">Safest in town.</span></div><p data-hero="subtitle" class="b3">Gradspace sits in Universiteits Oord — the private quarter directly alongside SU's main gate. Closer to campus, safer neighbourhood, and more included in your base rate than any competitor at this price point.</p></div><div data-hero="scroll" class="text-btn-01">SCROLL</div></div></div></div></div></div><div data-hero="bg" class="full-bg-wrap"><div data-hero="img" class="full-bg-inner"><div data-poster-url="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_poster.0000000.jpg" data-video-urls="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_mp4.mp4,assets/images/69610a0c261bf5a0d9012dd6_hero 3 (1)_webm.webm" data-autoplay="true" data-loop="false" data-wf-ignore="true" class="video w-background-video w-background-video-atom"><video id="b7729ca5-13f1-6b61-c831-1c4b79735cb2-video" autoplay="" style="background-image:url(&quot;assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_poster.0000000.jpg&quot;)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover"><source src="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_mp4.mp4" data-wf-ignore="true"/><source src="assets/images/69610a0c261bf5a0d9012dd6_hero 3 (1)_webm.webm" data-wf-ignore="true"/></video></div></div></div></section><section class="about"><div class="page-padding"><div class="container"><div class="wrap about-wrap"><div class="about-info"><div class="about-left"><div class="about-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(About)</div></div><h2 data-anim="split" class="h5-glare mob-h7">premium <span class="h5 mob-h7">student </span><span>living</span> <span class="h5 mob-h7">in</span> <span class="h5 mob-h7">Stellenbosch</span></h2></div><div class="about-img"><img src="assets/images/693881a350b370d1b613ff09_about-img--d.avif" loading="lazy" width="893" height="1376" alt="Modern living room with a beige sectional sofa, black low coffee table, large abstract wall art, and a floor-to-ceiling window with curtains." data-anim="img-paralax" class="img-full-cover"/><div data-anim="img-overlay" class="img-overlay"></div></div></div><div class="about-text-box"><p data-anim="element" class="b1">Gradspace manages seven premium student addresses in Stellenbosch — all within Universiteits Oord, the closest private residential zone to SU's main gate. Each property chosen for location, safety, and build quality.</p><p data-anim="element" class="b1">From The Factory to Jonkerzicht, every address is managed to a standard that keeps your focus where it belongs — on your degree.</p></div></div><div data-anim="stagger-wrap" class="stats"><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-1"><div class="stats-box-row"><div data-number="7" class="h2 mob-h5">7</div></div><p class="b1 mob-b4">premium addresses across Stellenbosch.</p></div><div data-anim="stagger" class="stats-box stats-box-2"><div class="stats-box-row"><div data-number="5" class="h2 mob-h5">5</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">min</div></div></div><p class="b1 mob-b4">walk to campus for most properties.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-3"><div class="stats-box-row in-stats-row-2"><div class="h2 mob-h5"><span data-number="3">3</span>×</div></div><p class="b1 mob-b4">weekly communal cleaning included.</p></div></div><div class="stats-row-3"><div data-anim="stagger" class="stats-box stats-box-4"><div class="stats-box-row"><div data-number="24" class="h2 mob-h5">24</div><div class="h2 mob-h5">/</div><div data-number="7" class="h2 mob-h5">7</div></div><div class="stats-box-4-text"><p class="b1 mob-b4">armed response. The safest quarter in Stellenbosch. This we offer. Most don't.</p></div></div></div><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-5"><div class="stats-box-row"><div data-number="1000" class="h2 mob-h5">1,000</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">+</div></div></div><p class="b1 mob-b4">students have called a Gradspace property home. The trusted name in Stellenbosch student living.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-6"><div class="stats-box-row in-stats-row-2"><div data-number="1" class="h2 mob-h5">1</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">day</div></div></div><p class="b1 mob-b4">maximum management response, guaranteed. Real people who answer, act, and show up.</p></div></div></div></div></div></div></section><section class="projects"><div class="page-padding"><div class="container"><div class="wrap projects-wrap"><div class="splide projects-slider"><div class="projects-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(our properties)</div></div></div><div class="project-titles"><div class="project-title is-first"><h2 class="h4 mob-h7">The Factory</h2></div><div class="project-title"><h2 class="h4 mob-h7">Union House</h2></div><div class="project-title"><h2 class="h4 mob-h7">Jonkerzicht</h2></div><div class="project-title"><h2 class="h4 mob-h7">Bergzicht 63</h2></div><div class="project-title"><h2 class="h4 mob-h7">Akkerhof</h2></div><div class="project-title"><h2 class="h4 mob-h7">The Vineyards</h2></div><div class="project-title"><h2 class="h4 mob-h7">24 Cluver Road</h2></div></div><div class="splide__track projects-track"><div class="splide__list projects-list"><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-010-800-Gallery.jpg" width="897" height="1176" alt="The Factory — purpose-built student apartment complex in Universiteits Oord, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/unionhouse-510-3x2-1.jpg" width="897" height="1176" alt="Union House — two buildings, twenty students at 14 Soeteweide Road, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Jonkerzicht-800-3x2-1.jpg" width="897" height="1176" alt="Jonkerzicht — private walled garden and braai terrace on Merriman Avenue, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-Bergzicht-63-20.jpg" width="897" height="1176" alt="Bergzicht 63 — quiet residential streets and architectural character in Stellenbosch's Bergzicht quarter." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Akkerhof-01-512-400x250-1.jpg" width="897" height="1176" alt="Akkerhof — corner of Dennesig and Bird Street, central Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 40%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Vineyards-02.jpg" width="897" height="1176" alt="The Vineyards — open vineyard setting on the outskirts of Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 30%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-24-Cluver-Road-02-800-3x2-1.jpg" width="897" height="1176" alt="24 Cluver Road — premium central Stellenbosch student residence." data-anim="img-paralax" loading="lazy"/></div></div></div></div></div><div data-anim="slideUp-once" class="project-texts"><div class="project-text is-first"><p class="b1">Purpose-built in Universiteits Oord — Stellenbosch's safest residential quarter. Sunlit living spaces, private terraces, 24-hr armed response, and a selection of exclusive amenities. This safety. This standard. We offer it.</p><a data-project-index="0" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Two buildings, twenty students. Uncapped Wi-Fi, dishwasher, laundry on-site, and 24-hour armed response — the kind of home that makes the years unforgettable.</p><a data-project-index="1" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p id="w-node-_331f3dee-4cc2-0975-74b5-82ee94c4b1e2-546b46eb" class="b1">Private walled garden, covered braai terrace, and five-bedroom apartments — your own outdoor world to come home to on Merriman Avenue.</p><a data-project-index="2" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Quiet streets, mature trees, and architectural character in Bergzicht. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry on-site — the kind of home that has warmth you can't manufacture.</p><a data-project-index="3" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Central Stellenbosch at the corner of Dennesig and Bird Streets. Campus, the Neelsie, and town — all a short walk away. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry included.</p><a data-project-index="4" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Open vineyard setting, 2.9km from the Neelsie Student Centre. Space, quiet, and open sky — for the student who values the calm that distance from town brings. Fibre Wi-Fi, dishwasher, and laundry on-site.</p><a data-project-index="5" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">One of Stellenbosch's most recognised student addresses — central, premium, and walking distance from campus. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry. The kind of road generations of students have competed to get onto.</p><a data-project-index="6" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div></div></div></div></div></section><section class="our-beliefs"><div class="page-padding"><div class="container"><div class="wrap our-beliefs-wrap"><div class="our-beliefs-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(Our beliefs)</div></div><h2 data-anim="split" class="h4 mob-h7">The Standard of Living You Deserve</h2></div><div class="our-beliefs-img"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881c0bd19ffb64b94f142_beliefs-img--d.avif" loading="lazy" width="1439" height="1640" alt="Modern living room with a large gray sectional sofa, textured throw blanket, glass side table, and wall-mounted flat-screen TV." srcset="assets/images/693881c0bd19ffb64b94f142_beliefs-img--d-p-500.avif 500w, assets/images/693881c0bd19ffb64b94f142_beliefs-img--d-p-800.avif 800w, assets/images/693881c0bd19ffb64b94f142_beliefs-img--d.avif 1439w" sizes="(max-width: 1439px) 100vw, 1439px" class="img-full-cover is-desktop"/><img src="assets/images/693881bfdfb07f671238f951_beliefs-img--mob.avif" loading="lazy" width="503" height="774" alt="Modern living room with gray sectional sofa, textured cushions, a throw blanket, glass side table, and large floor-to-ceiling windows." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div><div data-anim="element" class="our-beliefs-text-box"><p class="b1">Every Gradspace address was chosen for proximity to campus, safety of neighbourhood, and quality of build. At The Factory, uncapped Wi-Fi and water are already included in your base rate — priced above CampusKey Platinum (R15,083/mo) and 27Cluver (R15,000/mo), and more included than either. </p></div></div></div></div></section><section data-anim="stagger-wrap" class="beliefs"><div class="page-padding"><div class="container"><div class="wrap beliefs-wrap"><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Location <br/>First</h3><p class="b4 mob-c1">The closest private provider to SU's main gate. Universiteits Oord — directly alongside campus.</p></div></div><div class="b4">( 1 )</div></div><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Communal <br/>Living</h3><p class="b4 mob-c1">Shared spaces serviced three times weekly. A home worth coming back to.</p></div></div><div class="b4">( 2)</div></div><div data-anim="stagger" id="w-node-e7d9808f-a06f-a331-e101-7ae74e8937a2-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Fully Serviced</h3><p class="b4 mob-c1">Uncapped fibre, water, rates, and on-call management included.</p></div></div><div class="b4">( 3 )</div></div><div data-anim="stagger" id="w-node-_136ce43b-8832-597b-a20a-1efae0224907-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Secure &amp; <br/>Supported</h3><p class="b4 mob-c1">Banghoek Quarter — Stellenbosch's safest zone. 24-hr armed response at The Factory &amp; Union House. No Idas Valley.</p></div></div><div class="b4">( 4)</div></div><div data-anim="stagger" id="w-node-_24ad7796-0800-01cc-2e5a-ae5fa6b493fd-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Stellenbosch <br/>Lifestyle</h3><p class="b4 mob-c1">Wine country, mountain views, and one of Africa's great universities.</p></div></div><div class="b4">( 5 )</div></div><div id="w-node-d88d786b-358f-44e1-a1ef-46994c97ead0-546b46eb" class="beliefs-text-box"><p data-anim="element" class="b1">At Gradspace, we believe student living shouldn’t mean settling — or compromising on safety. Your years at Stellenbosch should be good ones: safe neighbourhood, properly supported, properly liveable. This safety, we offer. Most don’t. </p><p data-anim="element" class="b1">Our mission is to give every student a home they're proud of — in the safest quarter of Stellenbosch, close to campus, and ready from day one. This is what we offer. They don't.</p></div></div></div></div><div class="full-bg-wrap"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881c0f19790d102a7679d_beliefs-img-2--d.avif" loading="lazy" width="2880" height="2124" alt="Modern living room with two light gray sofas, a dark wooden coffee table holding a vase with dried pampas grass, minimalist wall art, and a textured wall panel." srcset="assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-500.avif 500w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-800.avif 800w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-1080.avif 1080w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d.avif 2880w" sizes="(max-width: 2880px) 100vw, 2880px" class="img-full-cover is-desktop"/><img src="assets/images/693881bf041520f6c9ca8770_beliefs-img-2--mob.avif" loading="lazy" width="563" height="2039" alt="Modern living room with a beige sofa, vertical wood panel accent wall, a glass coffee table, and a side table with books and a small lamp." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section><section class="amenities"><div class="page-padding"><div class="container"><div data-amenities-anim="track" class="anim-track"><div data-amenities-anim="sticky" class="wrap amenities-wrap"><div data-amenities-anim="images-container" class="amenities-images-container"><div class="amenities-images-big"><div data-amenities-anim="big-image" class="amenities-slide-imgs is-first"><img src="assets/images/everything-covered-big-4k.jpg" loading="lazy" width="2563" height="3840" alt="Premium en-suite bedroom with soft natural light, plush bedding, and elegant drapes — the standard of every Gradspace room." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/communal-lounge-big-4k.jpg" loading="lazy" width="3840" height="2563" alt="Modern communal lounge with green armchairs, leather sofa, and warm wooden walls — premium shared student living." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/stellenbosch-vineyard-big-4k.jpg" loading="lazy" width="3840" height="2560" alt="Rolling Stellenbosch vineyards stretching toward the Simonsberg mountains — the winelands right outside your door." class="img-full-cover"/></div></div><div class="amenities-images-small"><div data-amenities-anim="small-image" class="amenities-slide-img-inner is-first"><img src="assets/images/everything-covered-small-4k.jpg" loading="lazy" width="3840" height="2559" alt="Luxury en-suite bathroom with premium finishes — water and rates all included in your base rate." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/communal-lounge-small-4k.jpg" loading="lazy" width="3840" height="2562" alt="Modern shared living room with warm tones, comfortable sofa, and outdoor views — communal spaces maintained to a premium standard." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/stellenbosch-oak-street-small-4k.jpg" loading="lazy" width="3840" height="2880" alt="Oak-lined Dorp Street in Stellenbosch — the historic avenues and Cape Dutch architecture that define student life here." class="img-full-cover"/></div></div></div><div class="amenities-texts-container"><div class="amenities-progress"><div class="amenities-progress-line"></div></div><div class="amenities-slide-box is-first"><h2 data-amenities-anim="title" class="h5 mob-h6">Everything <span>Covered</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Uncapped fibre Wi-Fi, three weekly communal cleans, water and rates — all included. No hidden costs, no separate bills. And unlike most Stellenbosch rentals, you're in the safest quarter in the city from day one.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">COMMUNAL<br>LIVING</h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Fully furnished shared kitchens, lounges, and braai decks — maintained and ready. The kind of communal living that actually works.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">STELLENBOSCH<br><span>LIVING</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Oak-lined streets, Simonsberg mountain views, world-class wine estates, and one of Africa's great universities — all right outside your door.</p></div></div></div></div><div data-amenities-anim="triggers" class="amenities-triggers"><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div class="amenities-trigger is-last"></div></div></div></div></div></section><div class="faq-relative"><div class="faq-spacer"></div><section parallax-section="" class="faq"><div class="page-padding"><div class="container"><div class="wrap faq-wrap"><div class="heading faq-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(FAQ)</div></div><h2 data-anim="split" class="h4 mob-h7">Your Questions, Answered</h2></div><div data-anim="stagger-wrap" class="faq-list"><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 1 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What properties does Gradspace offer?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Gradspace manages seven premium student properties in Stellenbosch — The Factory, Union House, Jonkerzicht, Bergzicht 63, Akkerhof, The Vineyards, and 24 Cluver Road. Each is a distinct address with its own character and community.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 2 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What makes Gradspace different?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Gradspace is the closest private provider to SU's main gate, in the Banghoek Quarter — Stellenbosch's safest residential zone. The Factory averages R15,255/month with uncapped Wi-Fi and water included. That's above CampusKey Platinum (R15,083) and 27Cluver (R15,000) in comparable rate, and more included than either.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 3 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What’s included in the rental?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Every Gradspace rental includes uncapped fibre Wi-Fi, communal cleaning three times per week, water and municipal rates. Furnished lounges and kitchens are standard. Select properties include dishwashers, washing machines, tumble dryers, and 24-hr armed response.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 4 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">How does the lease and payment work?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Leases run January through December, aligned to the academic year. You can pay in three equal instalments or twelve monthly payments. First payment is due December 1st prior to move-in. A security deposit and admin fee apply.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 5 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">Is Gradspace in a safe area?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Yes — and this is one of the most important things we offer. All Gradspace properties sit in Universiteits Oord and the Banghoek Quarter, consistently the safest residential zones in Stellenbosch. Several competing properties are located in Idas Valley and Cloetesville — areas with measurably higher incident rates. We chose every one of our streets deliberately. This safety, we provide. Many landlords in Stellenbosch don't.</p></div></div></div></div></div></div></div></section><section id="book-a-visit" parallax-section="" class="cta"><div class="page-padding"><div class="container"><div class="wrap cta-wrap"><div class="heading cta-heading"><h2 data-anim="element" class="h6">Find Your Place <span class="span-inline-block">in</span> Stellenbosch</h2><p data-anim="element" class="b1">Seven properties. One quarter. The safest place to live in Stellenbosch — and the closest to campus. Browse all properties or get in touch. We respond within one working day.</p></div><div data-anim="element" class="form-wrap"><div class="form-block w-form"><form id="cta-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="69372e47ab695bf5546b46eb" data-wf-element-id="903bb0a4-c2e5-6574-7234-2b788629c6c0"><div class="heading form-heading"><h2 class="h5 mob-h7">Begin <span class="h5-glare mob-h7">Your Application</span></h2><p class="b1 text-color-white-70">Our manager will contact you as soon as possible.</p></div><div class="inputs"><div class="input-wrap"><input class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Name" type="text" required=""/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+</svg></div></div></div><div data-hero="line" class="nav-line"></div></div></div></header><main class="main-wrapper"><section class="hero"><div class="page-padding"><div class="container"><div class="wrap hero-wrap"><div class="heading hero-heading"><h1 data-hero="title" class="h1 hero-title" style="font-size:12rem;white-space:nowrap;letter-spacing:-0.02em;position:relative;top:2rem;left:-1.5rem;display:block;width:max-content;">Gradspace</h1><div data-hero="content" class="hero-right"><div class="hero-right-heading"><div data-hero="title-min" class="h6 mob-h7">Closest to campus. <span class="span-inline-block">Safest in town.</span></div><p data-hero="subtitle" class="b3">Gradspace sits in Universiteits Oord — the private quarter directly alongside SU's main gate. Closer to campus, safer neighbourhood, and more included in your base rate than any competitor at this price point.</p></div><div data-hero="scroll" class="text-btn-01">SCROLL</div></div></div></div></div></div><div data-hero="bg" class="full-bg-wrap"><div data-hero="img" class="full-bg-inner"><div data-poster-url="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_poster.0000000.jpg" data-video-urls="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_mp4.mp4,assets/images/69610a0c261bf5a0d9012dd6_hero 3 (1)_webm.webm" data-autoplay="true" data-loop="false" data-wf-ignore="true" class="video w-background-video w-background-video-atom"><video id="b7729ca5-13f1-6b61-c831-1c4b79735cb2-video" autoplay="" style="background-image:url(&quot;assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_poster.0000000.jpg&quot;)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover"><source src="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_mp4.mp4" data-wf-ignore="true"/><source src="assets/images/69610a0c261bf5a0d9012dd6_hero 3 (1)_webm.webm" data-wf-ignore="true"/></video></div></div></div></section><section class="about"><div class="page-padding"><div class="container"><div class="wrap about-wrap"><div class="about-info"><div class="about-left"><div class="about-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(About)</div></div><h2 data-anim="split" class="h5-glare mob-h7">premium <span class="h5 mob-h7">student </span><span>living</span> <span class="h5 mob-h7">in</span> <span class="h5 mob-h7">Stellenbosch</span></h2></div><div class="about-img"><img src="assets/images/gradspace/Gradspace-House-20201201-20201201-160215-0023-800-Gallery.jpg" loading="lazy" width="893" height="1376" alt="Gradspace communal lounge — premium shared living in Universiteits Oord, Stellenbosch." data-anim="img-paralax" class="img-full-cover" style="object-position: center 40%;"/><div data-anim="img-overlay" class="img-overlay"></div></div></div><div class="about-text-box"><p data-anim="element" class="b1">Gradspace manages seven premium student addresses in Stellenbosch — all within Universiteits Oord, the closest private residential zone to SU's main gate. Each property chosen for location, safety, and build quality.</p><p data-anim="element" class="b1">From The Factory to Jonkerzicht, every address is managed to a standard that keeps your focus where it belongs — on your degree.</p></div></div><div data-anim="stagger-wrap" class="stats"><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-1"><div class="stats-box-row"><div data-number="7" class="h2 mob-h5">7</div></div><p class="b1 mob-b4">premium addresses across Stellenbosch.</p></div><div data-anim="stagger" class="stats-box stats-box-2"><div class="stats-box-row"><div data-number="5" class="h2 mob-h5">5</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">min</div></div></div><p class="b1 mob-b4">walk to campus for most properties.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-3"><div class="stats-box-row in-stats-row-2"><div class="h2 mob-h5"><span data-number="3">3</span>×</div></div><p class="b1 mob-b4">weekly communal cleaning included.</p></div></div><div class="stats-row-3"><div data-anim="stagger" class="stats-box stats-box-4"><div class="stats-box-row"><div data-number="24" class="h2 mob-h5">24</div><div class="h2 mob-h5">/</div><div data-number="7" class="h2 mob-h5">7</div></div><div class="stats-box-4-text"><p class="b1 mob-b4">armed response. The safest quarter in Stellenbosch. This we offer. Most don't.</p></div></div></div><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-5"><div class="stats-box-row"><div data-number="1000" class="h2 mob-h5">1,000</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">+</div></div></div><p class="b1 mob-b4">students have called a Gradspace property home. The trusted name in Stellenbosch student living.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-6"><div class="stats-box-row in-stats-row-2"><div data-number="1" class="h2 mob-h5">1</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">day</div></div></div><p class="b1 mob-b4">maximum management response, guaranteed. Real people who answer, act, and show up.</p></div></div></div></div></div></div></section><section class="projects"><div class="page-padding"><div class="container"><div class="wrap projects-wrap"><div class="splide projects-slider"><div class="projects-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(our properties)</div></div></div><div class="project-titles"><div class="project-title is-first"><h2 class="h4 mob-h7">The Factory</h2></div><div class="project-title"><h2 class="h4 mob-h7">Union House</h2></div><div class="project-title"><h2 class="h4 mob-h7">Jonkerzicht</h2></div><div class="project-title"><h2 class="h4 mob-h7">Bergzicht 63</h2></div><div class="project-title"><h2 class="h4 mob-h7">Akkerhof</h2></div><div class="project-title"><h2 class="h4 mob-h7">The Vineyards</h2></div><div class="project-title"><h2 class="h4 mob-h7">24 Cluver Road</h2></div></div><div class="splide__track projects-track"><div class="splide__list projects-list"><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-010-800-Gallery.jpg" width="897" height="1176" alt="The Factory — purpose-built student apartment complex in Universiteits Oord, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/unionhouse-510-3x2-1.jpg" width="897" height="1176" alt="Union House — two buildings, twenty students at 14 Soeteweide Road, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Jonkerzicht-800-3x2-1.jpg" width="897" height="1176" alt="Jonkerzicht — private walled garden and braai terrace on Merriman Avenue, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-Bergzicht-63-20.jpg" width="897" height="1176" alt="Bergzicht 63 — quiet residential streets and architectural character in Stellenbosch's Bergzicht quarter." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Akkerhof-01-512-400x250-1.jpg" width="897" height="1176" alt="Akkerhof — corner of Dennesig and Bird Street, central Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 40%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Vineyards-02.jpg" width="897" height="1176" alt="The Vineyards — open vineyard setting on the outskirts of Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 30%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-24-Cluver-Road-02-800-3x2-1.jpg" width="897" height="1176" alt="24 Cluver Road — premium central Stellenbosch student residence." data-anim="img-paralax" loading="lazy"/></div></div></div></div></div><div data-anim="slideUp-once" class="project-texts"><div class="project-text is-first"><p class="b1">Purpose-built in Universiteits Oord — Stellenbosch's safest residential quarter. Sunlit living spaces, private terraces, 24-hr armed response, and a selection of exclusive amenities. This safety. This standard. We offer it.</p><a data-project-index="0" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Two buildings, twenty students. Uncapped Wi-Fi, dishwasher, laundry on-site, and 24-hour armed response — the kind of home that makes the years unforgettable.</p><a data-project-index="1" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p id="w-node-_331f3dee-4cc2-0975-74b5-82ee94c4b1e2-546b46eb" class="b1">Private walled garden, covered braai terrace, and five-bedroom apartments — your own outdoor world to come home to on Merriman Avenue.</p><a data-project-index="2" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Quiet streets, mature trees, and architectural character in Bergzicht. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry on-site — the kind of home that has warmth you can't manufacture.</p><a data-project-index="3" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Central Stellenbosch at the corner of Dennesig and Bird Streets. Campus, the Neelsie, and town — all a short walk away. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry included.</p><a data-project-index="4" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Open vineyard setting, 2.9km from the Neelsie Student Centre. Space, quiet, and open sky — for the student who values the calm that distance from town brings. Fibre Wi-Fi, dishwasher, and laundry on-site.</p><a data-project-index="5" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">One of Stellenbosch's most recognised student addresses — central, premium, and walking distance from campus. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry. The kind of road generations of students have competed to get onto.</p><a data-project-index="6" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div></div></div></div></div></section><section class="our-beliefs"><div class="page-padding"><div class="container"><div class="wrap our-beliefs-wrap"><div class="our-beliefs-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(Our beliefs)</div></div><h2 data-anim="split" class="h4 mob-h7">The Standard of Living You Deserve</h2></div><div class="our-beliefs-img"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881c0bd19ffb64b94f142_beliefs-img--d.avif" loading="lazy" width="1439" height="1640" alt="Modern living room with a large gray sectional sofa, textured throw blanket, glass side table, and wall-mounted flat-screen TV." srcset="assets/images/693881c0bd19ffb64b94f142_beliefs-img--d-p-500.avif 500w, assets/images/693881c0bd19ffb64b94f142_beliefs-img--d-p-800.avif 800w, assets/images/693881c0bd19ffb64b94f142_beliefs-img--d.avif 1439w" sizes="(max-width: 1439px) 100vw, 1439px" class="img-full-cover is-desktop"/><img src="assets/images/693881bfdfb07f671238f951_beliefs-img--mob.avif" loading="lazy" width="503" height="774" alt="Modern living room with gray sectional sofa, textured cushions, a throw blanket, glass side table, and large floor-to-ceiling windows." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div><div data-anim="element" class="our-beliefs-text-box"><p class="b1">Every Gradspace address was chosen for proximity to campus, safety of neighbourhood, and quality of build. At The Factory, uncapped Wi-Fi and water are already included in your base rate — priced above CampusKey Platinum (R15,083/mo) and 27Cluver (R15,000/mo), and more included than either. </p></div></div></div></div></section><section data-anim="stagger-wrap" class="beliefs"><div class="page-padding"><div class="container"><div class="wrap beliefs-wrap"><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Location <br/>First</h3><p class="b4 mob-c1">The closest private provider to SU's main gate. Universiteits Oord — directly alongside campus.</p></div></div><div class="b4">( 1 )</div></div><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Communal <br/>Living</h3><p class="b4 mob-c1">Shared spaces serviced three times weekly. A home worth coming back to.</p></div></div><div class="b4">( 2)</div></div><div data-anim="stagger" id="w-node-e7d9808f-a06f-a331-e101-7ae74e8937a2-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Fully Serviced</h3><p class="b4 mob-c1">Uncapped fibre, water, rates, and on-call management included.</p></div></div><div class="b4">( 3 )</div></div><div data-anim="stagger" id="w-node-_136ce43b-8832-597b-a20a-1efae0224907-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Secure &amp; <br/>Supported</h3><p class="b4 mob-c1">Banghoek Quarter — Stellenbosch's safest zone. 24-hr armed response at The Factory &amp; Union House. No Idas Valley.</p></div></div><div class="b4">( 4)</div></div><div data-anim="stagger" id="w-node-_24ad7796-0800-01cc-2e5a-ae5fa6b493fd-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Stellenbosch <br/>Lifestyle</h3><p class="b4 mob-c1">Wine country, mountain views, and one of Africa's great universities.</p></div></div><div class="b4">( 5 )</div></div><div id="w-node-d88d786b-358f-44e1-a1ef-46994c97ead0-546b46eb" class="beliefs-text-box"><p data-anim="element" class="b1">At Gradspace, we believe student living shouldn’t mean settling — or compromising on safety. Your years at Stellenbosch should be good ones: safe neighbourhood, properly supported, properly liveable. This safety, we offer. Most don’t. </p><p data-anim="element" class="b1">Our mission is to give every student a home they're proud of — in the safest quarter of Stellenbosch, close to campus, and ready from day one. This is what we offer. They don't.</p></div></div></div></div><div class="full-bg-wrap"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881c0f19790d102a7679d_beliefs-img-2--d.avif" loading="lazy" width="2880" height="2124" alt="Modern living room with two light gray sofas, a dark wooden coffee table holding a vase with dried pampas grass, minimalist wall art, and a textured wall panel." srcset="assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-500.avif 500w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-800.avif 800w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-1080.avif 1080w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d.avif 2880w" sizes="(max-width: 2880px) 100vw, 2880px" class="img-full-cover is-desktop"/><img src="assets/images/693881bf041520f6c9ca8770_beliefs-img-2--mob.avif" loading="lazy" width="563" height="2039" alt="Modern living room with a beige sofa, vertical wood panel accent wall, a glass coffee table, and a side table with books and a small lamp." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section><section class="amenities"><div class="page-padding"><div class="container"><div data-amenities-anim="track" class="anim-track"><div data-amenities-anim="sticky" class="wrap amenities-wrap"><div data-amenities-anim="images-container" class="amenities-images-container"><div class="amenities-images-big"><div data-amenities-anim="big-image" class="amenities-slide-imgs is-first"><img src="assets/images/everything-covered-big-4k.jpg" loading="lazy" width="2563" height="3840" alt="Premium en-suite bedroom with soft natural light, plush bedding, and elegant drapes — the standard of every Gradspace room." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/communal-lounge-big-4k.jpg" loading="lazy" width="3840" height="2563" alt="Modern communal lounge with green armchairs, leather sofa, and warm wooden walls — premium shared student living." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/stellenbosch-vineyard-big-4k.jpg" loading="lazy" width="3840" height="2560" alt="Rolling Stellenbosch vineyards stretching toward the Simonsberg mountains — the winelands right outside your door." class="img-full-cover"/></div></div><div class="amenities-images-small"><div data-amenities-anim="small-image" class="amenities-slide-img-inner is-first"><img src="assets/images/everything-covered-small-4k.jpg" loading="lazy" width="3840" height="2559" alt="Luxury en-suite bathroom with premium finishes — water and rates all included in your base rate." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/communal-lounge-small-4k.jpg" loading="lazy" width="3840" height="2562" alt="Modern shared living room with warm tones, comfortable sofa, and outdoor views — communal spaces maintained to a premium standard." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/stellenbosch-oak-street-small-4k.jpg" loading="lazy" width="3840" height="2880" alt="Oak-lined Dorp Street in Stellenbosch — the historic avenues and Cape Dutch architecture that define student life here." class="img-full-cover"/></div></div></div><div class="amenities-texts-container"><div class="amenities-progress"><div class="amenities-progress-line"></div></div><div class="amenities-slide-box is-first"><h2 data-amenities-anim="title" class="h5 mob-h6">Everything <span>Covered</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Uncapped fibre Wi-Fi, three weekly communal cleans, water and rates — all included. No hidden costs, no separate bills. And unlike most Stellenbosch rentals, you're in the safest quarter in the city from day one.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">COMMUNAL<br>LIVING</h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Fully furnished shared kitchens, lounges, and braai decks — maintained and ready. The kind of communal living that actually works.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">STELLENBOSCH<br><span>LIVING</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Oak-lined streets, Simonsberg mountain views, world-class wine estates, and one of Africa's great universities — all right outside your door.</p></div></div></div></div><div data-amenities-anim="triggers" class="amenities-triggers"><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div class="amenities-trigger is-last"></div></div></div></div></div></section><div class="faq-relative"><div class="faq-spacer"></div><section parallax-section="" class="faq"><div class="page-padding"><div class="container"><div class="wrap faq-wrap"><div class="heading faq-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(FAQ)</div></div><h2 data-anim="split" class="h4 mob-h7">Your Questions, Answered</h2></div><div data-anim="stagger-wrap" class="faq-list"><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 1 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What properties does Gradspace offer?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Gradspace manages seven premium student properties in Stellenbosch — The Factory, Union House, Jonkerzicht, Bergzicht 63, Akkerhof, The Vineyards, and 24 Cluver Road. Each is a distinct address with its own character and community.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 2 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What makes Gradspace different?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Gradspace is the closest private provider to SU's main gate, in the Banghoek Quarter — Stellenbosch's safest residential zone. The Factory averages R15,255/month with uncapped Wi-Fi and water included. That's above CampusKey Platinum (R15,083) and 27Cluver (R15,000) in comparable rate, and more included than either.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 3 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What’s included in the rental?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Every Gradspace rental includes uncapped fibre Wi-Fi, communal cleaning three times per week, water and municipal rates. Furnished lounges and kitchens are standard. Select properties include dishwashers, washing machines, tumble dryers, and 24-hr armed response.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 4 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">How does the lease and payment work?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Leases run January through December, aligned to the academic year. You can pay in three equal instalments or twelve monthly payments. First payment is due December 1st prior to move-in. A security deposit and admin fee apply.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 5 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">Is Gradspace in a safe area?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Yes — and this is one of the most important things we offer. All Gradspace properties sit in Universiteits Oord and the Banghoek Quarter, consistently the safest residential zones in Stellenbosch. Several competing properties are located in Idas Valley and Cloetesville — areas with measurably higher incident rates. We chose every one of our streets deliberately. This safety, we provide. Many landlords in Stellenbosch don't.</p></div></div></div></div></div></div></div></section><section id="book-a-visit" parallax-section="" class="cta"><div class="page-padding"><div class="container"><div class="wrap cta-wrap"><div class="heading cta-heading"><h2 data-anim="element" class="h6">Find Your Place <span class="span-inline-block">in</span> Stellenbosch</h2><p data-anim="element" class="b1">Seven properties. One quarter. The safest place to live in Stellenbosch — and the closest to campus. Browse all properties or get in touch. We respond within one working day.</p></div><div data-anim="element" class="form-wrap"><div class="form-block w-form"><form id="cta-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="69372e47ab695bf5546b46eb" data-wf-element-id="903bb0a4-c2e5-6574-7234-2b788629c6c0"><div class="heading form-heading"><h2 class="h5 mob-h7">Begin <span class="h5-glare mob-h7">Your Application</span></h2><p class="b1 text-color-white-70">Our manager will contact you as soon as possible.</p></div><div class="inputs"><div class="input-wrap"><input class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Name" type="text" required=""/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M18 18L6 6" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18 6L6 18" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div></button></div><div class="input-wrap"><input class="input w-input" maxlength="256" name="Email" data-name="Email" placeholder="Email" type="email" id="Email" required=""/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3058,7 +3206,7 @@
 </svg></div></button></div><div class="input-wrap"><input class="input w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Phone" type="tel" id="Phone"/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M18 18L6 6" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18 6L6 18" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></div></button></div></div><div class="form-bottom"><input type="submit" data-wait="Please wait..." class="btn form-btn w-button" value="request"/><div class="form-bottom-text"><p class="b4 mob-c1">By sending your request, you&#x27;re agreeing to our privacy policy. We promise to keep your personal information safe and secure</p></div></div></form><div class="success-msg w-form-done"><div class="success-msg-box"><div class="b0 mob-b1">Thank you! <br/>Your submission has been received!</div></div></div><div class="error-msg w-form-fail"><div class="error-msg-box"><div class="b1 mob-b4">Oops! Something went wrong while submitting the form.</div></div></div></div></div></div></div></div><div class="full-bg-wrap in-cta"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881d5049ac7d72bb5f18f_cta-img--d.avif" loading="lazy" width="2880" height="1650" alt="Modern glass-walled house lit warmly at dusk with surrounding trees and garden." class="img-full-cover is-desktop"/><img src="assets/images/693881c82316816e1085777d_cta-img--mob.avif" loading="lazy" width="563" height="1869" alt="Modern house with large glass windows illuminated at night, surrounded by trees and garden." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section></div><footer class="footer"><div class="page-padding"><div class="container"><div class="wrap footer-wrap"><div class="footer-top"><div class="footer-col"><div class="footer-col-title is-first"><h3 data-footer="step-1" class="h6 mob-h8">(Get in touch)</h3><div data-footer="line" class="footer-line is-top"></div></div><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg" loading="lazy" width="160" height="26" alt="GrandSpace logo" data-footer="step-2" class="footer-logo"/></div><div class="footer-right"><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(location)</h3></div><address data-footer="step-2" class="is-location"><div class="b1">Stellenbosch, Western Cape, South Africa</div></address></div><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(Contact)</h3></div><div data-footer="step-2" class="contact-box"><a href="mailto:admin@gradspace.co.za" class="text-link-light w-inline-block"><div class="h6 mob-h8">admin@gradspace.co.za</div></a><a href="tel:+27828522024" class="text-link-light w-inline-block"><div class="h6 mob-h8">+27 82 852 2024</div></a></div></div></div></div><div class="footer-bottom"><div data-footer="step-3" class="b4 mob-c1">©<span data-year="">2026</span>. Gradspace. All rights reserved.</div><div class="footer-right in-bottom"><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Manage cookies</div></a><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Made by Clarke Agency</div></a></div><div data-footer="line" class="footer-line"></div></div></div></div></div></footer></main><div id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-layout"><div class="modal-layout-bg"></div><div id="w-node-_86b0c9a3-962e-bea3-eb71-88bd931027f9-546b46eb" class="modal-info"><div class="modal-header"><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg" loading="lazy" width="160" height="26" alt="GrandSpace logo" class="modal-logo"/><button type="button" aria-label="Close the modal window" data-close-modal="" class="modal-close"><div class="modal-close-icon w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+</svg></div></button></div></div><div class="form-bottom"><input type="submit" data-wait="Please wait..." class="btn form-btn w-button" value="request"/><div class="form-bottom-text"><p class="b4 mob-c1">By sending your request, you&#x27;re agreeing to our privacy policy. We promise to keep your personal information safe and secure</p></div></div></form><div class="success-msg w-form-done"><div class="success-msg-box"><div class="b0 mob-b1">Thank you! <br/>Your submission has been received!</div></div></div><div class="error-msg w-form-fail"><div class="error-msg-box"><div class="b1 mob-b4">Oops! Something went wrong while submitting the form.</div></div></div></div></div></div></div></div><div class="full-bg-wrap in-cta"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881d5049ac7d72bb5f18f_cta-img--d.avif" loading="lazy" width="2880" height="1650" alt="Modern glass-walled house lit warmly at dusk with surrounding trees and garden." class="img-full-cover is-desktop"/><img src="assets/images/693881c82316816e1085777d_cta-img--mob.avif" loading="lazy" width="563" height="1869" alt="Modern house with large glass windows illuminated at night, surrounded by trees and garden." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section></div><footer class="footer"><div class="page-padding"><div class="container"><div class="wrap footer-wrap"><div class="footer-top"><div class="footer-col"><div class="footer-col-title is-first"><h3 data-footer="step-1" class="h6 mob-h8">(Get in touch)</h3><div data-footer="line" class="footer-line is-top"></div></div><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=2" loading="lazy" width="160" height="26" alt="Gradspace logo" data-footer="step-2" class="footer-logo"/></div><div class="footer-right"><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(location)</h3></div><address data-footer="step-2" class="is-location"><div class="b1">Stellenbosch, Western Cape, South Africa</div></address></div><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(Contact)</h3></div><div data-footer="step-2" class="contact-box"><a href="mailto:admin@gradspace.co.za" class="text-link-light w-inline-block"><div class="h6 mob-h8">admin@gradspace.co.za</div></a><a href="tel:+27828522024" class="text-link-light w-inline-block"><div class="h6 mob-h8">+27 82 852 2024</div></a></div></div></div></div><div class="footer-bottom"><div data-footer="step-3" class="b4 mob-c1">©<span data-year="">2026</span>. Gradspace. All rights reserved.</div><div class="footer-right in-bottom"><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Manage cookies</div></a><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Made by Clarke Agency</div></a></div><div data-footer="line" class="footer-line"></div></div></div></div></div></footer></main><div id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-layout"><div class="modal-layout-bg"></div><div id="w-node-_86b0c9a3-962e-bea3-eb71-88bd931027f9-546b46eb" class="modal-info"><div class="modal-header"><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=2" loading="lazy" width="160" height="26" alt="Gradspace logo" class="modal-logo"/><button type="button" aria-label="Close the modal window" data-close-modal="" class="modal-close"><div class="modal-close-icon w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
   <path d="M18 18L6 6" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18 6L6 18" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div></button><div class="modal-header-line"></div></div><div class="modal-title"><h2 id="modalTitle" data-wf-target="[[[&quot;69372e47ab695bf5546b46eb&quot;,&quot;f26fc799-6041-1cfd-fbaf-024575002fa1&quot;],[]]]" class="h7">Heading</h2></div><div data-wf-target="[[[&quot;69372e47ab695bf5546b46eb&quot;,&quot;c285bb3b-0fdb-984c-5e44-51ac65c7aaae&quot;],[]]]" class="modal-description"><p id="modalDescr" class="b3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p></div><a data-close-modal="" data-wf-target="[[[&quot;69372e47ab695bf5546b46eb&quot;,&quot;61bbfd61-1fd7-5031-13e0-5879cc7764f5&quot;],[]]]" href="#book-a-visit" class="btn modal-btn w-inline-block"><div>BOOK A VISIT</div></a></div><div id="w-node-_20fe7d69-bcea-1ebc-1c75-6f6ac9737b61-546b46eb" class="modal-slider-wrap"><div class="modal-bg-images"></div><div aria-label="Photo thumbnails" class="splide modal-thumb-slider"><div class="splide__track modal-thumb-slider-track"><div class="splide__list modal-thumb-list"></div></div></div></div><div id="w-node-_6d161abf-ef64-3618-6012-149f225ff2b1-546b46eb" class="modal-slide-info-wrap"><div class="modal-slide-info"><div class="slide-info-label"><h3 id="slideInfoLabel" class="h6">Heading</h3></div><div class="slide-info-area"><div id="slideInfoNumber" class="h3 mob-h5">150</div><div class="slide-info-area-unit"><div class="text-color-white-70"><div class="b0 mob-b1 is-it">sq. ft.</div></div></div></div><div class="slide-info-text"><div id="slideInfoText" class="b1 mob-b4">total area</div></div></div></div></div></div></div></div><script type="text/javascript">gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,SplitText);</script><!-- Base Code -->
@@ -3284,8 +3432,8 @@ setTimeout(function() {
 .gsf-slider::-webkit-slider-thumb { -webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;border:1.5px solid rgba(200,169,110,.6);cursor:pointer;transition:transform .14s;box-shadow:0 0 6px rgba(200,169,110,.25); }
 .gsf-slider::-webkit-slider-thumb:hover { transform:scale(1.25); }
 .gsf-slider::-moz-range-thumb { width:12px;height:12px;border-radius:50%;background:#fff;border:1.5px solid rgba(200,169,110,.6);cursor:pointer; }
-.gsf-slider-val { font-size:.82rem;color:#c8a96e;white-space:nowrap;min-width:5rem;font-weight:400;letter-spacing:.02em; }
-.gsf-slider-max { font-size:.68rem;color:rgba(255,255,255,.38);white-space:nowrap; }
+.gsf-slider-val { font-size:.92rem;color:#c8a96e;white-space:nowrap;min-width:5rem;font-weight:400;letter-spacing:.02em; }
+.gsf-slider-max { font-size:.75rem;color:rgba(255,255,255,.62);white-space:nowrap; }
 
 /* Chips */
 .gsf-chips { display:flex;gap:.38rem;flex-wrap:wrap; }
@@ -3329,12 +3477,12 @@ setTimeout(function() {
 .gsf-card:hover .gsf-card-img img { transform:scale(1.06); }
 
 .gsf-card-body { padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.45rem;flex:1; }
-.gsf-card-name { font-size:.95rem;font-weight:300;color:#fff;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-.gsf-card-price { font-size:.78rem;color:rgba(255,255,255,.55); }
-.gsf-card-price strong { color:rgba(255,255,255,.88);font-weight:300; }
+.gsf-card-name { font-size:1.05rem;font-weight:300;color:#fff;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.gsf-card-price { font-size:.88rem;color:rgba(255,255,255,.78); }
+.gsf-card-price strong { color:#fff;font-weight:300; }
 .gsf-card-meta { display:flex;align-items:center;gap:.38rem;flex-wrap:wrap; }
-.gsf-card-tag { font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:.18em .6em;border:1px solid rgba(255,255,255,.15);border-radius:2px;white-space:nowrap; }
-.gsf-card-view { display:inline-flex;align-items:center;gap:.3em;font-family:inherit;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.48);background:transparent;border:none;padding:0;cursor:pointer;outline:none;transition:color .15s;margin-top:auto; }
+.gsf-card-tag { font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.75);padding:.18em .6em;border:1px solid rgba(255,255,255,.15);border-radius:2px;white-space:nowrap; }
+.gsf-card-view { display:inline-flex;align-items:center;gap:.3em;font-family:inherit;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);background:transparent;border:none;padding:0;cursor:pointer;outline:none;transition:color .15s;margin-top:auto; }
 .gsf-card-view:hover { color:#c8a96e; }
 .gsf-card-view svg { transition:transform .15s; }
 .gsf-card-view:hover svg { transform:translateX(2px); }
@@ -3394,14 +3542,14 @@ setTimeout(function() {
 /* ── Drawer ────────────────────────────────────────────────────── */
 .gs-drawer-overlay { position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;opacity:0;pointer-events:none;transition:opacity .35s ease; }
 .gs-drawer-overlay.open { opacity:1;pointer-events:all; }
-.gs-drawer { position:fixed;top:0;right:0;bottom:0;width:min(600px,96vw);background:#050505;border-left:1px solid rgba(255,255,255,.07);z-index:1001;overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column; }
+.gs-drawer { position:fixed;top:0;right:0;bottom:0;width:50vw;min-width:520px;max-width:96vw;background:#050505;border-left:1px solid rgba(255,255,255,.07);z-index:1001;overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column; }
 .gs-drawer.open { transform:translateX(0); }
 .gs-drawer-gallery { position:relative;height:260px;overflow:hidden;background:#0a0a0a;flex-shrink:0; }
 .gs-drawer-gallery img { width:100%;height:100%;object-fit:contain;display:block;transition:opacity .25s;filter:brightness(.92); }
 .gs-drawer-gallery-nav { position:absolute;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;width:100%;padding:0 1.1rem;pointer-events:none; }
 .gs-gallery-btn { pointer-events:all;width:2.2rem;height:2.2rem;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;outline:none; }
 .gs-gallery-btn:hover { background:rgba(0,0,0,.85);border-color:rgba(255,255,255,.4); }
-.gs-drawer-gallery-count { position:absolute;bottom:.9rem;right:1rem;font-size:.54rem;color:rgba(255,255,255,.4);background:rgba(0,0,0,.45);padding:.22em .7em;border-radius:2em;letter-spacing:.08em; }
+.gs-drawer-gallery-count { position:absolute;bottom:.9rem;right:1rem;font-size:.7rem;color:rgba(255,255,255,.7);background:rgba(0,0,0,.45);padding:.22em .7em;border-radius:2em;letter-spacing:.08em; }
 .gs-thumbs-strip { display:flex;gap:.25rem;background:#050505;padding:.5rem .75rem;overflow-x:auto;flex-shrink:0; }
 .gs-thumbs-strip::-webkit-scrollbar { height:1px; }
 .gs-thumbs-strip::-webkit-scrollbar-thumb { background:rgba(255,255,255,.08); }
@@ -3409,23 +3557,23 @@ setTimeout(function() {
 .gs-thumb.active { opacity:1;outline-color:rgba(255,255,255,.55); }
 .gs-thumb img { width:100%;height:100%;object-fit:cover;display:block; }
 .gs-drawer-header { padding:1.75rem 2rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem; }
-.gs-drawer-close { width:2rem;height:2rem;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(255,255,255,.4);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;outline:none; }
+.gs-drawer-close { width:2rem;height:2rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;outline:none; }
 .gs-drawer-close:hover { border-color:rgba(255,255,255,.5);color:#fff; }
 .gs-drawer-title { font-size:clamp(1.4rem,2.8vw,2rem);font-weight:300;color:#fff;line-height:1.1;letter-spacing:-.01em; }
-.gs-drawer-sub { font-size:.6rem;color:rgba(255,255,255,.28);letter-spacing:.16em;text-transform:uppercase;margin-top:.5rem; }
+.gs-drawer-sub { font-size:.75rem;color:rgba(255,255,255,.62);letter-spacing:.16em;text-transform:uppercase;margin-top:.5rem; }
 .gs-drawer-stats { display:flex;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0; }
 .gs-drawer-stat { flex:1;padding:1.1rem 1rem;border-right:1px solid rgba(255,255,255,.06);text-align:center; }
 .gs-drawer-stat:last-child { border-right:none; }
 .gs-drawer-stat-n { font-size:1.25rem;font-weight:300;color:#fff;line-height:1;margin-bottom:.3rem; }
-.gs-drawer-stat-l { font-size:.52rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.24); }
+.gs-drawer-stat-l { font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.55); }
 .gs-drawer-body { padding:2rem;display:flex;flex-direction:column;gap:2.25rem;flex:1; }
-.gs-section-lbl { font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.1rem;display:block; }
-.gs-drawer-desc { font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8; }
+.gs-section-lbl { font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.1rem;display:block; }
+.gs-drawer-desc { font-size:.98rem;color:rgba(255,255,255,.72);line-height:1.8; }
 .gs-rooms-list { display:flex;flex-direction:column; }
 .gs-room-row { display:flex;align-items:center;gap:1rem;padding:.88rem 0;border-bottom:1px solid rgba(255,255,255,.05); }
 .gs-room-row:last-child { border-bottom:none; }
-.gs-room-name { font-size:.78rem;color:rgba(255,255,255,.42);flex:1; }
-.gs-room-price { font-size:.82rem;color:#fff;font-weight:300;white-space:nowrap;margin-right:.5rem; }
+.gs-room-name { font-size:.9rem;color:rgba(255,255,255,.78);flex:1; }
+.gs-room-price { font-size:.95rem;color:#fff;font-weight:300;white-space:nowrap;margin-right:.5rem; }
 .gs-features-grid { display:flex;flex-wrap:wrap;gap:.45rem; }
 .gs-feature-pill { display:inline-flex;align-items:center;gap:.42em;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.42);padding:.38em 1em;border:1px solid rgba(255,255,255,.1);border-radius:3px; }
 .gs-feature-pill svg { opacity:.45;flex-shrink:0; }
@@ -3434,6 +3582,30 @@ setTimeout(function() {
 .gs-btn-primary:hover { background:rgba(255,255,255,.87); }
 .gs-btn-outline { font-family:inherit;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:.95em 1.5em;border-radius:3px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;outline:none; }
 .gs-btn-outline:hover { border-color:rgba(255,255,255,.5);color:#fff; }
+.gs-detail-head { font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:1.75rem 0 .9rem;font-weight:500; }
+.gs-detail-plans { display:flex;flex-direction:column;gap:.6rem; }
+.gs-detail-plan { padding:1rem 1.1rem;border:1px solid rgba(255,255,255,.11);border-radius:3px; }
+.gs-detail-plan-top { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.65rem; }
+.gs-detail-plan-name { font-size:1rem;color:#fff;font-weight:300; }
+.gs-detail-plan-size { font-size:.88rem;color:rgba(200,169,110,1);letter-spacing:.06em;font-weight:500; }
+.gs-detail-plan-tags { display:flex;flex-wrap:wrap;gap:.4rem; }
+.gs-detail-plan-tags span { font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.65);padding:.32em .85em;border:1px solid rgba(255,255,255,.14);border-radius:2em; }
+.gs-detail-room-grid { display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.25rem; }
+.gs-detail-col { padding:1rem 1.1rem;border:1px solid rgba(255,255,255,.11); }
+.gs-detail-col-lbl { font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,169,110,1);margin-bottom:.75rem;font-weight:500; }
+.gs-detail-list { list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem; }
+.gs-detail-list li { font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.55;display:flex;align-items:baseline;gap:.6rem; }
+.gs-detail-list li::before { content:'';flex-shrink:0;width:.3rem;height:.3rem;border-radius:50%;background:rgba(255,255,255,.35); }
+.gs-detail-sec-grid { display:grid;grid-template-columns:1fr 1fr;gap:.5rem; }
+.gs-detail-sec-item { font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.55;display:flex;align-items:baseline;gap:.55rem; }
+.gs-detail-sec-item::before { content:'';flex-shrink:0;width:.3rem;height:.3rem;border-radius:50%;background:rgba(74,222,128,.6); }
+.gs-detail-excl-row { display:flex;flex-wrap:wrap;gap:.45rem; }
+.gs-excl-tag { font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:.38em .9em;border:1px solid rgba(255,255,255,.13);border-radius:2px;display:inline-flex;align-items:center;gap:.5em; }
+.gs-excl-tag::before { content:'×';color:rgba(200,169,110,.7);font-weight:600; }
+.gs-detail-incl-grid { display:grid;grid-template-columns:1fr 1fr;gap:.5rem; }
+.gs-detail-incl-item { font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.55;display:flex;align-items:baseline;gap:.55rem; }
+.gs-detail-incl-item::before { content:'';flex-shrink:0;width:.3rem;height:.3rem;border-radius:50%;background:rgba(200,169,110,.7); }
+@media (max-width:480px) { .gs-detail-room-grid { grid-template-columns:1fr; } .gs-detail-sec-grid { grid-template-columns:1fr; } .gs-detail-incl-grid { grid-template-columns:1fr; } }
 
 /* ── Compare + Map ─────────────────────────────────────────────── */
 #book-a-visit { position:relative !important;bottom:auto !important;transform:none !important;z-index:1 !important; }
@@ -3648,7 +3820,7 @@ setTimeout(function() {
 
   /* ── Filter state ──────────────────────────────────────────────── */
   var gsf = {
-    priceMax: 17000,
+    priceMax: 12000,
     distance: 'any',
     amenities: [],
   };
@@ -3690,7 +3862,7 @@ setTimeout(function() {
   }
 
   function isDefaultFilters() {
-    return gsf.priceMax === 17000 && gsf.distance === 'any' && gsf.amenities.length === 0;
+    return gsf.priceMax === 12000 && gsf.distance === 'any' && gsf.amenities.length === 0;
   }
 
   /* ── Smart Filter Bar ─────────────────────────────────────────── */
@@ -3738,8 +3910,8 @@ setTimeout(function() {
             '<div class="gsf-filter-row">' +
               '<span class="gsf-lbl">Budget</span>' +
               '<div class="gsf-slider-wrap">' +
-                '<span class="gsf-slider-val" id="gsf-pval">Up to R17,000</span>' +
-                '<input type="range" class="gsf-slider" id="gsf-price" min="7800" max="17000" step="200" value="17000" aria-label="Maximum monthly budget">' +
+                '<span class="gsf-slider-val" id="gsf-pval">R12k+/mo</span>' +
+                '<input type="range" class="gsf-slider" id="gsf-price" min="7800" max="12000" step="200" value="12000" aria-label="Maximum monthly budget">' +
               '</div>' +
             '</div>' +
             '<div class="gsf-filter-row">' +
@@ -3777,7 +3949,7 @@ setTimeout(function() {
     function updateSlider() {
       var v = parseInt(slider.value, 10);
       gsf.priceMax = v;
-      pval.textContent = v >= 17000 ? 'Any budget' : 'Up to ' + fmt(v) + '/mo';
+      pval.textContent = v >= 12000 ? 'R12k+/mo' : 'Up to ' + fmt(v) + '/mo';
       var pct = (v - slider.min) / (slider.max - slider.min) * 100;
       slider.style.background = 'linear-gradient(to right,rgba(200,169,110,.5) ' + pct + '%,rgba(255,255,255,.08) ' + pct + '%)';
       applySmartFilter();
@@ -3821,13 +3993,13 @@ setTimeout(function() {
   }
 
   function resetFilters() {
-    gsf.priceMax  = 17000;
+    gsf.priceMax  = 12000;
     gsf.distance  = 'any';
     gsf.amenities = [];
     var slider = document.getElementById('gsf-price');
     if (slider) { slider.value = 17000; slider.style.background = 'linear-gradient(to right,rgba(200,169,110,.5) 100%,rgba(255,255,255,.08) 100%)'; }
     var pval = document.getElementById('gsf-pval');
-    if (pval) pval.textContent = 'Any budget';
+    if (pval) pval.textContent = 'R12k+/mo';
     document.querySelectorAll('#gsf-dist-chips .gsf-chip').forEach(function(b) {
       b.classList.toggle('active', b.getAttribute('data-dist') === 'any');
     });
@@ -3994,15 +4166,7 @@ setTimeout(function() {
     document.body.appendChild(drawerEl);
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeDrawer(); });
 
-    document.addEventListener('click', function(e) {
-      var trigger = e.target.closest('[data-open-modal][data-project-index]');
-      if (trigger) {
-        var idx = parseInt(trigger.getAttribute('data-project-index'), 10);
-        if (!isNaN(idx) && PROPS[idx]) {
-          e.preventDefault(); e.stopPropagation(); openDrawer(idx);
-        }
-      }
-    }, true);
+    // [data-open-modal] clicks are handled by gsLightboxOpen (photos only)
   }
 
   function openDrawer(idx) {
@@ -4024,6 +4188,41 @@ setTimeout(function() {
       return '<div class="gs-thumb' + (i===0?' active':'') + '" data-gsi="' + i + '"><img src="' + (s.thumb||s.main) + '" alt="" loading="lazy"/></div>';
     }).join('');
 
+    var pdDetails = typeof projectsData !== 'undefined' && projectsData[idx] ? projectsData[idx].details : null;
+    var detailsHtml = '';
+    if (pdDetails) {
+      var plansHtml = '';
+      if (pdDetails.plans && pdDetails.plans.length) {
+        plansHtml = '<p class="gs-detail-head">Unit Layout</p><div class="gs-detail-plans">' +
+          pdDetails.plans.map(function(pl) {
+            var tags = [pl.ensuite, pl.kitchen, pl.outdoor].filter(Boolean).map(function(t){ return '<span>' + t + '</span>'; }).join('');
+            return '<div class="gs-detail-plan">' +
+              '<div class="gs-detail-plan-top"><span class="gs-detail-plan-name">' + pl.name + '</span>' + (pl.size ? '<span class="gs-detail-plan-size">' + pl.size + '</span>' : '') + '</div>' +
+              (tags ? '<div class="gs-detail-plan-tags">' + tags + '</div>' : '') +
+            '</div>';
+          }).join('') + '</div>';
+      }
+      var servicesHtml = pdDetails.services && pdDetails.services.length ?
+        '<p class="gs-detail-head">What\'s Included</p><div class="gs-detail-incl-grid">' +
+        pdDetails.services.map(function(i){ return '<span class="gs-detail-incl-item">' + i + '</span>'; }).join('') + '</div>' : '';
+      var bedroomHtml = pdDetails.bedroom && pdDetails.bedroom.length ?
+        '<div class="gs-detail-col"><p class="gs-detail-col-lbl">Each bedroom</p><ul class="gs-detail-list">' +
+        pdDetails.bedroom.map(function(i){ return '<li>' + i + '</li>'; }).join('') + '</ul></div>' : '';
+      var bathroomHtml = pdDetails.bathroom && pdDetails.bathroom.length ?
+        '<div class="gs-detail-col"><p class="gs-detail-col-lbl">Each en-suite</p><ul class="gs-detail-list">' +
+        pdDetails.bathroom.map(function(i){ return '<li>' + i + '</li>'; }).join('') + '</ul></div>' : '';
+      var roomSpecHtml = (bedroomHtml || bathroomHtml) ?
+        '<p class="gs-detail-head">Room Specification</p><div class="gs-detail-room-grid">' + bedroomHtml + bathroomHtml + '</div>' : '';
+      var securityHtml = pdDetails.security && pdDetails.security.length ?
+        '<p class="gs-detail-head">Security</p><div class="gs-detail-sec-grid">' +
+        pdDetails.security.map(function(i){ return '<span class="gs-detail-sec-item">' + i + '</span>'; }).join('') + '</div>' : '';
+      var excludedHtml = pdDetails.excluded && pdDetails.excluded.length ?
+        '<p class="gs-detail-head">Not included</p><div class="gs-detail-excl-row">' +
+        pdDetails.excluded.map(function(i){ return '<span class="gs-excl-tag">' + i + '</span>'; }).join('') + '</div>' : '';
+      detailsHtml = '<div><span class="gs-section-lbl">(Property Detail)</span>' +
+        plansHtml + servicesHtml + roomSpecHtml + securityHtml + excludedHtml + '</div>';
+    }
+
     drawerEl.innerHTML =
       '<div class="gs-drawer-gallery"><img id="gs-gallery-img" src="' + slides[0].main + '" alt="' + p.name + '"/>' +
       '<div class="gs-drawer-gallery-nav"><button class="gs-gallery-btn" id="gs-prev">&#8592;</button><button class="gs-gallery-btn" id="gs-next">&#8594;</button></div>' +
@@ -4031,7 +4230,7 @@ setTimeout(function() {
       '<div class="gs-thumbs-strip" id="gs-thumbs">' + thumbsHtml + '</div>' +
       '<div class="gs-drawer-header"><div><div class="gs-drawer-title">' + p.name + '</div><div class="gs-drawer-sub">' + p.type + ' &mdash; ' + p.walkLabel + ' to campus</div>' + badge(p.status) + '</div><button class="gs-drawer-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>' +
       '<div class="gs-drawer-stats"><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + p.walk + '</div><div class="gs-drawer-stat-l">min to campus</div></div><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + availCount + '</div><div class="gs-drawer-stat-l">rooms available</div></div><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + p.rooms.length + '</div><div class="gs-drawer-stat-l">total rooms</div></div></div>' +
-      '<div class="gs-drawer-body"><div><span class="gs-section-lbl">(About)</span><p class="gs-drawer-desc">' + p.desc + '</p></div><div><span class="gs-section-lbl">(Rooms &amp; Pricing)</span><div class="gs-rooms-list">' + roomRows + '</div></div><div><span class="gs-section-lbl">(What\'s Included)</span><div class="gs-features-grid">' + featPills + '</div></div></div>' +
+      '<div class="gs-drawer-body"><div><span class="gs-section-lbl">(About)</span><p class="gs-drawer-desc">' + p.desc + '</p></div><div><span class="gs-section-lbl">(Rooms &amp; Pricing)</span><div class="gs-rooms-list">' + roomRows + '</div></div><div><span class="gs-section-lbl">(What\'s Included)</span><div class="gs-features-grid">' + featPills + '</div></div>' + detailsHtml + '</div>' +
       '<div class="gs-drawer-cta"><button class="gs-btn-primary">Book a Visit</button><button class="gs-btn-outline">Enquire</button></div>';
 
     setupGalleryControls();
@@ -4369,4 +4568,66 @@ setTimeout(function() {
 
 })();
 </script>
-</body></html>
+
+<!-- GRANDSPACE PHOTO LIGHTBOX -->
+<div id="gs-lightbox" style="display:none;position:fixed;inset:0;background:#000;z-index:99999;overflow:hidden;">
+  <button onclick="gsLightboxClose()" style="position:absolute;top:1.2rem;right:1.5rem;z-index:10;background:none;border:none;color:white;font-size:2.5rem;cursor:pointer;line-height:1;">&#x2715;</button>
+  <button onclick="gsLightboxPrev()" style="position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);z-index:10;background:rgba(0,0,0,0.4);border:none;color:white;font-size:3rem;cursor:pointer;padding:0.5rem 1rem;border-radius:4px;">&#8249;</button>
+  <button onclick="gsLightboxNext()" style="position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);z-index:10;background:rgba(0,0,0,0.4);border:none;color:white;font-size:3rem;cursor:pointer;padding:0.5rem 1rem;border-radius:4px;">&#8250;</button>
+  <img id="gs-lightbox-img" src="" alt="" style="width:100%;height:100%;object-fit:contain;display:block;"/>
+  <div id="gs-lightbox-counter" style="position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.6);font-size:0.9rem;font-family:sans-serif;"></div>
+</div>
+<script>
+var gsPhotoData = {
+  0: ["assets/images/gradspace/Gradspace-010-800-Gallery.jpg", "assets/images/gradspace/Gradspace-019-800-Gallery.jpg", "assets/images/gradspace/Gradspace-037-800-Gallery.jpg", "assets/images/gradspace/Gradspace-054-800-Gallery.jpg", "assets/images/gradspace/Gradspace-066-800-Gallery.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-102719-2282-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103055-2291-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103215-2292-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103304-2295-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103357-2297-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103708-2302-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103723-2303-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103811-2306-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-104001-2312-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-104045-2314-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-104308-2321-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-105058-2325-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-105145-2327-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-105455-2339-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-110634-2349-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-110734-2354-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-110814-2357-510-3x2-1.jpg"],
+  1: ["assets/images/gradspace/unionhouse-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-107-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-139-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111502-2362-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111630-2366-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111722-2368-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111821-2371-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111913-2373-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112024-2376-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112111-2379-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112143-2380-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112231-2382-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112304-2386-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112342-2387-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112453-2389-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112547-2392-510-3x2-1.jpg"],
+  2: ["assets/images/gradspace/Jonkerzicht-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160215-0023-800-Gallery.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160347-0033-Edit-800-Gallery.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160501-0036-800-Gallery.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160605-0048-800-Gallery.jpg"],
+  3: ["assets/images/gradspace/Gradspace-Bergzicht-63-20.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-01-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-02-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-09-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-10-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-13-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-16-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-17-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-21-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-23-800-3x2-1.jpg"],
+  4: ["assets/images/gradspace/Gradspace-The-Akkerhof-01-512-400x250-1.jpg"],
+  5: ["assets/images/gradspace/Gradspace-The-Vineyards-02.jpg", "assets/images/gradspace/Gradspace-The-Vineyards-01.jpg"],
+  6: ["assets/images/gradspace/Gradspace-24-Cluver-Road-02-800-3x2-1.jpg"],
+};
+
+  var gsSlides = [];
+  var gsIdx = 0;
+
+  function gsLightboxOpen(projectIndex) {
+    gsSlides = gsPhotoData[projectIndex] || [];
+    if (!gsSlides.length) return;
+    gsIdx = 0;
+    gsLightboxShow();
+    document.getElementById('gs-lightbox').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function gsLightboxClose() {
+    document.getElementById('gs-lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function gsLightboxShow() {
+    document.getElementById('gs-lightbox-img').src = gsSlides[gsIdx];
+    document.getElementById('gs-lightbox-counter').textContent = (gsIdx+1) + ' / ' + gsSlides.length;
+  }
+
+  function gsLightboxPrev() {
+    gsIdx = (gsIdx - 1 + gsSlides.length) % gsSlides.length;
+    gsLightboxShow();
+  }
+
+  function gsLightboxNext() {
+    gsIdx = (gsIdx + 1) % gsSlides.length;
+    gsLightboxShow();
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-project-index][data-open-modal]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        gsLightboxOpen(parseInt(this.getAttribute('data-project-index')));
+      }, true);
+    });
+  });
+</script>
+</body>
