@@ -1587,6 +1587,17 @@ a                         { color: #2ea3f2 !important; }
   background-color: #ffffff !important;
   border-bottom: 1px solid #e2e2e2 !important;
 }
+/* Nav overlay: always white frosted glass — not just on scroll.
+   The Webflow default is opacity:0 with a dark (#12171780) bg.
+   At scroll, our .is-scrolled rule turns it white. Without this
+   fix the overlay is invisible and the dark hero bleeds through,
+   making the ribbon look gray until the user starts scrolling. */
+.nav-overlay {
+  opacity: 1 !important;
+  background-color: rgba(255,255,255,0.97) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
 .nav__menu-wrap { background-color: #ffffff !important; }
 .nav-link, .header a { color: #333333 !important; }
 .nav-line { background-color: #e2e2e2 !important; }
