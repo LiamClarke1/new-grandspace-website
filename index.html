@@ -1294,6 +1294,140 @@
 </style>
 
 <style>
+/* ══════════════════════════════════════════════════════════════════
+   GRADSPACE — FULL-SCREEN PARITY  2026-04-15
+   Makes every section look intentional and polished at split-screen
+   (~700–900 px) widths — not like a shrunk full-screen layout.
+══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Property Explorer (gsf-bar): responsive grid collapse ──
+   Default: grid-template-columns: 360px 1px 1fr
+   At 360px + padding, only ~230px is left for cards (< 1 card).
+   Fix: shrink → stack → strip-only as viewport narrows.         */
+@media (max-width: 1100px) {
+  .gsf-content { grid-template-columns: 260px 1px 1fr !important; gap: 1.5rem !important; }
+}
+@media (max-width: 880px) {
+  /* Stack: filters above the cards strip */
+  .gsf-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+  }
+  .gsf-vdiv { display: none !important; }
+  .gsf-inner { padding: 1.75rem 0 2rem !important; gap: 1rem !important; }
+  /* Filter rows side by side on one line */
+  .gsf-filters {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem 1.5rem !important;
+    align-items: center !important;
+  }
+  .gsf-filter-row { gap: 0.5rem !important; }
+  .gsf-lbl { width: auto !important; min-width: 0 !important; }
+}
+@media (max-width: 600px) {
+  /* Strip-only: hide all filters, show just the scrollable cards */
+  .gsf-filters, .gsf-vdiv, .gsf-header { display: none !important; }
+  .gsf-inner { padding: 1.25rem 0 1.5rem !important; gap: 0 !important; }
+}
+
+/* ── 2. Nav: 7 property names — allow horizontal scroll at tablet ── */
+@media (max-width: 991px) {
+  .nav__list {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    gap: 0 !important;
+  }
+  .nav__list::-webkit-scrollbar { display: none !important; }
+  .nav__list-item { flex-shrink: 0 !important; }
+  .nav-link, .nav__link { font-size: 0.72rem !important; white-space: nowrap !important; }
+}
+
+/* ── 3. Properties slider: taller image at tablet for visual impact ── */
+@media (min-width: 600px) and (max-width: 991px) {
+  .projects-slide,
+  .projects-slide-img {
+    height: 58vw !important;
+    min-height: 300px !important;
+    max-height: 520px !important;
+  }
+  /* Slide title: larger and stronger shadow for legibility */
+  #gs-slide-title, .gs-slide-title {
+    font-size: clamp(2.2rem, 7.5vw, 5rem) !important;
+    text-shadow:
+      0 2px 32px rgba(0,0,0,0.98),
+      0 1px 8px  rgba(0,0,0,0.98),
+      0 0  60px  rgba(0,0,0,0.7) !important;
+  }
+}
+
+/* ── 4. Stats numbers: scale well at tablet ── */
+@media (min-width: 600px) and (max-width: 991px) {
+  .stats .h2, .stats .h2.mob-h5 {
+    font-size: clamp(3.5rem, 7vw, 5.5rem) !important;
+  }
+  .stats {
+    column-gap: 3rem !important;
+    row-gap: 3.5rem !important;
+  }
+}
+
+/* ── 5. Our Beliefs heading: no orphan words at tablet widths ── */
+@media (min-width: 600px) and (max-width: 991px) {
+  .our-beliefs-heading h2 {
+    font-size: clamp(2.2rem, 5.5vw, 3.5rem) !important;
+    max-width: 18ch !important;
+  }
+}
+
+/* ── 6. FAQ heading: scale properly ── */
+@media (min-width: 600px) and (max-width: 991px) {
+  .faq-heading h2 {
+    font-size: clamp(2rem, 5vw, 3rem) !important;
+  }
+}
+
+/* ── 7. Why Us / gs-combi: responsive at tablet ── */
+@media (max-width: 991px) {
+  .gs-combi { padding: 4rem 5% !important; }
+  .gs-compare-col-row,
+  .gs-cmp-row {
+    grid-template-columns: 1fr 3.8rem 3.8rem !important;
+  }
+  .gs-combi__right .gs-map-frame { height: 320px !important; }
+}
+
+/* ── 8. Amenities heading: proportional at tablet ── */
+@media (min-width: 600px) and (max-width: 991px) {
+  .amenities-slide-box h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  }
+}
+
+/* ── 9. Footer: single column stack at tablet ── */
+@media (max-width: 991px) {
+  .footer-top {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  .footer-right { gap: 1.5rem !important; }
+}
+
+/* ── 10. Page padding left/right: tighter at tablet ── */
+@media (min-width: 600px) and (max-width: 991px) {
+  .page-padding {
+    padding-left: clamp(1.5rem, 5vw, 4rem) !important;
+    padding-right: clamp(1.5rem, 5vw, 4rem) !important;
+  }
+}
+
+</style>
+
+<style>
 /* ═══════════════════════════════════════════════════════════════
    GRADSPACE — SECTION CONTAINMENT & VISIBILITY FIX  2026-04-15
    Problem: full-bg-wrap is position:absolute with no containing
