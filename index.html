@@ -1327,9 +1327,9 @@
   .gsf-lbl { width: auto !important; min-width: 0 !important; }
 }
 @media (max-width: 600px) {
-  /* Strip-only: hide all filters, show just the scrollable cards */
-  .gsf-filters, .gsf-vdiv, .gsf-header { display: none !important; }
-  .gsf-inner { padding: 1.25rem 0 1.5rem !important; gap: 0 !important; }
+  /* Keep filters + header visible on mobile; only hide the vertical divider */
+  .gsf-vdiv { display: none !important; }
+  .gsf-inner { padding: 1.25rem 0 1.5rem !important; gap: 0.75rem !important; }
 }
 
 /* ── 2. Nav: 7 property names — allow horizontal scroll at tablet ── */
@@ -6678,11 +6678,11 @@ var gsPhotoData = {
     observers = [];
 
     items.forEach(function(item, idx) {
+      var revealed = false;
+
       function set() {
         obs.disconnect();
         item.style.setProperty('position',       'relative',                        'important');
-        item.style.setProperty('opacity',        '1',                               'important');
-        item.style.setProperty('transform',      'none',                            'important');
         item.style.setProperty('visibility',     'visible',                         'important');
         item.style.setProperty('display',        'flex',                            'important');
         item.style.setProperty('flex-direction', 'row',                             'important');
@@ -6694,11 +6694,34 @@ var gsPhotoData = {
         item.style.setProperty('border-bottom',  idx < items.length - 1
                                                    ? '1px solid rgba(255,255,255,0.12)'
                                                    : 'none',                        'important');
+        item.style.setProperty('transition',
+          'opacity 0.55s ease, transform 0.55s ease',                               'important');
+        /* Only show once IntersectionObserver has fired */
+        if (revealed) {
+          item.style.setProperty('opacity',   '1',             'important');
+          item.style.setProperty('transform', 'none',          'important');
+        } else {
+          item.style.setProperty('opacity',   '0',             'important');
+          item.style.setProperty('transform', 'translateY(22px)', 'important');
+        }
         obs.observe(item, { attributes: true, attributeFilter: ['style'] });
       }
       var obs = new MutationObserver(set);
       set();
       observers.push(obs);
+
+      /* Scroll-reveal: fade in as each item enters the viewport */
+      var io = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !revealed) {
+          revealed = true;
+          setTimeout(function() {
+            item.style.setProperty('opacity',   '1',    'important');
+            item.style.setProperty('transform', 'none', 'important');
+          }, idx * 100);
+          io.disconnect();
+        }
+      }, { threshold: 0.15 });
+      io.observe(item);
     });
 
     /* 6 — Refresh scroll positions after we've changed heights */
