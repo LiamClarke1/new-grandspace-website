@@ -1,6 +1,6 @@
 {
   "css": {
-    "https://cdn.prod.website-files.com/69372e47ab695bf5546b46ec/css/elyse-residence-dev.webflow.shared.e334c3bd2.min.css": "assets/css/elyse-residence-dev.webflow.shared.e334c3bd2.min.css",
+    "assets/css/grandspace.shared.min.css": "assets/css/grandspace.shared.min.css",
     "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css": "assets/css/splide.min.css"
   },
   "js": {

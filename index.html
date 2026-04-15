@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Thu Feb 19 2026 06:43:01 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="elyse-residence-dev.webflow.io" data-wf-page="69372e47ab695bf5546b46eb" data-wf-site="69372e47ab695bf5546b46ec"><head><meta charset="utf-8"/><title>Gradspace — Premium Student Living in Stellenbosch</title><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="Webflow" name="generator"/><link href="assets/css/elyse-residence-dev.webflow.shared.e334c3bd2.min.css" rel="stylesheet" type="text/css"/><style>/* visibility rule removed for local clone */
+<!DOCTYPE html><html><head><meta charset="utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/><title>Gradspace — Premium Student Living in Stellenbosch</title><meta content="width=device-width, initial-scale=1" name="viewport"/><link href="assets/css/grandspace.shared.min.css" rel="stylesheet" type="text/css"/><style>/* visibility rule removed for local clone */
   /* ═══════════════════════════════════════════════════
      GRADSPACE — Text Visibility & Word Integrity Fixes
      No word may be split across lines. Every word must
@@ -23,8 +23,15 @@
   @media (max-width: 767px) {
     h1.hero-title { font-size: 5rem !important; }
   }
+  /* vw-based: "Gradspace" (9 chars, tight tracking) needs ~10.5vw per char */
   @media (max-width: 479px) {
-    h1.hero-title { font-size: 3.5rem !important; }
+    h1.hero-title {
+      font-size: clamp(2rem, 8.5vw, 3rem) !important;
+      white-space: nowrap !important;
+      width: auto !important;
+      display: block !important;
+      letter-spacing: -0.01em !important;
+    }
   }
 
   /* Property modal — photos only, keep close button */
@@ -169,6 +176,15 @@
   .our-beliefs-text-box {
     position: relative;
     z-index: 5;
+    margin-top: -6rem !important;
+  }
+  .beliefs-text-box {
+    background: rgba(0,0,0,0.12) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 4px !important;
+    padding: 2rem 2.25rem !important;
   }
   
 .w-webflow-badge { display: none !important; }
@@ -189,9 +205,1203 @@
   }
   .cta {
     margin-top: 0 !important;
-  }</style><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js "+t+"ix3",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/><link href="assets/images/webclip.png" rel="apple-touch-icon"/><link rel="stylesheet" href="assets/css/splide.min.css"><script src="assets/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript"></script><script src="assets/js/webflow.24809bfc.b960589f256e16ae.js" type="text/javascript"></script><script src="assets/js/gsap.min.js" type="text/javascript"></script><script src="assets/js/ScrollTrigger.min.js" type="text/javascript"></script><script src="assets/js/ScrollToPlugin.min.js" type="text/javascript"></script><script src="assets/js/SplitText.min.js" type="text/javascript"></script>
+  }
+
+  /* Gradspace logo — real logo is wider/taller than the Webflow placeholder */
+  .logo.nav-logo {
+    width: 9.5rem !important;
+    height: 2.25rem !important;
+  }
+</style><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js "+t+"ix3",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/><link href="assets/images/webclip.png" rel="apple-touch-icon"/><link rel="stylesheet" href="assets/css/splide.min.css"><script src="assets/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript"></script><script src="assets/js/webflow.24809bfc.b960589f256e16ae.js" type="text/javascript"></script><script src="assets/js/gsap.min.js" type="text/javascript"></script><script src="assets/js/ScrollTrigger.min.js" type="text/javascript"></script><script src="assets/js/ScrollToPlugin.min.js" type="text/javascript"></script><script src="assets/js/SplitText.min.js" type="text/javascript"></script>
 <script src="assets/js/splide.min.js"></script>
-</head><body><div class="global-code"><div class="global-css w-embed"><style>
+<style>
+/* ═══════════════════════════════════════════════════════
+   GRADSPACE — Mobile Responsive Fixes (2026-04-13)
+   Keeps all content visible; fixes overflow & layout
+═══════════════════════════════════════════════════════ */
+
+/* ── ALL MOBILE-ONLY RULES: max-width 991px so desktop is untouched ── */
+@media (max-width: 991px) {
+
+  /* 1. Prevent horizontal scroll */
+  html {
+    overflow-x: hidden !important;
+  }
+  body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  .page-wrapper {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* 3. Hero overflow */
+  .hero {
+    overflow-x: hidden !important;
+  }
+
+  /* 7. FAQ overflow */
+  .faq {
+    overflow-x: hidden !important;
+  }
+
+  /* 10. Footer overflow */
+  .footer {
+    overflow-x: hidden !important;
+  }
+
+  /* 11. CTA overflow */
+  .cta {
+    overflow-x: hidden !important;
+  }
+
+  /* 12. Section overflows */
+  .beliefs, .projects {
+    overflow-x: hidden !important;
+  }
+
+}
+
+/* 2. Stats: 2-column layout on small screens */
+@media (max-width: 479px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    column-gap: 2rem !important;
+    row-gap: 3rem !important;
+  }
+  .stats .h2,
+  .stats .h2.mob-h5 {
+    font-size: 4rem !important;
+    line-height: 1.1 !important;
+  }
+}
+
+/* 3b. Hero heading mobile */
+@media (max-width: 767px) {
+  .heading.hero-heading {
+    overflow: visible !important;
+    width: 100% !important;
+  }
+  .hero-right {
+    max-width: 100% !important;
+  }
+}
+
+/* 4. About & amenities: constrain max-widths on mobile */
+@media (max-width: 767px) {
+  .about-heading {
+    max-width: 100% !important;
+  }
+  .amenities-texts-container {
+    max-width: 100% !important;
+  }
+}
+
+/* 5. Drawer: full-width on mobile (remove min-width) */
+@media (max-width: 600px) {
+  .gs-drawer {
+    width: 100vw !important;
+    min-width: unset !important;
+    max-width: 100vw !important;
+  }
+  .gs-drawer-header {
+    padding: 1.25rem 1rem 1rem !important;
+  }
+  .gs-drawer-body {
+    padding: 1.25rem 1rem 1.5rem !important;
+    gap: 1.5rem !important;
+  }
+  .gs-drawer-cta {
+    padding: 1rem !important;
+  }
+  .gs-drawer-title {
+    font-size: clamp(1.2rem, 5vw, 1.5rem) !important;
+  }
+}
+
+/* 6. Compare table: narrower fixed columns on mobile */
+@media (max-width: 600px) {
+  .gs-compare-col-row,
+  .gs-cmp-row {
+    grid-template-columns: 1fr 4.5rem 4.5rem !important;
+  }
+  .gs-compare-col-label,
+  .gs-cmp-feat,
+  .gs-cmp-gs,
+  .gs-cmp-other {
+    font-size: 0.6rem !important;
+    padding-right: 0.25rem !important;
+  }
+  .gs-combi {
+    padding-left: 4% !important;
+    padding-right: 4% !important;
+  }
+  .gs-combi__left {
+    overflow-x: hidden !important;
+  }
+}
+
+/* 8. Nav mobile: ensure menu is scrollable if tall */
+@media (max-width: 767px) {
+  .nav__menu-wrap {
+    overflow-y: auto !important;
+    max-height: calc(100vh - 4rem) !important;
+  }
+  .nav__list {
+    padding-bottom: 1rem !important;
+  }
+}
+
+/* 9. Property Explorer cards: slightly narrower on small mobile */
+@media (max-width: 390px) {
+  .gsf-card {
+    min-width: 220px !important;
+    flex: 0 0 220px !important;
+  }
+}
+
+/* ── SECTION-SPECIFIC MOBILE FIXES ─────────────────────────── */
+
+/* Hero: fix inline offsets and ensure all chars visible immediately */
+@media (max-width: 991px) {
+  h1.hero-title {
+    top: 0 !important;
+    left: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: visible !important;
+  }
+  .heading.hero-heading {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: visible !important;
+    width: 100% !important;
+  }
+  /* Force every SplitText char wrapper and char to show immediately */
+  .char-mask,
+  h1.hero-title .char,
+  h1.hero-title [class*="char"],
+  h1.hero-title span {
+    transform: none !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    display: inline !important;
+    margin-right: 0 !important;
+    left: 0 !important;
+    position: relative !important;
+    vertical-align: top !important;
+  }
+}
+
+/* Properties: mobile layout */
+@media (max-width: 991px) {
+  /* Name container sits above slider in DOM — keep it inline */
+  .project-titles {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    padding-bottom: 0.75rem !important;
+  }
+  .project-title {
+    position: relative !important;
+    width: 100% !important;
+    display: none !important;
+  }
+  .project-title.is-active {
+    display: block !important;
+    opacity: 1 !important;
+  }
+  /* Force all children inside active title fully visible */
+  .project-title.is-active,
+  .project-title.is-active * {
+    transform: none !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+  /* Description/info block */
+  .project-text {
+    position: relative !important;
+    width: 100% !important;
+    display: none !important;
+    opacity: 0;
+  }
+
+  .project-text.is-active {
+    display: flex !important;
+    flex-direction: column !important;
+    opacity: 1 !important;
+  }
+  .project-text.is-active .btn.in-project {
+    margin-bottom: 1rem;
+  }
+
+  .project-text.is-active,
+  .project-text.is-active * {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  /* Slide image: good height, not too tall */
+  .projects-slide,
+  .projects-slide-img {
+    height: 22rem !important;
+    min-height: 0 !important;
+  }
+  /* Hide pagination numbers entirely */
+  .projects-pagination,
+  .splide__pagination.projects-pagination {
+    display: none !important;
+  }
+  /* Remove extra gap between image and info text */
+  .project-texts {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  .gs-proj-nav {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* amenities mobile: handled in v2 block below */
+
+/* ── HERO TITLE: reset char-mask on mobile ─────────────────── */
+@media (max-width: 991px) {
+  /* Remove GSAP's inline overflow:hidden (causes 'i' on 'e' clipping) */
+  .char-mask {
+    overflow: visible !important;
+    display: inline !important;
+    margin-right: 0 !important;
+    left: 0 !important;
+    position: relative !important;
+    vertical-align: top !important;
+  }
+  /* Remove negative letter-spacing that crunches chars on small screens */
+  h1.hero-title .char,
+  h1.hero-title [class*="char"] {
+    letter-spacing: 0 !important;
+    display: inline !important;
+  }
+}
+
+/* ── PROPERTIES: hide Property Explorer name overlay (duplicates project-title) ── */
+@media (max-width: 991px) {
+  .gs-slide-title,
+  .gs-slide-name,
+  .gs-slide-name-next {
+    display: none !important;
+  }
+}
+
+/* ── ALL BLACK IMAGES: remove permanent black overlay (GSAP never hides it on mobile) ── */
+@media (max-width: 991px) {
+  .img-overlay {
+    display: none !important;
+  }
+}
+
+/* about-img: handled in v2 block below */
+
+/* our-beliefs-img: handled in v2 block below */
+
+/* ── PROPERTIES HEADING: small bottom gap ── */
+@media (max-width: 991px) {
+  .projects-heading {
+    padding-bottom: 1rem !important;
+  }
+}
+
+/* amen-mobile-card: removed — replaced by v2 amenities block */
+
+/* ── AMENITIES DESKTOP STACKING FIX ───────────────────────────
+   The Webflow CSS sets non-first images/textboxes to position:absolute
+   but without inset:0 they drift out of place.
+   .is-first keeps position:relative (defines container height).
+   Everything else gets inset:0 so it stacks exactly on top.
+─────────────────────────────────────────────────────────────── */
+@media (min-width: 992px) {
+  /* Non-first BIG images: pin to same slot as .is-first */
+  .amenities-slide-imgs:not(.is-first) {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Non-first SMALL images: pin to same slot */
+  .amenities-slide-img-inner:not(.is-first) {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  /* First small image also needs to fill its container */
+  .amenities-slide-img-inner.is-first {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Text boxes: ALL are position:absolute in Webflow CSS.
+     Give the container an explicit height from the first box,
+     and stack the rest on top with inset:0. */
+  .amenities-texts-container {
+    min-height: 16rem !important;
+  }
+  .amenities-slide-box {
+    inset: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   GRADSPACE — MOBILE FIX v3  2026-04-15
+   ALL rules are max-width:991px — desktop UNTOUCHED
+══════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+
+  /* ─── ABOUT SECTION ─────────────────────────────── */
+  .about-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .about-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+  }
+  .about-left { width: 100% !important; overflow: visible !important; }
+
+  /* Heading: force GSAP split-text visible */
+  .about-heading h2,
+  .about-heading h2 *,
+  .about-heading .caption,
+  .about-heading [data-anim],
+  .about-heading [data-anim] * {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    color: #333333 !important;
+  }
+
+  /* Factory portrait — show full building centred */
+  .about-img {
+    aspect-ratio: unset !important;
+    height: 130vw !important;
+    min-height: 360px !important;
+    max-height: 680px !important;
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-top: 0.75rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: block !important;
+  }
+  .about-img .img-full-cover {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Text & stats */
+  .about-text-box { width: 100% !important; padding: 0 !important; }
+  .about-text-box p,
+  .about-text-box [data-anim] {
+    opacity: 1 !important; transform: none !important; visibility: visible !important;
+  }
+  .stats [data-anim="stagger"],
+  .stats [data-anim="stagger-wrap"] {
+    opacity: 1 !important; transform: none !important;
+  }
+
+  /* ─── OUR BELIEFS ("The Standard of Living") ────── */
+  .our-beliefs-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2.25rem !important;
+  }
+  .our-beliefs-heading h2,
+  .our-beliefs-heading [data-anim],
+  .our-beliefs-heading [data-anim] * {
+    opacity: 1 !important; transform: none !important;
+    visibility: visible !important; white-space: normal !important;
+    overflow: visible !important;
+  }
+  .our-beliefs-img {
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    height: 64vw !important;
+    min-height: 240px !important;
+    max-height: 400px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: block !important;
+    margin-bottom: 0 !important;
+  }
+  .our-beliefs-img .full-bg-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .our-beliefs-img .img-full-cover {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: left center !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* Paragraph sits below the image, not over it */
+  .our-beliefs-text-box {
+    margin-top: 0 !important;
+    padding-top: 1.5rem !important;
+  }
+  .our-beliefs-text-box p,
+  .our-beliefs-text-box [data-anim] {
+    opacity: 1 !important; transform: none !important; visibility: visible !important;
+  }
+
+  /* ─── BELIEFS CARDS (dark section) ──────────────── */
+  /* Kill GSAP grid layout — each card gets its own row */
+  .beliefs-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+    position: relative !important;
+  }
+  /* Each item: full width row, number + card side by side */
+  .beliefs-item {
+    position: relative !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    padding: 2.5rem 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+  }
+  .beliefs-item:last-of-type { border-bottom: none !important; }
+
+  /* Number label */
+  .beliefs-item > .b4 {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    flex-shrink: 0 !important;
+    width: 2.5rem !important;
+    font-size: 0.75rem !important;
+    padding-top: 0.2rem !important;
+  }
+
+  /* Card itself fills the rest */
+  .beliefs-card {
+    flex: 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 0.5rem !important;
+    padding: 1.25rem 1.25rem 1rem !important;
+  }
+  .beliefs-card-bg { display: none !important; }
+  /* Higher specificity (.beliefs parent) so these beat the global overrides that come later in the document */
+  .beliefs .beliefs-card h3 {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    font-size: 1.05rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.5rem !important;
+    color: #ffffff !important;
+  }
+  .beliefs .beliefs-card p {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+    color: rgba(255,255,255,0.85) !important;
+  }
+  /* Closing paragraph below cards */
+  .beliefs-text-box {
+    width: 100% !important;
+    margin-top: 2.5rem !important;
+    padding: 0 !important;
+  }
+  .beliefs-text-box p {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    font-size: 0.9rem !important;
+    line-height: 1.7 !important;
+    color: rgba(255,255,255,0.9) !important;
+  }
+
+  /* ─── AMENITIES ("Everything Covered") ──────────── */
+  .amenities { overflow: hidden !important; }
+  .anim-track { height: auto !important; min-height: 0 !important; }
+  .wrap.amenities-wrap {
+    position: relative !important;
+    height: auto !important;
+    top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2.5rem !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Images: stacked column */
+  .amenities-images-container {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  .amenities-images-big {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  .amenities-slide-imgs {
+    position: relative !important;
+    width: 100% !important;
+    height: 56vw !important;
+    min-height: 200px !important;
+    max-height: 310px !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    border-radius: 0.4rem !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+  }
+  .amenities-slide-imgs img,
+  .amenities-slide-imgs .img-full-cover {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .amenities-images-small { display: none !important; }
+
+  /* Text boxes: stacked, all visible */
+  .amenities-texts-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  .amenities-slide-box {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .amenities-slide-box h2,
+  .amenities-slide-box h2 *,
+  .amenities-slide-box p,
+  .amenities-slide-box [data-amenities-anim],
+  .amenities-slide-box [data-amenities-anim] * {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+  .amenities-progress,
+  .amenities-triggers { display: none !important; }
+
+  /* ─── FAQ ────────────────────────────────────────── */
+  /* Kill the sticky scroll spacer that leaves white gap */
+  .faq-relative { position: relative !important; }
+  .faq-spacer { display: none !important; height: 0 !important; }
+  .faq { position: relative !important; top: auto !important; bottom: auto !important; }
+
+  /* Section title */
+  .faq-heading h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+  }
+  /* Question text — slightly bigger, readable */
+  .faq-dropdown-toggle h3,
+  .faq-dropdown-toggle .h6 {
+    font-size: clamp(0.88rem, 3.4vw, 1.05rem) !important;
+    line-height: 1.4 !important;
+    font-weight: 600 !important;
+  }
+  /* Answer text — noticeably smaller than question */
+  .faq-dropdown-box p {
+    font-size: clamp(0.72rem, 2.4vw, 0.85rem) !important;
+    line-height: 1.65 !important;
+  }
+  .faq-dropdown > .b1 { font-size: 0.72rem !important; }
+  .faq-dropdown {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 0.9rem 0 !important;
+  }
+
+  /* ─── CTA / FORM ("Begin Your Application") ─────── */
+  /* Force all GSAP-animated elements visible */
+  .cta-wrap,
+  .cta-heading,
+  .cta-heading h2,
+  .cta-heading p,
+  .form-wrap,
+  .form-block,
+  .form-heading,
+  .form-heading h2,
+  .form-heading p,
+  .inputs,
+  .form-btn,
+  .form-bottom-text,
+  [data-anim="element"] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  .inputs { display: flex !important; flex-direction: column !important; gap: 0.75rem !important; }
+  .input-wrap { width: 100% !important; }
+  .input { width: 100% !important; box-sizing: border-box !important; }
+  .form-btn {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 0.75rem !important;
+    padding: 0.9rem 1.5rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+  }
+
+}
+
+  /* ── Reduced motion: respect accessibility preference ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .amen-mobile-card {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* ── Smooth scroll ── */
+  html { scroll-behavior: smooth; }
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head><body>
+<style>
+/* ═══════════════════════════════════════════════════════
+   GRADSPACE — Light Theme Override  2026-04-14
+   Matches gradspace.co.za: white bg, Open Sans, #333/#666
+   Only colours and font-family are changed here.
+═══════════════════════════════════════════════════════ */
+
+/* ── 1. CSS variable overrides (font + colour) ──────── */
+:root, body {
+  --_fonts---family--inter: "Open Sans", Arial, sans-serif !important;
+  --_fonts---family--serif: "Open Sans", Arial, sans-serif !important;
+  --_fonts---family--glare: "Open Sans", Arial, sans-serif !important;
+  --family--inter:          "Open Sans", Arial, sans-serif !important;
+  --family--serif:          "Open Sans", Arial, sans-serif !important;
+  --family--glare:          "Open Sans", Arial, sans-serif !important;
+
+  --black-900:       #ffffff                !important;
+  --white:           #333333                !important;
+  --white-alpha-900: rgba(51,51,51,.9)       !important;
+  --white-alpha-800: rgba(51,51,51,.8)       !important;
+  --white-alpha-700: rgba(51,51,51,.7)       !important;
+  --white-alpha-500: rgba(51,51,51,.5)       !important;
+  --white-alpha-50:  rgba(51,51,51,.05)      !important;
+}
+
+/* ── 2. Base body ───────────────────────────────────── */
+html, body {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  font-family: "Open Sans", Arial, sans-serif !important;
+}
+
+/* ── 3. All text inherits Open Sans ─────────────────── */
+*, *::before, *::after {
+  font-family: "Open Sans", Arial, sans-serif !important;
+}
+
+/* ── 4. Default text colours ─────────────────────────── */
+h1, h2, h3, h4, h5, h6 { color: #333333 !important; }
+p, li, td, th, label     { color: #666666 !important; }
+a                         { color: #2ea3f2 !important; }
+.text-color-white-70      { color: rgba(51,51,51,.55) !important; }
+.text-color-white-50      { color: rgba(51,51,51,.4)  !important; }
+.caption .h6, .caption .h8 { color: rgba(51,51,51,.4) !important; }
+
+/* ── 5. Page / section backgrounds ──────────────────── */
+.page-wrapper, .main-wrapper,
+.about, .our-beliefs, .faq-relative, .cta {
+  background-color: #ffffff !important;
+}
+.projects {
+  background-color: #f7f7f7 !important;
+}
+.faq {
+  background-color: #ffffff !important;
+}
+.beliefs {
+  background-color: #ffffff !important;
+}
+
+/* ── 6. Header / nav ─────────────────────────────────── */
+.header, .header.is-scrolled {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e2e2 !important;
+}
+.nav__menu-wrap { background-color: #ffffff !important; }
+.nav-link, .header a { color: #333333 !important; }
+.nav-line { background-color: #e2e2e2 !important; }
+/* Burger icon strokes are white in the SVG markup */
+.burger__open svg path,
+.burger__close svg path { stroke: #333333 !important; }
+
+/* ── 7. Hero section — keep dark (video background) ──── */
+/* Text inside the hero sits on the video and must stay white */
+.hero-title,
+[data-hero="title-min"],
+[data-hero="title-min"] *,
+[data-hero="subtitle"],
+[data-hero="scroll"],
+[data-hero="scroll"] * { color: #ffffff !important; }
+
+/* ── Hero photo overlay — darkens static image for text legibility ── */
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.58) 0%,
+    rgba(0,0,0,0.38) 45%,
+    rgba(0,0,0,0.60) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── 8. About section ────────────────────────────────── */
+.about h2, .about p         { color: #333333 !important; }
+.about-text-box p           { color: #666666 !important; }
+.stats .h2, .stats p        { color: #333333 !important; }
+
+/* ── 9. Properties / projects section ───────────────── */
+.projects { border-top: 1px solid #e2e2e2 !important; }
+.projects h2   { color: #333333 !important; }
+.project-text p { color: #666666 !important; }
+/* Project title: white + shadow over images */
+.projects .project-title h2,
+.projects .project-title h2 * {
+  color: #ffffff !important;
+  text-shadow:
+    0 2px 14px rgba(0,0,0,0.9),
+    0 1px 4px  rgba(0,0,0,0.7) !important;
+}
+/* Dark gradient at top of each property image so title is always readable */
+.projects .projects-slide-img { position: relative !important; }
+.projects .projects-slide-img::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 55% !important;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 100%) !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+.projects .project-titles { z-index: 10 !important; }
+
+/* Slides are clickable — show pointer cursor */
+.projects-slide { cursor: pointer !important; }
+.btn.stroke-btn.in-project {
+  border-color: rgba(51,51,51,.3) !important;
+  color: #333333 !important;
+}
+.btn.stroke-btn.in-project:hover {
+  border-color: #333333 !important;
+  background-color: transparent !important;
+}
+/* Nav arrows below slider */
+.gs-proj-nav  { background: #f0f0f0 !important; border-top: 1px solid #e2e2e2 !important; }
+.gs-proj-arrow {
+  color: #333333 !important;
+  border-color: rgba(51,51,51,.22) !important;
+}
+.gs-proj-counter { color: #666666 !important; }
+/* Overlay labels on photos stay white (they're on the image) */
+.gs-slide-title,
+.gs-slide-name,
+.gs-slide-name-next { color: #ffffff !important; }
+/* inject meta below property title */
+.gs-proj-price        { color: rgba(51,51,51,.4) !important; }
+.gs-proj-price strong { color: rgba(51,51,51,.8) !important; }
+.gs-proj-walk         { color: rgba(51,51,51,.3) !important; }
+.gs-title-btn {
+  border-color: rgba(51,51,51,.16) !important;
+  color: rgba(51,51,51,.38) !important;
+}
+.gs-title-btn:hover {
+  border-color: rgba(51,51,51,.5) !important;
+  color: #333333 !important;
+}
+
+/* ── 10. Our Beliefs section ─────────────────────────── */
+.our-beliefs h2           { color: #333333 !important; }
+.our-beliefs-text-box p   { color: #1a1a1a !important; font-size: 1.25rem !important; line-height: 1.8 !important; font-weight: 400 !important; max-width: 52ch !important; letter-spacing: 0.01em !important; }
+
+/* ── 11. Beliefs cards ───────────────────────────────── */
+.beliefs-card {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease !important;
+  cursor: pointer !important;
+}
+.beliefs-card:hover {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+.beliefs-card-bg { background: transparent !important; }
+.beliefs-item:hover .beliefs-card-bg {
+  backdrop-filter: blur(6px) opacity(1) !important;
+  -webkit-backdrop-filter: blur(6px) opacity(1) !important;
+}
+.beliefs-card h3 {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 2.8rem !important;
+  text-shadow: none !important;
+  transition: color 0.3s ease !important;
+}
+.beliefs-card:hover h3 {
+  color: #000000 !important;
+}
+.beliefs-card p {
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-size: 1.4rem !important;
+  line-height: 1.6 !important;
+  text-shadow: none !important;
+  transition: color 0.3s ease !important;
+}
+.beliefs-card:hover p {
+  color: #1e293b !important;
+}
+.beliefs-item .b4          { color: rgba(0,0,0,0.4) !important; transition: color 0.25s ease !important; }
+.beliefs-item:hover .b4    { color: rgba(0,0,0,0.7) !important; }
+.beliefs-text-box p        { color: #ffffff !important; font-size: 1.25rem !important; line-height: 1.8 !important; font-weight: 400 !important; max-width: 52ch !important; letter-spacing: 0.01em !important; text-shadow: 0 1px 3px rgba(0,0,0,0.6) !important; }
+
+/* ── 12. Amenities section ── */
+.amenities { background-color: #ffffff !important; }
+.amenities-slide-box h2 { color: #333333 !important; }
+.amenities-slide-box p  { color: #666666 !important; }
+.amenities-progress-line { background: #2ea3f2 !important; }
+
+/* ── 13. FAQ ─────────────────────────────────────────── */
+.faq h2, .faq-heading h2    { color: #333333 !important; }
+.faq-dropdown               { border-bottom-color: #e2e2e2 !important; }
+.faq-dropdown-toggle h3     { color: #333333 !important; font-size: 2.2rem !important; line-height: 1.3 !important; }
+.faq-dropdown-box p         { color: #666666 !important; font-size: 1.5rem !important; line-height: 1.75 !important; }
+.faq-dropdown-list          { background: #ffffff !important; }
+
+/* ── 14. CTA / form section ──────────────────────────── */
+.cta h2, .cta .h6          { color: #333333 !important; }
+.cta p                     { color: #666666 !important; }
+.form-heading h2           { color: #333333 !important; }
+.form-heading p            { color: #999999 !important; }
+.input {
+  background: #f9f9f9 !important;
+  border-color: #ddd !important;
+  color: #333333 !important;
+}
+.input::placeholder       { color: #aaaaaa !important; }
+.form-btn {
+  background-color: #2ea3f2 !important;
+  border-color:     #2ea3f2 !important;
+  color: #ffffff !important;
+}
+.form-bottom-text p       { color: #aaaaaa !important; }
+
+/* ── 15. Footer ──────────────────────────────────────── */
+.footer {
+  background-color: #f3f3f3 !important;
+  border-top: 1px solid #e2e2e2 !important;
+}
+.footer * { color: #666666 !important; }
+.footer h2, .footer h3, .footer strong, .footer b { color: #333333 !important; }
+.footer a  { color: #2ea3f2 !important; }
+
+/* ── 16. Status badges (available / limited / sold) ──── */
+.gs-badge.avail { background: rgba(74,222,128,.12) !important; border-color: rgba(74,222,128,.3) !important; color: #16a34a !important; }
+.gs-badge.ltd   { background: rgba(251,191,36,.12) !important; border-color: rgba(251,191,36,.3) !important; color: #b45309 !important; }
+.gs-badge.sold  { background: rgba(248,113,113,.1) !important; border-color: rgba(248,113,113,.25) !important; color: #dc2626 !important; }
+.gs-dot         { background: currentColor !important; }
+
+/* ── CRITICAL FIXES ──────────────────────────────────── */
+/* 1. form-block uses --green-700 (#254441, dark green) not --black-900.
+      Text is now dark, so we must make the form background light.     */
+.form-block {
+  background-color: #ffffff !important;
+}
+/* Ensure all text inside the form is dark and readable */
+.form-block h2, .form-block p,
+.form-block input, .form-block label,
+.form-block .heading, .form-block .heading * {
+  color: #333333 !important;
+}
+.form-block .text-color-white-70,
+.form-block .b1 { color: #666666 !important; }
+
+/* 2. img-overlay uses --black-900. We changed that to white, which
+      turns all image overlays from dark to white, hiding photos.
+      Force overlays to stay dark so images show correctly.            */
+.img-overlay {
+  background-color: #121717 !important;
+}
+
+/* 3. Burger / nav close icon: SVG uses stroke="white" attribute.
+      CSS can override SVG presentation attributes.                    */
+.header svg path[stroke="white"],
+.burger svg path,
+.nav-menu-btn svg path,
+[data-close-menu] svg path {
+  stroke: #333333 !important;
+}
+
+/* 4. btn background uses --white which is now #333.
+      Only stroke-btn and form-btn are present in the HTML but protect all. */
+.btn:not(.stroke-btn):not(.form-btn):not(.modal-btn) {
+  background-color: #2ea3f2 !important;
+  color: #ffffff !important;
+}
+
+/* 5. stroke-btn — ensure text visible on light bg */
+.stroke-btn {
+  color: #333333 !important;
+  border-color: rgba(51,51,51,.3) !important;
+  background-color: transparent !important;
+}
+
+/* 6. gsf-bar is the actual injected div (not gsf-section).
+      It has hardcoded background:#070707.                        */
+.gsf-bar {
+  background: #f7f7f7 !important;
+  border-top: 1px solid #e2e2e2 !important;
+  border-bottom: 1px solid #e2e2e2 !important;
+}
+
+/* 7. gs-drawer-header has no explicit bg — set white so
+      drawer title/sub text is visible.                           */
+.gs-drawer-header {
+  background: #ffffff !important;
+}
+.gs-drawer-gallery {
+  background: #111111 !important; /* keep dark — shows photos */
+}
+
+/* 8. Success message uses w-form-done class (ddd bg by Webflow)
+      — already fine, but ensure text readable.                   */
+.w-form-done { background-color: #f0fdf4 !important; color: #16a34a !important; }
+.w-form-fail { background-color: #fef2f2 !important; color: #dc2626 !important; }
+
+/* ── 17. Property Explorer (smart filter, injected by JS) */
+.gsf-section {
+  background-color: #f7f7f7 !important;
+  border-top: 1px solid #e2e2e2 !important;
+  border-bottom: 1px solid #e2e2e2 !important;
+}
+.gsf-head-lbl, .gsf-lbl, .gsf-results-hd { color: rgba(51,51,51,.42) !important; }
+.gsf-reset-btn  { color: rgba(51,51,51,.5) !important; border-color: rgba(51,51,51,.18) !important; }
+.gsf-chip       { border-color: rgba(51,51,51,.18) !important; color: rgba(51,51,51,.6) !important; background: transparent !important; }
+.gsf-chip.active { border-color: #2ea3f2 !important; background: rgba(46,163,242,.07) !important; color: #2ea3f2 !important; }
+.gsf-amen-btn   { border-color: rgba(51,51,51,.16) !important; color: rgba(51,51,51,.55) !important; background: transparent !important; }
+.gsf-amen-btn.active { border-color: #2ea3f2 !important; background: rgba(46,163,242,.08) !important; color: #2ea3f2 !important; }
+.gsf-slider     { background: linear-gradient(to right,rgba(46,163,242,.45) 100%,rgba(0,0,0,.08) 100%) !important; }
+.gsf-slider::-webkit-slider-thumb { border-color: rgba(46,163,242,.6) !important; }
+.gsf-slider::-moz-range-thumb     { border-color: rgba(46,163,242,.6) !important; }
+.gsf-slider-val  { color: #2ea3f2 !important; }
+.gsf-vdiv        { background: rgba(51,51,51,.07) !important; }
+.gsf-card        { background: #ffffff !important; border-color: rgba(51,51,51,.09) !important; }
+.gsf-card:hover  { border-color: rgba(51,51,51,.22) !important; }
+.gsf-card.is-best{ border-color: rgba(46,163,242,.3) !important; }
+.gsf-card-badge.is-best  { background: rgba(46,163,242,.1) !important; border-color: rgba(46,163,242,.38) !important; color: #2ea3f2 !important; }
+.gsf-card-badge.is-match { background: rgba(51,51,51,.06) !important; border-color: rgba(51,51,51,.18) !important; color: rgba(51,51,51,.6) !important; }
+.gsf-card-name   { color: #333333 !important; }
+.gsf-card-price  { color: rgba(51,51,51,.65) !important; }
+.gsf-card-price strong { color: #333333 !important; }
+.gsf-card-tag    { color: rgba(51,51,51,.7) !important; border-color: rgba(51,51,51,.16) !important; }
+.gsf-card-view   { color: rgba(51,51,51,.55) !important; }
+.gsf-card-view:hover { color: #2ea3f2 !important; }
+.gsf-scroll-btn  { border-color: rgba(51,51,51,.18) !important; color: rgba(51,51,51,.5) !important; }
+.gsf-match-dot   { background: #2ea3f2 !important; }
+.gsf-no-exact    { color: rgba(180,83,9,.5) !important; }
+
+/* ── 18. Compare + Map (Why Us section) ──────────────── */
+.gs-combi {
+  background: #f7f7f7 !important;
+  border-top: 1px solid #e2e2e2 !important;
+}
+.gs-compare-head h2, .gs-map-h { color: #333333 !important; }
+.gs-compare-head p, .gs-map-sub { color: #666666 !important; }
+.gs-compare-col-label          { color: rgba(51,51,51,.28) !important; }
+.gs-compare-col-label.is-gs    { color: rgba(51,51,51,.7) !important; }
+.gs-compare-col-row, .gs-cmp-row { border-bottom-color: rgba(51,51,51,.08) !important; }
+.gs-cmp-feat { color: #555555 !important; }
+.gs-cmp-tick svg { fill: #2ea3f2 !important; }
+.gs-cmp-dash { background: rgba(51,51,51,.18) !important; }
+.gs-cmp-sometimes { color: rgba(51,51,51,.5) !important; }
+.gs-cmp-text  { color: #555555 !important; }
+.gs-cmp-text.is-gs { color: #2ea3f2 !important; }
+.gs-section-lbl { color: rgba(51,51,51,.35) !important; }
+.gs-map-chip   {
+  background: #ffffff !important;
+  border-color: rgba(51,51,51,.15) !important;
+  color: #333333 !important;
+}
+.gs-map-chip.active {
+  background: rgba(46,163,242,.08) !important;
+  border-color: rgba(46,163,242,.38) !important;
+}
+.gs-chip-name { color: #333333 !important; }
+.gs-chip-dist { color: rgba(51,51,51,.45) !important; }
+
+/* ── 19. Drawer ──────────────────────────────────────── */
+.gs-drawer {
+  background: #ffffff !important;
+  border-left: 1px solid #e2e2e2 !important;
+}
+.gs-drawer-overlay { background: rgba(0,0,0,.22) !important; }
+.gs-drawer-header  { background: #ffffff !important; border-bottom-color: #e2e2e2 !important; }
+.gs-drawer-title   { color: #333333 !important; }
+.gs-drawer-sub     { color: #666666 !important; }
+.gs-drawer-stats   { background: #f7f7f7 !important; border-color: #e2e2e2 !important; }
+.gs-drawer-stat-n  { color: #333333 !important; }
+.gs-drawer-stat-l  { color: #999999 !important; }
+.gs-drawer-body    { background: #ffffff !important; }
+.gs-drawer-desc    { color: #666666 !important; }
+.gs-section-lbl    { color: rgba(51,51,51,.35) !important; }
+.gs-room-row       { border-bottom-color: #eeeeee !important; }
+.gs-room-name      { color: #333333 !important; }
+.gs-room-price     { color: #666666 !important; }
+.gs-feature-pill   { background: #f3f3f3 !important; border-color: #e2e2e2 !important; color: #555555 !important; }
+.gs-feature-pill svg { stroke: #2ea3f2 !important; }
+.gs-drawer-cta     { background: #f7f7f7 !important; border-top-color: #e2e2e2 !important; }
+.gs-btn-primary    { background: #2ea3f2 !important; border-color: #2ea3f2 !important; color: #ffffff !important; }
+.gs-btn-outline    { background: transparent !important; border-color: #ddd !important; color: #555555 !important; }
+.gs-drawer-close   { color: #555555 !important; border-color: rgba(51,51,51,.18) !important; }
+.gs-gallery-btn    { background: rgba(0,0,0,.35) !important; color: #ffffff !important; }
+.gs-thumbs-strip   { background: #f3f3f3 !important; }
+.gs-thumb          { border-color: transparent !important; }
+.gs-thumb.active   { border-color: #2ea3f2 !important; }
+.gs-drawer-gallery-count { color: rgba(255,255,255,.7) !important; }
+.gs-detail-head    { color: rgba(51,51,51,.45) !important; }
+.gs-detail-plan    { background: #f7f7f7 !important; border-color: #e2e2e2 !important; }
+.gs-detail-plan-name    { color: #333333 !important; }
+.gs-detail-plan-size    { color: #999999 !important; }
+.gs-detail-plan-tags span { background: rgba(46,163,242,.08) !important; border-color: rgba(46,163,242,.3) !important; color: #2ea3f2 !important; }
+.gs-detail-incl-grid span { background: #f3f3f3 !important; border-color: #e2e2e2 !important; color: #555555 !important; }
+.gs-detail-sec-item, .gs-excl-tag { background: #f3f3f3 !important; border-color: #e2e2e2 !important; color: #555555 !important; }
+.gs-detail-col-lbl  { color: rgba(51,51,51,.45) !important; }
+.gs-detail-list li  { color: #555555 !important; }
+.gs-detail-list li::before { background: #2ea3f2 !important; }
+
+/* ── 20. Success / error messages ───────────────────── */
+.success-msg-box { background: #f0fdf4 !important; color: #16a34a !important; }
+.error-msg-box   { background: #fef2f2 !important; color: #dc2626 !important; }
+
+/* ── 21. Blue brand accents on light sections ────────── */
+/* Consistent use of #2ea3f2 at key structural touch-points
+   across white/light backgrounds only.                   */
+
+/* Section caption labels: (About) / (our properties) / (FAQ) / (Our beliefs) */
+.caption .h6,
+.caption .h8 {
+  color: #2ea3f2 !important;
+  font-weight: 600 !important;
+}
+
+/* Stats numbers in the About section — 7, 5 min, 3×, 24/7, 1000+, 1 day */
+.stats-box .h2,
+.stats-box .mob-h5 {
+  color: #2ea3f2 !important;
+}
+/* Suffix labels (min, +, ×, day) at a softer blue */
+.stats-box .text-color-white-70 .b0,
+.stats-box .text-color-white-70 .b1 {
+  color: rgba(46,163,242,.55) !important;
+}
+
+/* FAQ row numbers ( 1 ) ( 2 ) etc */
+.faq-dropdown > .b1 {
+  color: rgba(46,163,242,.6) !important;
+}
+
+/* Nav link hover */
+.nav-link:hover {
+  color: #2ea3f2 !important;
+  transition: color 0.2s ease !important;
+}
+
+/* Property slider arrow hover */
+.gs-proj-arrow:hover {
+  color: #2ea3f2 !important;
+  border-color: rgba(46,163,242,.45) !important;
+}
+
+</style>
+<div class="global-code"><div class="global-css w-embed"><style>
   /* Fluid responsive */
   html {
     font-size: calc(16*(100vw / 1920));
@@ -336,10 +1546,14 @@
 
   .header.is-scrolled .nav-overlay {
     opacity: 1;
+    background-color: rgba(255,255,255,0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
   }
   .header.is-scrolled .nav-line {
     opacity: 0!important;
   }
+
 
   .beliefs-card-bg {
     clip-path: polygon(9.47rem 0.03rem, 0.03rem 0.03rem, 0.03rem calc(100% - 0.03rem), 9.47rem calc(100% - 0.03rem), 9.47rem calc(100% - 0.03rem), 9.61rem calc(100% - 0.04rem), 9.74rem calc(100% - 0.06rem), 9.87rem calc(100% - 0.09rem), 9.99rem calc(100% - 0.12rem), 10.11rem calc(100% - 0.16rem), 10.23rem calc(100% - 0.21rem), 10.34rem calc(100% - 0.27rem), 10.45rem calc(100% - 0.33rem), 10.56rem calc(100% - 0.41rem), 10.67rem calc(100% - 0.50rem), 10.67rem calc(100% - 0.50rem), 10.77rem calc(100% - 0.59rem), 10.86rem calc(100% - 0.69rem), 10.94rem calc(100% - 0.78rem), 11.01rem calc(100% - 0.88rem), 11.07rem calc(100% - 0.98rem), 11.12rem calc(100% - 1.08rem), 11.16rem calc(100% - 1.19rem), 11.21rem calc(100% - 1.30rem), 11.24rem calc(100% - 1.43rem), 11.28rem calc(100% - 1.56rem), calc(50% - 0.00rem) calc(100% - 1.56rem), calc(50% - -0.04rem) calc(100% - 1.43rem), calc(50% - -0.08rem) calc(100% - 1.30rem), calc(50% - -0.12rem) calc(100% - 1.18rem), calc(50% - -0.17rem) calc(100% - 1.07rem), calc(50% - -0.22rem) calc(100% - 0.97rem), calc(50% - -0.28rem) calc(100% - 0.87rem), calc(50% - -0.35rem) calc(100% - 0.77rem), calc(50% - -0.43rem) calc(100% - 0.68rem), calc(50% - -0.51rem) calc(100% - 0.59rem), calc(50% - -0.61rem) calc(100% - 0.50rem), calc(100% - 10.67rem) calc(100% - 0.50rem), calc(100% - 10.57rem) calc(100% - 0.41rem), calc(100% - 10.46rem) calc(100% - 0.33rem), calc(100% - 10.35rem) calc(100% - 0.27rem), calc(100% - 10.25rem) calc(100% - 0.21rem), calc(100% - 10.13rem) calc(100% - 0.16rem), calc(100% - 10.02rem) calc(100% - 0.12rem), calc(100% - 9.89rem) calc(100% - 0.09rem), calc(100% - 9.76rem) calc(100% - 0.06rem), calc(100% - 9.62rem) calc(100% - 0.04rem), calc(100% - 9.47rem) calc(100% - 0.03rem), calc(100% - 0.03rem) calc(100% - 0.03rem), calc(100% - 0.03rem) 0.03rem, calc(100% - 9.47rem) 0.03rem, calc(100% - 9.47rem) 0.03rem, calc(100% - 9.62rem) 0.04rem, calc(100% - 9.76rem) 0.06rem, calc(100% - 9.89rem) 0.09rem, calc(100% - 10.02rem) 0.12rem, calc(100% - 10.13rem) 0.16rem, calc(100% - 10.25rem) 0.21rem, calc(100% - 10.35rem) 0.27rem, calc(100% - 10.46rem) 0.33rem, calc(100% - 10.57rem) 0.41rem, calc(100% - 10.67rem) 0.50rem, calc(100% - 10.67rem) 0.50rem, calc(100% - 10.77rem) 0.59rem, calc(100% - 10.85rem) 0.68rem, calc(100% - 10.92rem) 0.77rem, calc(100% - 10.99rem) 0.86rem, calc(100% - 11.05rem) 0.96rem, calc(100% - 11.11rem) 1.06rem, calc(100% - 11.16rem) 1.17rem, calc(100% - 11.20rem) 1.29rem, calc(100% - 11.24rem) 1.42rem, calc(100% - 11.28rem) 1.56rem, calc(50% - 0.00rem) 1.56rem, calc(50% - 0.04rem) 1.43rem, calc(50% - 0.08rem) 1.30rem, calc(50% - 0.12rem) 1.19rem, calc(50% - 0.17rem) 1.08rem, calc(50% - 0.22rem) 0.97rem, calc(50% - 0.28rem) 0.87rem, calc(50% - 0.34rem) 0.78rem, calc(50% - 0.42rem) 0.69rem, calc(50% - 0.51rem) 0.59rem, calc(50% - 0.61rem) 0.50rem, 10.67rem 0.50rem, 10.57rem 0.41rem, 10.46rem 0.33rem, 10.35rem 0.27rem, 10.25rem 0.21rem, 10.13rem 0.16rem, 10.02rem 0.12rem, 9.89rem 0.09rem, 9.76rem 0.06rem, 9.62rem 0.04rem, 9.47rem 0.03rem); 
@@ -1341,6 +2555,42 @@
       });
 
       projectSplide.mount();
+
+      // Click on the active (front) slide opens that property's modal.
+      // Clicking a non-active slide is handled by isNavigation:true (slides it to front).
+      projectSplide.on('mounted', () => {
+        // Inject gradient overlay directly into each slide image div
+        document.querySelectorAll('.projects-slider .projects-slide-img').forEach(function(imgDiv) {
+          imgDiv.style.position = 'relative';
+          var overlay = document.createElement('div');
+          overlay.setAttribute('aria-hidden', 'true');
+          overlay.style.position = 'absolute';
+          overlay.style.top = '0';
+          overlay.style.left = '0';
+          overlay.style.right = '0';
+          overlay.style.height = '60%';
+          overlay.style.background = 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%)';
+          overlay.style.zIndex = '3';
+          overlay.style.pointerEvents = 'none';
+          imgDiv.appendChild(overlay);
+        });
+
+        // Keep project titles above the overlay
+        var titles = document.querySelector('.project-titles');
+        if (titles) titles.style.zIndex = '10';
+
+        // Click active slide opens property drawer
+        const allSlides = document.querySelectorAll('.projects-slider .splide__slide');
+        allSlides.forEach((slide) => {
+          slide.addEventListener('click', () => {
+            if (slide.classList.contains('is-active')) {
+              if (typeof window.gsDrawerOpen === 'function') {
+                window.gsDrawerOpen(projectSplide.index);
+              }
+            }
+          });
+        });
+      });
     }
   }
   
@@ -1373,28 +2623,19 @@
   });
 </script></div><div class="amenities-scroll-code w-embed w-script"><script>
   function initAmenitiesAnimation() {
-    console.log('initAmenitiesAnimation started');
+    if (window.innerWidth <= 991) return;
 
-    if (window.innerWidth <= 991) {
-      //console.log('Mobile detected, animation skipped');
-      //return;
-    }
-
-    const bigImages = gsap.utils.toArray('[data-amenities-anim="big-image"]');
+    const bigImages   = gsap.utils.toArray('[data-amenities-anim="big-image"]');
     const smallImages = gsap.utils.toArray('[data-amenities-anim="small-image"]');
-    const textBoxes = gsap.utils.toArray('.amenities-slide-box');
-    const triggers = gsap.utils.toArray('[data-amenities-anim="trigger"]');
-    const section = document.querySelector('.anim-track');
-    const header = document.querySelector('.header');
+    const textBoxes   = gsap.utils.toArray('.amenities-slide-box');
+    const triggers    = gsap.utils.toArray('[data-amenities-anim="trigger"]');
+    const section     = document.querySelector('.anim-track');
+    const header      = document.querySelector('.header');
 
-    console.log('Big images found:', bigImages.length);
-    console.log('Triggers found:', triggers.length);
-
-    // -----------------------------
     const amenitiesST = [];
 
     const pauseAmenitiesST = () => {
-      amenitiesST.forEach((st) => st && st.disable(false)); // false = не сбрасывать стили/прогресс
+      amenitiesST.forEach((st) => st && st.disable(false));
     };
 
     const resumeAmenitiesST = () => {
@@ -1403,259 +2644,97 @@
       ScrollTrigger.update();
     };
 
-    // -----------------------------
-    // Header hide/show
+    // ── Header hide/show ──────────────────────────────────────────────
     if (section && header) {
       const headerST = ScrollTrigger.create({
         trigger: section,
         start: 'top top',
         end: 'bottom top',
-        onEnter: () => {
-          gsap.to(header, { yPercent: -100, pointerEvents: 'none', duration: 0.3 });
-        },
-        onLeave: () => {
-          gsap.to(header, { yPercent: 0, pointerEvents: 'auto', duration: 0.3 });
-        },
-        onEnterBack: () => {
-          gsap.to(header, { yPercent: -100, pointerEvents: 'none', duration: 0.3 });
-        },
-        onLeaveBack: () => {
-          gsap.to(header, { yPercent: 0, pointerEvents: 'auto', duration: 0.3 });
-        },
+        onEnter:     () => gsap.to(header, { yPercent: -100, pointerEvents: 'none', duration: 0.3 }),
+        onLeave:     () => gsap.to(header, { yPercent: 0,    pointerEvents: 'auto', duration: 0.3 }),
+        onEnterBack: () => gsap.to(header, { yPercent: -100, pointerEvents: 'none', duration: 0.3 }),
+        onLeaveBack: () => gsap.to(header, { yPercent: 0,    pointerEvents: 'auto', duration: 0.3 }),
       });
-
       amenitiesST.push(headerST);
     }
 
-    const sliceCount = 30;
-
-    // Создаем SplitText для всех заголовков и текстов
-    const titleSplits = [];
-    const textSplits = [];
-
-    textBoxes.forEach((box) => {
-      const title = box.querySelector('[data-amenities-anim="title"]');
-      const text = box.querySelector('[data-amenities-anim="text"]');
-
-      if (title) {
-        const titleSplit = new SplitText(title, {
-          type: 'lines',
-          mask: 'lines',
-        });
-        titleSplits.push(titleSplit);
-      }
-
-      if (text) {
-        const textSplit = new SplitText(text, {
-          type: 'lines',
-          mask: 'lines',
-        });
-        textSplits.push(textSplit);
-      }
+    // ── SplitText ─────────────────────────────────────────────────────
+    const titleSplits = textBoxes.map(function(box) {
+      var el = box.querySelector('[data-amenities-anim="title"]');
+      return el ? new SplitText(el, { type: 'lines', mask: 'lines' }) : null;
+    });
+    const textSplits = textBoxes.map(function(box) {
+      var el = box.querySelector('[data-amenities-anim="text"]');
+      return el ? new SplitText(el, { type: 'lines', mask: 'lines' }) : null;
     });
 
-    // Функция для генерации градиента
-    function generateMaskGradient(progressArray) {
-      const step = 100 / sliceCount;
-      let gradient = 'linear-gradient(0deg';
-
-      for (let i = 0; i < sliceCount; i++) {
-        const start = i * step;
-        const end = (i + 1) * step;
-        const progress = progressArray[i];
-
-        const visibleStart = start;
-        const visibleEnd = start + step * progress;
-
-        gradient += `, black ${visibleStart}% ${visibleEnd}%`;
-
-        if (progress < 1) {
-          gradient += `, transparent ${visibleEnd}% ${end}%`;
-        }
-      }
-
-      gradient += ')';
-      return gradient;
-    }
-
-    // Устанавливаем начальное состояние для больших картинок (ВСЕ СКРЫТЫ)
-    bigImages.forEach((img, index) => {
-      if (index === 0) {
-        // Первая картинка - скрыта справа с opacity (БЕЗ градиента)
-        gsap.set(img, { x: 100, opacity: 0 });
-      } else {
-        // Остальные - скрыты через градиент
-        const initialProgress = new Array(sliceCount).fill(0);
-        img.style.setProperty('--mask-gradient', generateMaskGradient(initialProgress));
+    // ── Initial states ────────────────────────────────────────────────
+    // Big images: first slides from right, rest start hidden (no mask-gradient)
+    gsap.set(bigImages[0], { x: 80, autoAlpha: 0 });
+    bigImages.forEach(function(img, i) {
+      if (i > 0) {
+        gsap.set(img, { autoAlpha: 0 });
+        img.style.removeProperty('--mask-gradient');
       }
     });
+    // Small images: all clipped from top
+    smallImages.forEach(function(img) { gsap.set(img, { clipPath: 'inset(100% 0% 0% 0%)' }); });
+    // Text: all hidden, lines masked below
+    textBoxes.forEach(function(box) { gsap.set(box, { autoAlpha: 0 }); });
+    titleSplits.forEach(function(s) { if (s) gsap.set(s.lines, { yPercent: 105 }); });
+    textSplits.forEach(function(s)  { if (s) gsap.set(s.lines, { yPercent: 105 }); });
 
-    // Устанавливаем начальное состояние для маленьких картинок (ВСЕ СКРЫТЫ)
-    smallImages.forEach((img) => {
-      gsap.set(img, { clipPath: 'inset(100% 0% 0% 0%)' });
+    // ── Trigger 0: entrance of slide 1 ────────────────────────────────
+    var tl0 = gsap.timeline({
+      scrollTrigger: {
+        trigger: triggers[0],
+        start: 'top 80%',
+        end:   'top 25%',
+        scrub: 1.5,
+      }
     });
+    amenitiesST.push(tl0.scrollTrigger);
+    tl0
+      .to(bigImages[0],   { x: 0, autoAlpha: 1, ease: 'power2.out' }, 0)
+      .to(smallImages[0], { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power2.out' }, 0.15)
+      .to(textBoxes[0],   { autoAlpha: 1, ease: 'none' }, 0)
+      .to(titleSplits[0] ? titleSplits[0].lines : [], { yPercent: 0, ease: 'power3.out' }, 0.1)
+      .to(textSplits[0]  ? textSplits[0].lines  : [], { yPercent: 0, ease: 'power3.out' }, 0.2);
 
-    // Устанавливаем начальное состояние для текстов (ВСЕ СКРЫТЫ)
-    titleSplits.forEach((split) => gsap.set(split.lines, { y: '100%' }));
-    textSplits.forEach((split) => gsap.set(split.lines, { y: '100%' }));
+    // ── Triggers 1+: smooth cross-fades ───────────────────────────────
+    triggers.forEach(function(trigger, index) {
+      if (index === 0) return;
+      var from = index - 1;
+      var to   = index;
 
-    // Скрываем все textBoxes
-    textBoxes.forEach((box) => {
-      gsap.set(box, { opacity: 0, visibility: 'hidden' });
-    });
-
-    // Флаг для отслеживания первой анимации
-    let hasAnimatedFirst = false;
-
-    // Анимация переходов
-    triggers.forEach((trigger, index) => {
-      console.log(`Setting up trigger ${index}`);
-
-      if (index === 0) {
-        // Первая картинка - выезжает справа с opacity
-        const firstST = ScrollTrigger.create({
+      var tl = gsap.timeline({
+        scrollTrigger: {
           trigger: trigger,
-          start: 'top 80%',
-          onEnter: () => {
-            if (!hasAnimatedFirst) {
-              hasAnimatedFirst = true;
-
-              gsap.to(bigImages[0], {
-                x: 0,
-                opacity: 1,
-                duration: 1.2,
-                ease: 'power2.out',
-              });
-
-              gsap.to(smallImages[0], {
-                clipPath: 'inset(0% 0% 0% 0%)',
-                duration: 0.8,
-                ease: 'power2.out',
-                delay: 0.2,
-              });
-
-              gsap.set(textBoxes[0], {
-                opacity: 1,
-                visibility: 'visible',
-              });
-
-              gsap
-                .timeline({ delay: 0.3 })
-                .to(titleSplits[0].lines, {
-                y: '0%',
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power3.out',
-              })
-                .to(
-                textSplits[0].lines,
-                {
-                  y: '0%',
-                  duration: 0.6,
-                  stagger: 0.08,
-                  ease: 'power3.out',
-                },
-                '-=0.5'
-              );
-            }
-          },
-        });
-
-        amenitiesST.push(firstST);
-      } else {
-        const showProgressArray = new Array(sliceCount).fill(0);
-
-        const showTl = gsap.timeline({
-          onUpdate: () => {
-            bigImages[index].style.setProperty('--mask-gradient', generateMaskGradient(showProgressArray));
-          },
-          scrollTrigger: {
-            trigger: trigger,
-            start: 'top center',
-            end: 'center center',
-            scrub: 1,
-          },
-        });
-
-        amenitiesST.push(showTl.scrollTrigger);
-
-        for (let i = 0; i < sliceCount; i++) {
-          showTl.to(
-            showProgressArray,
-            { [i]: 1, duration: 0.5, ease: 'none' },
-            i * 0.015
-          );
+          start: 'top 55%',
+          end:   'top 10%',
+          scrub: 1.5,
         }
+      });
+      amenitiesST.push(tl.scrollTrigger);
 
-        const smallTween = gsap.fromTo(
-          smallImages[index],
-          { clipPath: 'inset(100% 0% 0% 0%)' },
-          {
-            clipPath: 'inset(0% 0% 0% 0%)',
-            scrollTrigger: {
-              trigger: trigger,
-              start: 'top center',
-              end: 'center center',
-              scrub: 1,
-            },
-          }
-        );
+      // — Out: previous slide —
+      tl.to(textBoxes[from], { autoAlpha: 0, ease: 'power2.in' }, 0)
+        .to(titleSplits[from] ? titleSplits[from].lines : [], { yPercent: -105, ease: 'power2.in' }, 0)
+        .to(textSplits[from]  ? textSplits[from].lines  : [], { yPercent: -105, ease: 'power2.in' }, 0)
+        .to(bigImages[from],   { autoAlpha: 0, ease: 'power1.in' }, 0)
+        .to(smallImages[from], { clipPath: 'inset(0% 0% 100% 0%)', ease: 'power2.in' }, 0)
 
-        amenitiesST.push(smallTween.scrollTrigger);
-
-        // Тексты
-        const textTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: trigger,
-            start: 'top center',
-            end: 'center center',
-            scrub: 1,
-          },
-        });
-
-        amenitiesST.push(textTimeline.scrollTrigger);
-
-        textTimeline
-          .to([titleSplits[index - 1].lines, textSplits[index - 1].lines], {
-          y: '-100%',
-          duration: 0.3,
-          stagger: 0.02,
-          ease: 'power2.in',
-        })
-          .to(textBoxes[index - 1], {
-          opacity: 0,
-          visibility: 'hidden',
-          duration: 0.1,
-        })
-          .set(textBoxes[index], {
-          opacity: 1,
-          visibility: 'visible',
-        })
-          .fromTo(
-          titleSplits[index].lines,
-          { y: '100%' },
-          {
-            y: '0%',
-            duration: 0.4,
-            stagger: 0.05,
-            ease: 'power3.out',
-          }
-        )
-          .fromTo(
-          textSplits[index].lines,
-          { y: '100%' },
-          {
-            y: '0%',
-            duration: 0.3,
-            stagger: 0.04,
-            ease: 'power3.out',
-          },
-          '-=0.2'
-        );
-      }
+      // — In: next slide (starts at 40% of the timeline) —
+        .to(bigImages[to],   { autoAlpha: 1, ease: 'power2.out' }, 0.4)
+        .to(smallImages[to], { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power2.out' }, 0.4)
+        .to(textBoxes[to],   { autoAlpha: 1, ease: 'none' }, 0.4)
+        .fromTo(titleSplits[to] ? titleSplits[to].lines : [],
+          { yPercent: 105 }, { yPercent: 0, ease: 'power3.out' }, 0.45)
+        .fromTo(textSplits[to]  ? textSplits[to].lines  : [],
+          { yPercent: 105 }, { yPercent: 0, ease: 'power3.out' }, 0.5);
     });
 
-    // -----------------------------
+    // ── Anchor: book-a-visit ──────────────────────────────────────────
     const ANCHOR_ID = 'book-a-visit';
     const anchorTarget = document.getElementById(ANCHOR_ID);
 
@@ -1789,7 +2868,6 @@
       });
     }
 
-    console.log('Animation setup completed');
   }
 </script>
 
@@ -1803,15 +2881,8 @@
   }
 
   [data-amenities-anim="big-image"] {
-    mask-image: var(--mask-gradient);
-    -webkit-mask-image: var(--mask-gradient);
-  }
-
-  [data-amenities-anim="big-image"].is-first {
-    position: relative;
-    mask-image: none !important;
-    -webkit-mask-image: none !important;
-    transition: unset;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 </style></div><div class="cta-form-code w-embed w-script"><script>
   function ctaForm() {
@@ -2032,8 +3103,8 @@
           areaText: 'entrance',
         },
         {
-          main: 'assets/images/gradspace/Gradspace-Interior-20210115-111502-2362-510-3x2-1.jpg',
-          thumb: 'assets/images/gradspace/Gradspace-Interior-20210115-111502-2362-510-3x2-1.jpg',
+          main: 'assets/images/gradspace/gradspace-beliefs-bg.jpg',
+          thumb: 'assets/images/gradspace/gradspace-beliefs-bg.jpg',
           label: 'INTERIOR',
           area: 0,
           areaText: 'living area',
@@ -2155,7 +3226,7 @@
           thumb: 'assets/images/gradspace/Gradspace-House-20201201-20201201-160347-0033-Edit-800-Gallery.jpg',
           label: 'EXTERIOR',
           area: 0,
-          areaText: 'terrace',
+          areaText: 'garden',
         },
         {
           main: 'assets/images/gradspace/Gradspace-House-20201201-20201201-160501-0036-800-Gallery.jpg',
@@ -2474,9 +3545,9 @@
         link.addEventListener('click', (e) => {
           e.preventDefault();
 
-          // Open photo lightbox instead
+          // Open property drawer
           const projectIndex = parseInt(link.dataset.projectIndex);
-          gsLightboxOpen(projectIndex);
+          if (typeof window.gsDrawerOpen === 'function') { window.gsDrawerOpen(projectIndex); }
           return;
 
           // ✅ Берем индекс из атрибута data-project-index
@@ -3191,13 +4262,20 @@
     });
 
   });
-</script></div><div class="text-color-white-70"></div><div class="text-color-white-50"></div><div class="is-anim-active"></div></div><div class="page-wrapper"><header class="header"><div data-animation="over-right" class="nav w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="tiny" role="banner" data-duration="400" data-hero="nav" data-doc-height="1"><div class="nav-overlay"></div><div class="container nav-container"><a href="#" aria-label="adoptian logo" id="w-node-ae66f997-3241-e895-0ce4-f57471e13027-546b46eb" class="logo nav-logo w-nav-brand"><img width="160" height="26" alt="Gradspace logo" src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=2" loading="eager" data-logo="main" class="logo__img"/></a><nav role="navigation" class="nav__menu-wrap w-nav-menu"><div class="nav__menu-top"></div><div class="nav__menu"><ul role="list" class="nav__list"><li class="nav__list-item"><a href="#" data-project-index="0" data-open-modal="" class="nav__link w-inline-block"><div>The Factory</div></a></li><li class="nav__list-item"><a href="#" data-project-index="1" data-open-modal="" class="nav__link w-inline-block"><div>Union House</div></a></li><li class="nav__list-item"><a href="#" data-project-index="2" data-open-modal="" class="nav__link w-inline-block"><div>Jonkerzicht</div></a></li><li class="nav__list-item"><a href="#" data-project-index="3" data-open-modal="" class="nav__link w-inline-block"><div>Bergzicht 63</div></a></li><li class="nav__list-item"><a href="#" data-project-index="4" data-open-modal="" class="nav__link w-inline-block"><div>Akkerhof</div></a></li><li class="nav__list-item"><a href="#" data-project-index="5" data-open-modal="" class="nav__link w-inline-block"><div>The Vineyards</div></a></li><li class="nav__list-item"><a href="#" data-project-index="6" data-open-modal="" class="nav__link w-inline-block"><div>24 Cluver Road</div></a></li></ul><a href="#book-a-visit" class="btn nav-btn w-inline-block"><div>ENQUIRE NOW</div></a></div></nav><div class="burger w-nav-button"><div class="burger__box"><div class="burger__open w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+</script></div><div class="text-color-white-70"></div><div class="text-color-white-50"></div><div class="is-anim-active"></div></div><div class="page-wrapper"><header class="header"><div data-animation="over-right" class="nav w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="tiny" role="banner" data-duration="400" data-hero="nav" data-doc-height="1"><div class="nav-overlay"></div><div class="container nav-container"><a href="#" aria-label="adoptian logo" id="w-node-ae66f997-3241-e895-0ce4-f57471e13027-546b46eb" class="logo nav-logo w-nav-brand"><img width="210" height="50" alt="Gradspace logo" src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=3" loading="eager" data-logo="main" class="logo__img"/></a><nav role="navigation" class="nav__menu-wrap w-nav-menu"><div class="nav__menu-top"></div><div class="nav__menu"><ul role="list" class="nav__list"><li class="nav__list-item"><a href="#" data-project-index="0" data-open-modal="" class="nav__link w-inline-block"><div>The Factory</div></a></li><li class="nav__list-item"><a href="#" data-project-index="1" data-open-modal="" class="nav__link w-inline-block"><div>Union House</div></a></li><li class="nav__list-item"><a href="#" data-project-index="2" data-open-modal="" class="nav__link w-inline-block"><div>Jonkerzicht</div></a></li><li class="nav__list-item"><a href="#" data-project-index="3" data-open-modal="" class="nav__link w-inline-block"><div>Bergzicht 63</div></a></li><li class="nav__list-item"><a href="#" data-project-index="4" data-open-modal="" class="nav__link w-inline-block"><div>Akkerhof</div></a></li><li class="nav__list-item"><a href="#" data-project-index="5" data-open-modal="" class="nav__link w-inline-block"><div>The Vineyards</div></a></li><li class="nav__list-item"><a href="#" data-project-index="6" data-open-modal="" class="nav__link w-inline-block"><div>24 Cluver Road</div></a></li></ul><a href="#book-a-visit" class="btn nav-btn w-inline-block"><div>ENQUIRE NOW</div></a></div></nav><div class="burger w-nav-button"><div class="burger__box"><div class="burger__open w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
   <path d="M3.75 15H20.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M3.75 9H20.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div><div class="burger__close w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
   <path d="M18.0001 17.9999L6.00012 5.99997" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18.0002 5.99997L6.00012 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></div></div></div><div data-hero="line" class="nav-line"></div></div></div></header><main class="main-wrapper"><section class="hero"><div class="page-padding"><div class="container"><div class="wrap hero-wrap"><div class="heading hero-heading"><h1 data-hero="title" class="h1 hero-title" style="font-size:12rem;white-space:nowrap;letter-spacing:-0.02em;position:relative;top:2rem;left:-1.5rem;display:block;width:max-content;">Gradspace</h1><div data-hero="content" class="hero-right"><div class="hero-right-heading"><div data-hero="title-min" class="h6 mob-h7">Closest to campus. <span class="span-inline-block">Safest in town.</span></div><p data-hero="subtitle" class="b3">Gradspace sits in Universiteits Oord — the private quarter directly alongside SU's main gate. Closer to campus, safer neighbourhood, and more included in your base rate than any competitor at this price point.</p></div><div data-hero="scroll" class="text-btn-01">SCROLL</div></div></div></div></div></div><div data-hero="bg" class="full-bg-wrap"><div data-hero="img" class="full-bg-inner"><div data-poster-url="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_poster.0000000.jpg" data-video-urls="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_mp4.mp4,assets/images/69610a0c261bf5a0d9012dd6_hero 3 (1)_webm.webm" data-autoplay="true" data-loop="false" data-wf-ignore="true" class="video w-background-video w-background-video-atom"><video id="b7729ca5-13f1-6b61-c831-1c4b79735cb2-video" autoplay="" style="background-image:url(&quot;assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_poster.0000000.jpg&quot;)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover"><source src="assets/images/69372e47ab695bf5546b46ec%2F69610a0c261bf5a0d9012dd6_hero%203%20%281%29_mp4.mp4" data-wf-ignore="true"/><source src="assets/images/69610a0c261bf5a0d9012dd6_hero 3 (1)_webm.webm" data-wf-ignore="true"/></video></div></div></div></section><section class="about"><div class="page-padding"><div class="container"><div class="wrap about-wrap"><div class="about-info"><div class="about-left"><div class="about-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(About)</div></div><h2 data-anim="split" class="h5-glare mob-h7">premium <span class="h5 mob-h7">student </span><span>living</span> <span class="h5 mob-h7">in</span> <span class="h5 mob-h7">Stellenbosch</span></h2></div><div class="about-img"><img src="assets/images/gradspace/Gradspace-House-20201201-20201201-160215-0023-800-Gallery.jpg" loading="lazy" width="893" height="1376" alt="Gradspace communal lounge — premium shared living in Universiteits Oord, Stellenbosch." data-anim="img-paralax" class="img-full-cover" style="object-position: center 40%;"/><div data-anim="img-overlay" class="img-overlay"></div></div></div><div class="about-text-box"><p data-anim="element" class="b1">Gradspace manages seven premium student addresses in Stellenbosch — all within Universiteits Oord, the closest private residential zone to SU's main gate. Each property chosen for location, safety, and build quality.</p><p data-anim="element" class="b1">From The Factory to Jonkerzicht, every address is managed to a standard that keeps your focus where it belongs — on your degree.</p></div></div><div data-anim="stagger-wrap" class="stats"><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-1"><div class="stats-box-row"><div data-number="7" class="h2 mob-h5">7</div></div><p class="b1 mob-b4">premium addresses across Stellenbosch.</p></div><div data-anim="stagger" class="stats-box stats-box-2"><div class="stats-box-row"><div data-number="5" class="h2 mob-h5">5</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">min</div></div></div><p class="b1 mob-b4">walk to campus for most properties.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-3"><div class="stats-box-row in-stats-row-2"><div class="h2 mob-h5"><span data-number="3">3</span>×</div></div><p class="b1 mob-b4">weekly communal cleaning included.</p></div></div><div class="stats-row-3"><div data-anim="stagger" class="stats-box stats-box-4"><div class="stats-box-row"><div data-number="24" class="h2 mob-h5">24</div><div class="h2 mob-h5">/</div><div data-number="7" class="h2 mob-h5">7</div></div><div class="stats-box-4-text"><p class="b1 mob-b4">armed response. The safest quarter in Stellenbosch. This we offer. Most don't.</p></div></div></div><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-5"><div class="stats-box-row"><div data-number="1000" class="h2 mob-h5">1,000</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">+</div></div></div><p class="b1 mob-b4">students have called a Gradspace property home. The trusted name in Stellenbosch student living.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-6"><div class="stats-box-row in-stats-row-2"><div data-number="1" class="h2 mob-h5">1</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">day</div></div></div><p class="b1 mob-b4">maximum management response, guaranteed. Real people who answer, act, and show up.</p></div></div></div></div></div></div></section><section class="projects"><div class="page-padding"><div class="container"><div class="wrap projects-wrap"><div class="splide projects-slider"><div class="projects-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(our properties)</div></div></div><div class="project-titles"><div class="project-title is-first"><h2 class="h4 mob-h7">The Factory</h2></div><div class="project-title"><h2 class="h4 mob-h7">Union House</h2></div><div class="project-title"><h2 class="h4 mob-h7">Jonkerzicht</h2></div><div class="project-title"><h2 class="h4 mob-h7">Bergzicht 63</h2></div><div class="project-title"><h2 class="h4 mob-h7">Akkerhof</h2></div><div class="project-title"><h2 class="h4 mob-h7">The Vineyards</h2></div><div class="project-title"><h2 class="h4 mob-h7">24 Cluver Road</h2></div></div><div class="splide__track projects-track"><div class="splide__list projects-list"><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-010-800-Gallery.jpg" width="897" height="1176" alt="The Factory — purpose-built student apartment complex in Universiteits Oord, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/unionhouse-510-3x2-1.jpg" width="897" height="1176" alt="Union House — two buildings, twenty students at 14 Soeteweide Road, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Jonkerzicht-800-3x2-1.jpg" width="897" height="1176" alt="Jonkerzicht — private walled garden and braai terrace on Merriman Avenue, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-Bergzicht-63-20.jpg" width="897" height="1176" alt="Bergzicht 63 — quiet residential streets and architectural character in Stellenbosch's Bergzicht quarter." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Akkerhof-01-512-400x250-1.jpg" width="897" height="1176" alt="Akkerhof — corner of Dennesig and Bird Street, central Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 40%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Vineyards-02.jpg" width="897" height="1176" alt="The Vineyards — open vineyard setting on the outskirts of Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 30%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-24-Cluver-Road-02-800-3x2-1.jpg" width="897" height="1176" alt="24 Cluver Road — premium central Stellenbosch student residence." data-anim="img-paralax" loading="lazy"/></div></div></div></div></div><div data-anim="slideUp-once" class="project-texts"><div class="project-text is-first"><p class="b1">Purpose-built in Universiteits Oord — Stellenbosch's safest residential quarter. Sunlit living spaces, private terraces, 24-hr armed response, and a selection of exclusive amenities. This safety. This standard. We offer it.</p><a data-project-index="0" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Two buildings, twenty students. Uncapped Wi-Fi, dishwasher, laundry on-site, and 24-hour armed response — the kind of home that makes the years unforgettable.</p><a data-project-index="1" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p id="w-node-_331f3dee-4cc2-0975-74b5-82ee94c4b1e2-546b46eb" class="b1">Private walled garden, covered braai terrace, and five-bedroom apartments — your own outdoor world to come home to on Merriman Avenue.</p><a data-project-index="2" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Quiet streets, mature trees, and architectural character in Bergzicht. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry on-site — the kind of home that has warmth you can't manufacture.</p><a data-project-index="3" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Central Stellenbosch at the corner of Dennesig and Bird Streets. Campus, the Neelsie, and town — all a short walk away. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry included.</p><a data-project-index="4" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Open vineyard setting, 2.9km from the Neelsie Student Centre. Space, quiet, and open sky — for the student who values the calm that distance from town brings. Fibre Wi-Fi, dishwasher, and laundry on-site.</p><a data-project-index="5" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">One of Stellenbosch's most recognised student addresses — central, premium, and walking distance from campus. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry. The kind of road generations of students have competed to get onto.</p><a data-project-index="6" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div></div></div></div></div></section><section class="our-beliefs"><div class="page-padding"><div class="container"><div class="wrap our-beliefs-wrap"><div class="our-beliefs-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(Our beliefs)</div></div><h2 data-anim="split" class="h4 mob-h7">The Standard of Living You Deserve</h2></div><div class="our-beliefs-img"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881c0bd19ffb64b94f142_beliefs-img--d.avif" loading="lazy" width="1439" height="1640" alt="Modern living room with a large gray sectional sofa, textured throw blanket, glass side table, and wall-mounted flat-screen TV." srcset="assets/images/693881c0bd19ffb64b94f142_beliefs-img--d-p-500.avif 500w, assets/images/693881c0bd19ffb64b94f142_beliefs-img--d-p-800.avif 800w, assets/images/693881c0bd19ffb64b94f142_beliefs-img--d.avif 1439w" sizes="(max-width: 1439px) 100vw, 1439px" class="img-full-cover is-desktop"/><img src="assets/images/693881bfdfb07f671238f951_beliefs-img--mob.avif" loading="lazy" width="503" height="774" alt="Modern living room with gray sectional sofa, textured cushions, a throw blanket, glass side table, and large floor-to-ceiling windows." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div><div data-anim="element" class="our-beliefs-text-box"><p class="b1">Every Gradspace address was chosen for proximity to campus, safety of neighbourhood, and quality of build. At The Factory, uncapped Wi-Fi and water are already included in your base rate — priced above CampusKey Platinum (R15,083/mo) and 27Cluver (R15,000/mo), and more included than either. </p></div></div></div></div></section><section data-anim="stagger-wrap" class="beliefs"><div class="page-padding"><div class="container"><div class="wrap beliefs-wrap"><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Location <br/>First</h3><p class="b4 mob-c1">The closest private provider to SU's main gate. Universiteits Oord — directly alongside campus.</p></div></div><div class="b4">( 1 )</div></div><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Communal <br/>Living</h3><p class="b4 mob-c1">Shared spaces serviced three times weekly. A home worth coming back to.</p></div></div><div class="b4">( 2)</div></div><div data-anim="stagger" id="w-node-e7d9808f-a06f-a331-e101-7ae74e8937a2-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Fully Serviced</h3><p class="b4 mob-c1">Uncapped fibre, water, rates, and on-call management included.</p></div></div><div class="b4">( 3 )</div></div><div data-anim="stagger" id="w-node-_136ce43b-8832-597b-a20a-1efae0224907-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Secure &amp; <br/>Supported</h3><p class="b4 mob-c1">Banghoek Quarter — Stellenbosch's safest zone. 24-hr armed response at The Factory &amp; Union House. No Idas Valley.</p></div></div><div class="b4">( 4)</div></div><div data-anim="stagger" id="w-node-_24ad7796-0800-01cc-2e5a-ae5fa6b493fd-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Stellenbosch <br/>Lifestyle</h3><p class="b4 mob-c1">Wine country, mountain views, and one of Africa's great universities.</p></div></div><div class="b4">( 5 )</div></div><div id="w-node-d88d786b-358f-44e1-a1ef-46994c97ead0-546b46eb" class="beliefs-text-box"><p data-anim="element" class="b1">At Gradspace, we believe student living shouldn’t mean settling — or compromising on safety. Your years at Stellenbosch should be good ones: safe neighbourhood, properly supported, properly liveable. This safety, we offer. Most don’t. </p><p data-anim="element" class="b1">Our mission is to give every student a home they're proud of — in the safest quarter of Stellenbosch, close to campus, and ready from day one. This is what we offer. They don't.</p></div></div></div></div><div class="full-bg-wrap"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881c0f19790d102a7679d_beliefs-img-2--d.avif" loading="lazy" width="2880" height="2124" alt="Modern living room with two light gray sofas, a dark wooden coffee table holding a vase with dried pampas grass, minimalist wall art, and a textured wall panel." srcset="assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-500.avif 500w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-800.avif 800w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d-p-1080.avif 1080w, assets/images/693881c0f19790d102a7679d_beliefs-img-2--d.avif 2880w" sizes="(max-width: 2880px) 100vw, 2880px" class="img-full-cover is-desktop"/><img src="assets/images/693881bf041520f6c9ca8770_beliefs-img-2--mob.avif" loading="lazy" width="563" height="2039" alt="Modern living room with a beige sofa, vertical wood panel accent wall, a glass coffee table, and a side table with books and a small lamp." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section><section class="amenities"><div class="page-padding"><div class="container"><div data-amenities-anim="track" class="anim-track"><div data-amenities-anim="sticky" class="wrap amenities-wrap"><div data-amenities-anim="images-container" class="amenities-images-container"><div class="amenities-images-big"><div data-amenities-anim="big-image" class="amenities-slide-imgs is-first"><img src="assets/images/everything-covered-big-4k.jpg" loading="lazy" width="2563" height="3840" alt="Premium en-suite bedroom with soft natural light, plush bedding, and elegant drapes — the standard of every Gradspace room." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/communal-lounge-big-4k.jpg" loading="lazy" width="3840" height="2563" alt="Modern communal lounge with green armchairs, leather sofa, and warm wooden walls — premium shared student living." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/stellenbosch-vineyard-big-4k.jpg" loading="lazy" width="3840" height="2560" alt="Rolling Stellenbosch vineyards stretching toward the Simonsberg mountains — the winelands right outside your door." class="img-full-cover"/></div></div><div class="amenities-images-small"><div data-amenities-anim="small-image" class="amenities-slide-img-inner is-first"><img src="assets/images/everything-covered-small-4k.jpg" loading="lazy" width="3840" height="2559" alt="Luxury en-suite bathroom with premium finishes — water and rates all included in your base rate." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/communal-lounge-small-4k.jpg" loading="lazy" width="3840" height="2562" alt="Modern shared living room with warm tones, comfortable sofa, and outdoor views — communal spaces maintained to a premium standard." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/stellenbosch-oak-street-small-4k.jpg" loading="lazy" width="3840" height="2880" alt="Oak-lined Dorp Street in Stellenbosch — the historic avenues and Cape Dutch architecture that define student life here." class="img-full-cover"/></div></div></div><div class="amenities-texts-container"><div class="amenities-progress"><div class="amenities-progress-line"></div></div><div class="amenities-slide-box is-first"><h2 data-amenities-anim="title" class="h5 mob-h6">Everything <span>Covered</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Uncapped fibre Wi-Fi, three weekly communal cleans, water and rates — all included. No hidden costs, no separate bills. And unlike most Stellenbosch rentals, you're in the safest quarter in the city from day one.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">COMMUNAL<br>LIVING</h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Fully furnished shared kitchens, lounges, and braai decks — maintained and ready. The kind of communal living that actually works.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">STELLENBOSCH<br><span>LIVING</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Oak-lined streets, Simonsberg mountain views, world-class wine estates, and one of Africa's great universities — all right outside your door.</p></div></div></div></div><div data-amenities-anim="triggers" class="amenities-triggers"><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div class="amenities-trigger is-last"></div></div></div></div></div></section><div class="faq-relative"><div class="faq-spacer"></div><section parallax-section="" class="faq"><div class="page-padding"><div class="container"><div class="wrap faq-wrap"><div class="heading faq-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(FAQ)</div></div><h2 data-anim="split" class="h4 mob-h7">Your Questions, Answered</h2></div><div data-anim="stagger-wrap" class="faq-list"><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 1 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What properties does Gradspace offer?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Gradspace manages seven premium student properties in Stellenbosch — The Factory, Union House, Jonkerzicht, Bergzicht 63, Akkerhof, The Vineyards, and 24 Cluver Road. Each is a distinct address with its own character and community.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 2 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What makes Gradspace different?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Gradspace is the closest private provider to SU's main gate, in the Banghoek Quarter — Stellenbosch's safest residential zone. The Factory averages R15,255/month with uncapped Wi-Fi and water included. That's above CampusKey Platinum (R15,083) and 27Cluver (R15,000) in comparable rate, and more included than either.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 3 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What’s included in the rental?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Every Gradspace rental includes uncapped fibre Wi-Fi, communal cleaning three times per week, water and municipal rates. Furnished lounges and kitchens are standard. Select properties include dishwashers, washing machines, tumble dryers, and 24-hr armed response.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 4 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">How does the lease and payment work?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Leases run January through December, aligned to the academic year. You can pay in three equal instalments or twelve monthly payments. First payment is due December 1st prior to move-in. A security deposit and admin fee apply.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 5 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">Is Gradspace in a safe area?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Yes — and this is one of the most important things we offer. All Gradspace properties sit in Universiteits Oord and the Banghoek Quarter, consistently the safest residential zones in Stellenbosch. Several competing properties are located in Idas Valley and Cloetesville — areas with measurably higher incident rates. We chose every one of our streets deliberately. This safety, we provide. Many landlords in Stellenbosch don't.</p></div></div></div></div></div></div></div></section><section id="book-a-visit" parallax-section="" class="cta"><div class="page-padding"><div class="container"><div class="wrap cta-wrap"><div class="heading cta-heading"><h2 data-anim="element" class="h6">Find Your Place <span class="span-inline-block">in</span> Stellenbosch</h2><p data-anim="element" class="b1">Seven properties. One quarter. The safest place to live in Stellenbosch — and the closest to campus. Browse all properties or get in touch. We respond within one working day.</p></div><div data-anim="element" class="form-wrap"><div class="form-block w-form"><form id="cta-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="69372e47ab695bf5546b46eb" data-wf-element-id="903bb0a4-c2e5-6574-7234-2b788629c6c0"><div class="heading form-heading"><h2 class="h5 mob-h7">Begin <span class="h5-glare mob-h7">Your Application</span></h2><p class="b1 text-color-white-70">Our manager will contact you as soon as possible.</p></div><div class="inputs"><div class="input-wrap"><input class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Name" type="text" required=""/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+</svg></div></div></div><div data-hero="line" class="nav-line"></div></div></div></header><main class="main-wrapper"><section class="hero"><div class="page-padding"><div class="container"><div class="wrap hero-wrap"><div class="heading hero-heading"><h1 data-hero="title" class="h1 hero-title" style="font-size:12rem;white-space:nowrap;letter-spacing:-0.02em;position:relative;top:2rem;left:-1.5rem;display:block;width:max-content;">Gradspace</h1><div data-hero="content" class="hero-right"><div class="hero-right-heading"><div data-hero="title-min" class="h6 mob-h7">Closest to campus. <span class="span-inline-block">Safest in town.</span></div><p data-hero="subtitle" class="b3">Gradspace sits in Universiteits Oord — the private quarter directly alongside SU's main gate. Closer to campus, safer neighbourhood, and more included in your base rate than any competitor at this price point.</p></div><div data-hero="scroll" class="text-btn-01">SCROLL</div></div></div></div></div></div><div data-hero="bg" class="full-bg-wrap"><div data-hero="img" class="full-bg-inner"><video id="hero-video" autoplay muted playsinline poster="assets/images/hero-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;"><source src="assets/images/gradspace-timelapse.mp4" type="video/mp4"/></video><script>
+(function(){
+  if(window.innerWidth<=991){
+    var v=document.getElementById('hero-video');
+    if(v){v.querySelector('source').src='assets/images/gradspace-timelapse-mobile.mp4';v.load();}
+  }
+})();
+</script></div><div class="hero-photo-overlay"></div></div></section><section class="about"><div class="page-padding"><div class="container"><div class="wrap about-wrap"><div class="about-info" style="overflow: visible;"><div class="about-left" style="overflow: visible;"><div class="about-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(About)</div></div><h2 data-anim="split" class="h5-glare mob-h7">premium <span class="h5 mob-h7">student </span><span>living</span> <span class="h5 mob-h7">in</span> <span class="h5 mob-h7">Stellenbosch</span></h2></div><div class="about-img" style="width: 90vw; margin-left: calc(50% - 45vw); aspect-ratio: 800/533; position: relative; overflow: hidden; margin-top: 0.5rem;"><img src="assets/images/gradspace/Gradspace-010-factory-portrait.jpg" loading="eager" width="800" height="533" alt="The Factory — purpose-built student apartments in Universiteits Oord, Stellenbosch." data-anim="img-paralax" class="img-full-cover" style="object-fit: cover; object-position: center center;"/><div data-anim="img-overlay" class="img-overlay"></div></div></div><div class="about-text-box"><p data-anim="element" class="b1">Gradspace manages seven premium student addresses in Stellenbosch — all within Universiteits Oord, the closest private residential zone to SU's main gate. Each property chosen for location, safety, and build quality.</p><p data-anim="element" class="b1">From The Factory to Jonkerzicht, every address is managed to a standard that keeps your focus where it belongs — on your degree.</p></div></div><div data-anim="stagger-wrap" class="stats"><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-1"><div class="stats-box-row"><div data-number="7" class="h2 mob-h5">7</div></div><p class="b1 mob-b4">premium addresses across Stellenbosch.</p></div><div data-anim="stagger" class="stats-box stats-box-2"><div class="stats-box-row"><div data-number="5" class="h2 mob-h5">5</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">min</div></div></div><p class="b1 mob-b4">walk to campus for most properties.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-3"><div class="stats-box-row in-stats-row-2"><div class="h2 mob-h5"><span data-number="3">3</span>×</div></div><p class="b1 mob-b4">weekly communal cleaning included.</p></div></div><div class="stats-row-3"><div data-anim="stagger" class="stats-box stats-box-4"><div class="stats-box-row"><div data-number="24" class="h2 mob-h5">24</div><div class="h2 mob-h5">/</div><div data-number="7" class="h2 mob-h5">7</div></div><div class="stats-box-4-text"><p class="b1 mob-b4">armed response. The safest quarter in Stellenbosch. This we offer. Most don't.</p></div></div></div><div class="stats-row-1"><div data-anim="stagger" class="stats-box stats-box-5"><div class="stats-box-row"><div data-number="1000" class="h2 mob-h5">1,000</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">+</div></div></div><p class="b1 mob-b4">students have called a Gradspace property home. The trusted name in Stellenbosch student living.</p></div></div><div class="stats-row-2"><div data-anim="stagger" class="stats-box stats-box-6"><div class="stats-box-row in-stats-row-2"><div data-number="1" class="h2 mob-h5">1</div><div class="text-color-white-70"><div class="b0 mob-b1 is-it">day</div></div></div><p class="b1 mob-b4">maximum management response, guaranteed. Real people who answer, act, and show up.</p></div></div></div></div></div></div></section><section class="projects"><div class="page-padding"><div class="container"><div class="wrap projects-wrap"><div class="splide projects-slider"><div class="projects-heading"><div data-anim="element" class="caption"><div class="h6 mob-h8">(our properties)</div></div></div><div class="project-titles"><div class="project-title is-first"><h2 class="h4 mob-h7">The Factory</h2></div><div class="project-title"><h2 class="h4 mob-h7">Union House</h2></div><div class="project-title"><h2 class="h4 mob-h7">Jonkerzicht</h2></div><div class="project-title"><h2 class="h4 mob-h7">Bergzicht 63</h2></div><div class="project-title"><h2 class="h4 mob-h7">Akkerhof</h2></div><div class="project-title"><h2 class="h4 mob-h7">The Vineyards</h2></div><div class="project-title"><h2 class="h4 mob-h7">24 Cluver Road</h2></div></div><div class="splide__track projects-track"><div class="splide__list projects-list"><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-010-factory-portrait.jpg" width="897" height="1176" alt="The Factory — purpose-built student apartment complex in Universiteits Oord, Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center center;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/unionhouse-510-3x2-1.jpg" width="897" height="1176" alt="Union House — two buildings, twenty students at 14 Soeteweide Road, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Jonkerzicht-800-3x2-1.jpg" width="897" height="1176" alt="Jonkerzicht — private walled garden and braai terrace on Merriman Avenue, Stellenbosch." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-Bergzicht-63-20.jpg" width="897" height="1176" alt="Bergzicht 63 — quiet residential streets and architectural character in Stellenbosch's Bergzicht quarter." data-anim="img-paralax" loading="lazy"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Akkerhof-01-512-400x250-1.jpg" width="897" height="1176" alt="Akkerhof — corner of Dennesig and Bird Street, central Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 40%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-The-Vineyards-02.jpg" width="897" height="1176" alt="The Vineyards — open vineyard setting on the outskirts of Stellenbosch." data-anim="img-paralax" loading="lazy" style="object-position: center 30%;"/></div></div><div class="splide__slide projects-slide"><div class="projects-slide-img"><img class="img-full-cover" src="assets/images/gradspace/Gradspace-24-Cluver-Road-02-800-3x2-1.jpg" width="897" height="1176" alt="24 Cluver Road — premium central Stellenbosch student residence." data-anim="img-paralax" loading="lazy"/></div></div></div></div></div><div data-anim="slideUp-once" class="project-texts"><div class="project-text is-first"><p class="b1">Purpose-built in Universiteits Oord — Stellenbosch's safest residential quarter. Sunlit living spaces, private terraces, 24-hr armed response, and a selection of exclusive amenities. This safety. This standard. We offer it.</p><a data-project-index="0" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Two buildings, twenty students. Uncapped Wi-Fi, dishwasher, laundry on-site, and 24-hour armed response — the kind of home that makes the years unforgettable.</p><a data-project-index="1" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p id="w-node-_331f3dee-4cc2-0975-74b5-82ee94c4b1e2-546b46eb" class="b1">Private walled garden, covered braai terrace, and five-bedroom apartments — your own outdoor world to come home to on Merriman Avenue.</p><a data-project-index="2" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Quiet streets, mature trees, and architectural character in Bergzicht. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry on-site — the kind of home that has warmth you can't manufacture.</p><a data-project-index="3" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Central Stellenbosch at the corner of Dennesig and Bird Streets. Campus, the Neelsie, and town — all a short walk away. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry included.</p><a data-project-index="4" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">Open vineyard setting, 2.9km from the Neelsie Student Centre. Space, quiet, and open sky — for the student who values the calm that distance from town brings. Fibre Wi-Fi, dishwasher, and laundry on-site.</p><a data-project-index="5" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div><div class="project-text"><p class="b1">One of Stellenbosch's most recognised student addresses — central, premium, and walking distance from campus. En-suite rooms, fibre Wi-Fi, dishwasher, and laundry. The kind of road generations of students have competed to get onto.</p><a data-project-index="6" data-open-modal="" href="#" class="btn stroke-btn in-project w-inline-block"><div class="text-btn-01">LEARN MORE</div></a></div></div></div></div></div></section><section class="our-beliefs"><div class="page-padding"><div class="container"><div class="wrap our-beliefs-wrap"><div class="our-beliefs-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(Our beliefs)</div></div><h2 data-anim="split" class="h4 mob-h7">The Standard of Living You Deserve</h2></div><div class="our-beliefs-img"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/gradspace/Gradspace-Interior-Kitchen-4k.jpg" loading="lazy" width="6336" height="2688" alt="Gradspace communal kitchen and dining area with light wood cabinets, black benchtop, and wooden bench seating." class="img-full-cover is-desktop" style="object-position: 0% center !important;"/><img src="assets/images/gradspace/Gradspace-Interior-Kitchen-4k.jpg" loading="eager" width="6336" height="2688" alt="Gradspace communal kitchen and dining area with light wood cabinets, black benchtop, and wooden bench seating." class="img-full-cover is-mobile" style="object-position: 0% center !important;"/></div><div data-anim="img-overlay" class="img-overlay"></div></div><div data-anim="element" class="our-beliefs-text-box"><p class="b1">Every Gradspace address was chosen for proximity to campus, safety of neighbourhood, and quality of build. At The Factory, uncapped Wi-Fi and water are already included in your base rate — more included than comparable Stellenbosch properties at any price point.</p></div></div></div></div></section><section data-anim="stagger-wrap" class="beliefs"><div class="page-padding"><div class="container"><div class="wrap beliefs-wrap"><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Location <br/>First</h3><p class="b4 mob-c1">The closest private provider to SU's main gate. Universiteits Oord — directly alongside campus.</p></div></div><div class="b4">( 1 )</div></div><div data-anim="stagger" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Communal <br/>Living</h3><p class="b4 mob-c1">Shared spaces serviced three times weekly. A home worth coming back to.</p></div></div><div class="b4">( 2)</div></div><div data-anim="stagger" id="w-node-e7d9808f-a06f-a331-e101-7ae74e8937a2-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Fully Serviced</h3><p class="b4 mob-c1">Uncapped fibre, water, rates, and on-call management included.</p></div></div><div class="b4">( 3 )</div></div><div data-anim="stagger" id="w-node-_136ce43b-8832-597b-a20a-1efae0224907-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Secure &amp; <br/>Supported</h3><p class="b4 mob-c1">Banghoek Quarter — Stellenbosch's safest zone. 24-hr armed response at The Factory &amp; Union House. No Idas Valley.</p></div></div><div class="b4">( 4)</div></div><div data-anim="stagger" id="w-node-_24ad7796-0800-01cc-2e5a-ae5fa6b493fd-546b46eb" class="beliefs-item"><div class="beliefs-card"><div class="beliefs-card-bg"></div><div class="beliefs-card-heading"><h3 class="h6 mob-h8">Stellenbosch <br/>Lifestyle</h3><p class="b4 mob-c1">Wine country, mountain views, and one of Africa's great universities.</p></div></div><div class="b4">( 5 )</div></div><div id="w-node-d88d786b-358f-44e1-a1ef-46994c97ead0-546b46eb" class="beliefs-text-box"><p data-anim="element" class="b1">At Gradspace, we believe student living shouldn’t mean settling — or compromising on safety. Your years at Stellenbosch should be good ones: safe neighbourhood, properly supported, properly liveable. This safety, we offer. Most don’t. </p><p data-anim="element" class="b1">Our mission is to give every student a home they're proud of — in the safest quarter of Stellenbosch, close to campus, and ready from day one. This is what we offer. They don't.</p></div></div></div></div><div class="full-bg-wrap"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/gradspace/gradspace-beliefs-bg-4k.jpg" loading="lazy" width="6336" height="2688" alt="Gradspace communal lounge with black leather sofas, wooden coffee table, and large windows with outdoor view." class="img-full-cover is-desktop"/><img src="assets/images/gradspace/gradspace-beliefs-bg-4k.jpg" loading="lazy" width="6336" height="2688" alt="Gradspace communal lounge with black leather sofas, wooden coffee table, and large windows with outdoor view." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section><section class="amenities"><div class="page-padding"><div class="container"><div data-amenities-anim="track" class="anim-track"><div data-amenities-anim="sticky" class="wrap amenities-wrap"><div data-amenities-anim="images-container" class="amenities-images-container"><div class="amenities-images-big"><div data-amenities-anim="big-image" class="amenities-slide-imgs is-first"><img src="assets/images/gradspace/gradspace-everything-covered-4k.jpg" loading="eager" width="1920" height="955" alt="The Factory — open-plan communal living and kitchen with high ceilings and natural light." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/gradspace/Gradspace-019-800-Gallery.jpg" loading="eager" width="3840" height="2563" alt="Modern communal lounge with green armchairs, leather sofa, and warm wooden walls — premium shared student living." class="img-full-cover"/></div><div data-amenities-anim="big-image" class="amenities-slide-imgs"><img src="assets/images/stellenbosch-vineyard-big-4k.jpg" loading="eager" width="3840" height="2560" alt="Rolling Stellenbosch vineyards stretching toward the Simonsberg mountains — the winelands right outside your door." class="img-full-cover"/></div></div><div class="amenities-images-small"><div data-amenities-anim="small-image" class="amenities-slide-img-inner is-first"><img src="assets/images/gradspace/Gradspace-Bergzicht-63-09-800-3x2-1.jpg" loading="lazy" width="510" height="340" alt="The Factory — open-plan kitchen and dining area with wooden farm table." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/gradspace/Gradspace-House-20201201-20201201-160501-0036-800-Gallery.jpg" loading="lazy" width="3840" height="2562" alt="Modern shared living room with warm tones, comfortable sofa, and outdoor views — communal spaces maintained to a premium standard." class="img-full-cover"/></div><div data-amenities-anim="small-image" class="amenities-slide-img-inner"><img src="assets/images/stellenbosch-oak-street-small-4k.jpg" loading="lazy" width="3840" height="2880" alt="Oak-lined Dorp Street in Stellenbosch — the historic avenues and Cape Dutch architecture that define student life here." class="img-full-cover"/></div></div></div><div class="amenities-texts-container"><div class="amenities-progress"><div class="amenities-progress-line"></div></div><div class="amenities-slide-box is-first"><h2 data-amenities-anim="title" class="h5 mob-h6">Everything <span>Covered</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Uncapped fibre Wi-Fi, three weekly communal cleans, water and rates — all included. No hidden costs, no separate bills. And unlike most Stellenbosch rentals, you're in the safest quarter in the city from day one.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">COMMUNAL<br>LIVING</h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Fully furnished shared kitchens, lounges, and braai decks — maintained and ready. The kind of communal living that actually works.</p></div></div><div class="amenities-slide-box"><h2 data-amenities-anim="title" class="h5 mob-h6">STELLENBOSCH<br><span>LIVING</span></h2><div class="amenities-slide-text"><p data-amenities-anim="text" class="b1">Oak-lined streets, Simonsberg mountain views, world-class wine estates, and one of Africa's great universities — all right outside your door.</p></div></div></div></div><div data-amenities-anim="triggers" class="amenities-triggers"><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div data-amenities-anim="trigger" class="amenities-trigger"></div><div class="amenities-trigger is-last"></div></div></div></div></div></section><div class="faq-relative"><div class="faq-spacer"></div><section parallax-section="" class="faq"><div class="page-padding"><div class="container"><div class="wrap faq-wrap"><div class="heading faq-heading"><div data-anim="element" class="caption our-beliefs-caption"><div class="h6 mob-h8">(FAQ)</div></div><h2 data-anim="split" class="h4 mob-h7">Your Questions, Answered</h2></div><div data-anim="stagger-wrap" class="faq-list"><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 1 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What properties does Gradspace offer?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Gradspace manages seven premium student properties in Stellenbosch — The Factory, Union House, Jonkerzicht, Bergzicht 63, Akkerhof, The Vineyards, and 24 Cluver Road. Each is a distinct address with its own character and community.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 2 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">What’s included in the rental?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Every Gradspace rental includes uncapped fibre Wi-Fi, communal cleaning three times per week, water and municipal rates. Furnished lounges and kitchens are standard. Select properties include dishwashers, washing machines, tumble dryers, and 24-hr armed response.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 3 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">How does the lease and payment work?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Leases run January through December, aligned to the academic year. You can pay in three equal instalments or twelve monthly payments. First payment is due December 1st prior to move-in. A security deposit and admin fee apply.</p></div></div></div><div data-anim="stagger" data-dropdown="" class="faq-dropdown"><div class="b1 text-color-white-50">( 4 )</div><button type="button" data-dropdown-toggle="" class="faq-dropdown-toggle"><h3 class="h6">Is Gradspace in a safe area?</h3></button><div data-dropdown-list="" class="faq-dropdown-list"><div class="faq-dropdown-box"><p class="b1">Yes — and this is one of the most important things we offer. All Gradspace properties sit in Universiteits Oord and the Banghoek Quarter, consistently the safest residential zones in Stellenbosch. Several competing properties are located in Idas Valley and Cloetesville — areas with measurably higher incident rates. We chose every one of our streets deliberately. This safety, we provide. Many landlords in Stellenbosch don't.</p></div></div></div></div></div></div></div></section><section id="book-a-visit" parallax-section="" class="cta"><div class="page-padding"><div class="container"><div class="wrap cta-wrap"><div class="heading cta-heading"><h2 data-anim="element" class="h6">Find Your Place <span class="span-inline-block">in</span> Stellenbosch</h2><p data-anim="element" class="b1">Seven properties. One quarter. The safest place to live in Stellenbosch — and the closest to campus. Browse all properties or get in touch. We respond within one working day.</p></div><div data-anim="element" class="form-wrap"><div class="form-block w-form"><form id="cta-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="69372e47ab695bf5546b46eb" data-wf-element-id="903bb0a4-c2e5-6574-7234-2b788629c6c0"><div class="heading form-heading"><h2 class="h5 mob-h7">Begin <span class="h5-glare mob-h7">Your Application</span></h2><p class="b1 text-color-white-70">Our manager will contact you as soon as possible.</p></div><div class="inputs"><div class="input-wrap"><input class="input w-input" maxlength="256" name="name" data-name="Name" placeholder="Name" type="text" required=""/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M18 18L6 6" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18 6L6 18" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div></button></div><div class="input-wrap"><input class="input w-input" maxlength="256" name="Email" data-name="Email" placeholder="Email" type="email" id="Email" required=""/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3206,7 +4284,7 @@
 </svg></div></button></div><div class="input-wrap"><input class="input w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Phone" type="tel" id="Phone"/><button type="button" aria-label="clear" class="input-clear-btn"><div class="input-clear-icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M18 18L6 6" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18 6L6 18" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></div></button></div></div><div class="form-bottom"><input type="submit" data-wait="Please wait..." class="btn form-btn w-button" value="request"/><div class="form-bottom-text"><p class="b4 mob-c1">By sending your request, you&#x27;re agreeing to our privacy policy. We promise to keep your personal information safe and secure</p></div></div></form><div class="success-msg w-form-done"><div class="success-msg-box"><div class="b0 mob-b1">Thank you! <br/>Your submission has been received!</div></div></div><div class="error-msg w-form-fail"><div class="error-msg-box"><div class="b1 mob-b4">Oops! Something went wrong while submitting the form.</div></div></div></div></div></div></div></div><div class="full-bg-wrap in-cta"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881d5049ac7d72bb5f18f_cta-img--d.avif" loading="lazy" width="2880" height="1650" alt="Modern glass-walled house lit warmly at dusk with surrounding trees and garden." class="img-full-cover is-desktop"/><img src="assets/images/693881c82316816e1085777d_cta-img--mob.avif" loading="lazy" width="563" height="1869" alt="Modern house with large glass windows illuminated at night, surrounded by trees and garden." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section></div><footer class="footer"><div class="page-padding"><div class="container"><div class="wrap footer-wrap"><div class="footer-top"><div class="footer-col"><div class="footer-col-title is-first"><h3 data-footer="step-1" class="h6 mob-h8">(Get in touch)</h3><div data-footer="line" class="footer-line is-top"></div></div><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=2" loading="lazy" width="160" height="26" alt="Gradspace logo" data-footer="step-2" class="footer-logo"/></div><div class="footer-right"><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(location)</h3></div><address data-footer="step-2" class="is-location"><div class="b1">Stellenbosch, Western Cape, South Africa</div></address></div><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(Contact)</h3></div><div data-footer="step-2" class="contact-box"><a href="mailto:admin@gradspace.co.za" class="text-link-light w-inline-block"><div class="h6 mob-h8">admin@gradspace.co.za</div></a><a href="tel:+27828522024" class="text-link-light w-inline-block"><div class="h6 mob-h8">+27 82 852 2024</div></a></div></div></div></div><div class="footer-bottom"><div data-footer="step-3" class="b4 mob-c1">©<span data-year="">2026</span>. Gradspace. All rights reserved.</div><div class="footer-right in-bottom"><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Manage cookies</div></a><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Made by Clarke Agency</div></a></div><div data-footer="line" class="footer-line"></div></div></div></div></div></footer></main><div id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-layout"><div class="modal-layout-bg"></div><div id="w-node-_86b0c9a3-962e-bea3-eb71-88bd931027f9-546b46eb" class="modal-info"><div class="modal-header"><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=2" loading="lazy" width="160" height="26" alt="Gradspace logo" class="modal-logo"/><button type="button" aria-label="Close the modal window" data-close-modal="" class="modal-close"><div class="modal-close-icon w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+</svg></div></button></div></div><div class="form-bottom"><input type="submit" data-wait="Please wait..." class="btn form-btn w-button" value="Enquire Now"/><div class="form-bottom-text"><p class="b4 mob-c1">By sending your request, you&#x27;re agreeing to our privacy policy. We promise to keep your personal information safe and secure</p></div></div></form><div class="success-msg w-form-done"><div class="success-msg-box"><div class="b0 mob-b1">Thank you! <br/>Your submission has been received!</div></div></div><div class="error-msg w-form-fail"><div class="error-msg-box"><div class="b1 mob-b4">Oops! Something went wrong while submitting the form.</div></div></div></div></div></div></div></div><div class="full-bg-wrap in-cta"><div data-anim="img-paralax" class="full-bg-inner"><img src="assets/images/693881d5049ac7d72bb5f18f_cta-img--d.avif" loading="lazy" width="2880" height="1650" alt="Modern glass-walled house lit warmly at dusk with surrounding trees and garden." class="img-full-cover is-desktop"/><img src="assets/images/693881c82316816e1085777d_cta-img--mob.avif" loading="lazy" width="563" height="1869" alt="Modern house with large glass windows illuminated at night, surrounded by trees and garden." class="img-full-cover is-mobile"/></div><div data-anim="img-overlay" class="img-overlay"></div></div></section></div><footer class="footer"><div class="page-padding"><div class="container"><div class="wrap footer-wrap"><div class="footer-top"><div class="footer-col"><div class="footer-col-title is-first"><h3 data-footer="step-1" class="h6 mob-h8">(Get in touch)</h3><div data-footer="line" class="footer-line is-top"></div></div><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=3" loading="lazy" width="210" height="50" alt="Gradspace logo" data-footer="step-2" class="footer-logo"/></div><div class="footer-right"><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(location)</h3></div><address data-footer="step-2" class="is-location"><div class="b1">Stellenbosch, Western Cape, South Africa</div></address></div><div class="footer-col"><div class="footer-col-title"><h3 data-footer="step-1" class="h6 mob-h8">(Contact)</h3></div><div data-footer="step-2" class="contact-box"><a href="mailto:admin@gradspace.co.za" class="text-link-light w-inline-block"><div class="h6 mob-h8">admin@gradspace.co.za</div></a><a href="tel:+27828522024" class="text-link-light w-inline-block"><div class="h6 mob-h8">+27 82 852 2024</div></a></div></div></div></div><div class="footer-bottom"><div data-footer="step-3" class="b4 mob-c1">©<span data-year="">2026</span>. Gradspace. All rights reserved.</div><div class="footer-right in-bottom"><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Manage cookies</div></a><a data-footer="step-3" href="#" class="text-link-light-50 w-inline-block"><div class="b4 mob-c1">Made by Clarke Agency</div></a></div><div data-footer="line" class="footer-line"></div></div></div></div></div></footer></main><div id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" class="modal"><div class="modal-overlay"></div><div class="modal-content"><div class="modal-layout"><div class="modal-layout-bg"></div><div id="w-node-_86b0c9a3-962e-bea3-eb71-88bd931027f9-546b46eb" class="modal-info"><div class="modal-header"><img src="assets/images/69388fa01bc6655a709f40a4_Logo.svg?v=3" loading="lazy" width="160" height="26" alt="Gradspace logo" class="modal-logo"/><button type="button" aria-label="Close the modal window" data-close-modal="" class="modal-close"><div class="modal-close-icon w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
   <path d="M18 18L6 6" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M18 6L6 18" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div></button><div class="modal-header-line"></div></div><div class="modal-title"><h2 id="modalTitle" data-wf-target="[[[&quot;69372e47ab695bf5546b46eb&quot;,&quot;f26fc799-6041-1cfd-fbaf-024575002fa1&quot;],[]]]" class="h7">Heading</h2></div><div data-wf-target="[[[&quot;69372e47ab695bf5546b46eb&quot;,&quot;c285bb3b-0fdb-984c-5e44-51ac65c7aaae&quot;],[]]]" class="modal-description"><p id="modalDescr" class="b3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p></div><a data-close-modal="" data-wf-target="[[[&quot;69372e47ab695bf5546b46eb&quot;,&quot;61bbfd61-1fd7-5031-13e0-5879cc7764f5&quot;],[]]]" href="#book-a-visit" class="btn modal-btn w-inline-block"><div>BOOK A VISIT</div></a></div><div id="w-node-_20fe7d69-bcea-1ebc-1c75-6f6ac9737b61-546b46eb" class="modal-slider-wrap"><div class="modal-bg-images"></div><div aria-label="Photo thumbnails" class="splide modal-thumb-slider"><div class="splide__track modal-thumb-slider-track"><div class="splide__list modal-thumb-list"></div></div></div></div><div id="w-node-_6d161abf-ef64-3618-6012-149f225ff2b1-546b46eb" class="modal-slide-info-wrap"><div class="modal-slide-info"><div class="slide-info-label"><h3 id="slideInfoLabel" class="h6">Heading</h3></div><div class="slide-info-area"><div id="slideInfoNumber" class="h3 mob-h5">150</div><div class="slide-info-area-unit"><div class="text-color-white-70"><div class="b0 mob-b1 is-it">sq. ft.</div></div></div></div><div class="slide-info-text"><div id="slideInfoText" class="b1 mob-b4">total area</div></div></div></div></div></div></div></div><script type="text/javascript">gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,SplitText);</script><!-- Base Code -->
@@ -3374,9 +4452,22 @@
 
 </script>
 <script>
-/* Fallback: if any element is still hidden after 2.5s, force it visible */
+/* Fallback: if any element is still hidden after 2.5s, force it visible.
+   On desktop, amenities boxes and project titles are GSAP-controlled —
+   do NOT force them visible here or they all show at once. */
 setTimeout(function() {
-  document.querySelectorAll('[data-anim],[data-hero],[data-footer],[data-fadeIn],[data-stagger-fd-target],.amenities-progress-line').forEach(function(el) {
+  var isMobile = window.innerWidth <= 991;
+
+  /* Always-safe selectors: general page animations */
+  var sel = '[data-anim],[data-hero],[data-footer],[data-fadeIn],[data-stagger-fd-target]';
+
+  /* Mobile-only: amenities and project titles are handled by mobile JS /
+     GSAP on desktop — never force-show on desktop */
+  if (isMobile) {
+    sel += ',.amenities-progress-line,.amenities-slide-box,[data-amenities-anim],.project-title.is-active,.project-text.is-active';
+  }
+
+  document.querySelectorAll(sel).forEach(function(el) {
     var s = window.getComputedStyle(el);
     if (parseFloat(s.opacity) < 0.1 || s.visibility === 'hidden') {
       el.style.opacity = '1';
@@ -3385,9 +4476,54 @@ setTimeout(function() {
       el.style.clip = 'auto';
       el.style.clipPath = 'none';
     }
+    /* Unclip any SplitText line children that are still off-screen */
+    el.querySelectorAll('[class*="line"],[class*="word"],[class*="char"]').forEach(function(child) {
+      if (child.style.transform && child.style.transform.indexOf('100%') !== -1) {
+        child.style.transform = 'none';
+      }
+    });
   });
   if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
 }, 2500);
+
+/* Desktop: IntersectionObserver safety net for the first amenities box.
+   The `once:true` GSAP ScrollTrigger for box[0] can miss its fire position
+   after Property Explorer shifts page heights. This observer catches that.
+   If GSAP already showed it, the box is visible and we skip — no double-fire. */
+(function() {
+  if (window.innerWidth <= 991) return;
+
+  var amenitiesSection = document.querySelector('section.amenities');
+  if (!amenitiesSection || !('IntersectionObserver' in window)) return;
+
+  var observed = false;
+
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting || observed) return;
+      observed = true;
+      io.disconnect();
+
+      /* Check if GSAP already handled box[0] */
+      var box0 = document.querySelector('.amenities-slide-box');
+      if (!box0) return;
+      var cs = window.getComputedStyle(box0);
+      if (parseFloat(cs.opacity) > 0.1 && cs.visibility !== 'hidden') return; // already visible
+
+      /* GSAP missed it — show box[0] directly and animate its lines */
+      box0.style.opacity = '1';
+      box0.style.visibility = 'visible';
+      box0.querySelectorAll('[class*="line"]').forEach(function(line) {
+        if (line.style.transform && line.style.transform.indexOf('100%') !== -1) {
+          line.style.transition = 'transform 0.6s cubic-bezier(0.215,0.61,0.355,1)';
+          line.style.transform = 'none';
+        }
+      });
+    });
+  }, { threshold: 0.15 });
+
+  io.observe(amenitiesSection);
+})();
 </script>
 
 <!-- ============================================================
@@ -3514,22 +4650,28 @@ setTimeout(function() {
   text-transform:uppercase;
   pointer-events:none;
   transition:opacity .25s ease;
+  text-shadow:
+    0 2px 24px rgba(0,0,0,0.85),
+    0 1px 6px  rgba(0,0,0,0.95),
+    0 0  40px  rgba(0,0,0,0.5);
 }
 
 /* Prev property name — top-left */
 .gs-slide-name {
   position:absolute;top:1.5rem;left:1.75rem;z-index:7;
   font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);
+  color:rgba(255,255,255,.85);
   pointer-events:none;transition:opacity .2s ease;
+  text-shadow:0 1px 6px rgba(0,0,0,0.9),0 0 12px rgba(0,0,0,0.7);
 }
 
 /* Next property name — top-right */
 .gs-slide-name-next {
   position:absolute;top:1.5rem;right:1.75rem;z-index:7;
   font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);text-align:right;
+  color:rgba(255,255,255,.85);text-align:right;
   pointer-events:none;transition:opacity .2s ease;
+  text-shadow:0 1px 6px rgba(0,0,0,0.9),0 0 12px rgba(0,0,0,0.7);
 }
 
 /* Nav row below photo */
@@ -3559,63 +4701,63 @@ setTimeout(function() {
 .gs-drawer-header { padding:1.75rem 2rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem; }
 .gs-drawer-close { width:2rem;height:2rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;outline:none; }
 .gs-drawer-close:hover { border-color:rgba(255,255,255,.5);color:#fff; }
-.gs-drawer-title { font-size:clamp(1.4rem,2.8vw,2rem);font-weight:300;color:#fff;line-height:1.1;letter-spacing:-.01em; }
-.gs-drawer-sub { font-size:.75rem;color:rgba(255,255,255,.62);letter-spacing:.16em;text-transform:uppercase;margin-top:.5rem; }
+.gs-drawer-title { font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:300;color:#fff;line-height:1.1;letter-spacing:-.01em; }
+.gs-drawer-sub { font-size:.9rem;color:rgba(255,255,255,.62);letter-spacing:.16em;text-transform:uppercase;margin-top:.5rem; }
 .gs-drawer-stats { display:flex;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0; }
 .gs-drawer-stat { flex:1;padding:1.1rem 1rem;border-right:1px solid rgba(255,255,255,.06);text-align:center; }
 .gs-drawer-stat:last-child { border-right:none; }
-.gs-drawer-stat-n { font-size:1.25rem;font-weight:300;color:#fff;line-height:1;margin-bottom:.3rem; }
-.gs-drawer-stat-l { font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.55); }
+.gs-drawer-stat-n { font-size:1.5rem;font-weight:300;color:#fff;line-height:1;margin-bottom:.3rem; }
+.gs-drawer-stat-l { font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.55); }
 .gs-drawer-body { padding:2rem;display:flex;flex-direction:column;gap:2.25rem;flex:1; }
-.gs-section-lbl { font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.1rem;display:block; }
-.gs-drawer-desc { font-size:.98rem;color:rgba(255,255,255,.72);line-height:1.8; }
+.gs-section-lbl { font-size:.88rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.1rem;display:block; }
+.gs-drawer-desc { font-size:1.15rem;color:rgba(255,255,255,.72);line-height:1.8; }
 .gs-rooms-list { display:flex;flex-direction:column; }
 .gs-room-row { display:flex;align-items:center;gap:1rem;padding:.88rem 0;border-bottom:1px solid rgba(255,255,255,.05); }
 .gs-room-row:last-child { border-bottom:none; }
-.gs-room-name { font-size:.9rem;color:rgba(255,255,255,.78);flex:1; }
-.gs-room-price { font-size:.95rem;color:#fff;font-weight:300;white-space:nowrap;margin-right:.5rem; }
+.gs-room-name { font-size:1.05rem;color:rgba(255,255,255,.78);flex:1; }
+.gs-room-price { font-size:1.1rem;color:#fff;font-weight:300;white-space:nowrap;margin-right:.5rem; }
 .gs-features-grid { display:flex;flex-wrap:wrap;gap:.45rem; }
-.gs-feature-pill { display:inline-flex;align-items:center;gap:.42em;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.42);padding:.38em 1em;border:1px solid rgba(255,255,255,.1);border-radius:3px; }
+.gs-feature-pill { display:inline-flex;align-items:center;gap:.42em;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.42);padding:.38em 1em;border:1px solid rgba(255,255,255,.1);border-radius:3px; }
 .gs-feature-pill svg { opacity:.45;flex-shrink:0; }
 .gs-drawer-cta { display:flex;gap:.75rem;padding:1.5rem 2rem;border-top:1px solid rgba(255,255,255,.06);background:#050505;position:sticky;bottom:0;flex-shrink:0; }
-.gs-btn-primary { flex:1;font-family:inherit;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:.95em 1.5em;border-radius:3px;background:#fff;color:#050505;cursor:pointer;border:none;transition:background .2s;font-weight:500;outline:none; }
+.gs-btn-primary { flex:1;font-family:inherit;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;padding:.95em 1.5em;border-radius:3px;background:#fff;color:#050505;cursor:pointer;border:none;transition:background .2s;font-weight:500;outline:none; }
 .gs-btn-primary:hover { background:rgba(255,255,255,.87); }
-.gs-btn-outline { font-family:inherit;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:.95em 1.5em;border-radius:3px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;outline:none; }
+.gs-btn-outline { font-family:inherit;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;padding:.95em 1.5em;border-radius:3px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;outline:none; }
 .gs-btn-outline:hover { border-color:rgba(255,255,255,.5);color:#fff; }
-.gs-detail-head { font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:1.75rem 0 .9rem;font-weight:500; }
+.gs-detail-head { font-size:.92rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:1.75rem 0 .9rem;font-weight:500; }
 .gs-detail-plans { display:flex;flex-direction:column;gap:.6rem; }
 .gs-detail-plan { padding:1rem 1.1rem;border:1px solid rgba(255,255,255,.11);border-radius:3px; }
 .gs-detail-plan-top { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.65rem; }
-.gs-detail-plan-name { font-size:1rem;color:#fff;font-weight:300; }
-.gs-detail-plan-size { font-size:.88rem;color:rgba(200,169,110,1);letter-spacing:.06em;font-weight:500; }
+.gs-detail-plan-name { font-size:1.15rem;color:#fff;font-weight:300; }
+.gs-detail-plan-size { font-size:1rem;color:rgba(200,169,110,1);letter-spacing:.06em;font-weight:500; }
 .gs-detail-plan-tags { display:flex;flex-wrap:wrap;gap:.4rem; }
-.gs-detail-plan-tags span { font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.65);padding:.32em .85em;border:1px solid rgba(255,255,255,.14);border-radius:2em; }
+.gs-detail-plan-tags span { font-size:.84rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.65);padding:.32em .85em;border:1px solid rgba(255,255,255,.14);border-radius:2em; }
 .gs-detail-room-grid { display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.25rem; }
 .gs-detail-col { padding:1rem 1.1rem;border:1px solid rgba(255,255,255,.11); }
-.gs-detail-col-lbl { font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,169,110,1);margin-bottom:.75rem;font-weight:500; }
+.gs-detail-col-lbl { font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,169,110,1);margin-bottom:.75rem;font-weight:500; }
 .gs-detail-list { list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem; }
-.gs-detail-list li { font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.55;display:flex;align-items:baseline;gap:.6rem; }
+.gs-detail-list li { font-size:1.02rem;color:rgba(255,255,255,.78);line-height:1.55;display:flex;align-items:baseline;gap:.6rem; }
 .gs-detail-list li::before { content:'';flex-shrink:0;width:.3rem;height:.3rem;border-radius:50%;background:rgba(255,255,255,.35); }
 .gs-detail-sec-grid { display:grid;grid-template-columns:1fr 1fr;gap:.5rem; }
-.gs-detail-sec-item { font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.55;display:flex;align-items:baseline;gap:.55rem; }
+.gs-detail-sec-item { font-size:1rem;color:rgba(255,255,255,.72);line-height:1.55;display:flex;align-items:baseline;gap:.55rem; }
 .gs-detail-sec-item::before { content:'';flex-shrink:0;width:.3rem;height:.3rem;border-radius:50%;background:rgba(74,222,128,.6); }
 .gs-detail-excl-row { display:flex;flex-wrap:wrap;gap:.45rem; }
-.gs-excl-tag { font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:.38em .9em;border:1px solid rgba(255,255,255,.13);border-radius:2px;display:inline-flex;align-items:center;gap:.5em; }
+.gs-excl-tag { font-size:.86rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:.38em .9em;border:1px solid rgba(255,255,255,.13);border-radius:2px;display:inline-flex;align-items:center;gap:.5em; }
 .gs-excl-tag::before { content:'×';color:rgba(200,169,110,.7);font-weight:600; }
 .gs-detail-incl-grid { display:grid;grid-template-columns:1fr 1fr;gap:.5rem; }
-.gs-detail-incl-item { font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.55;display:flex;align-items:baseline;gap:.55rem; }
+.gs-detail-incl-item { font-size:1rem;color:rgba(255,255,255,.72);line-height:1.55;display:flex;align-items:baseline;gap:.55rem; }
 .gs-detail-incl-item::before { content:'';flex-shrink:0;width:.3rem;height:.3rem;border-radius:50%;background:rgba(200,169,110,.7); }
 @media (max-width:480px) { .gs-detail-room-grid { grid-template-columns:1fr; } .gs-detail-sec-grid { grid-template-columns:1fr; } .gs-detail-incl-grid { grid-template-columns:1fr; } }
 
 /* ── Compare + Map ─────────────────────────────────────────────── */
 #book-a-visit { position:relative !important;bottom:auto !important;transform:none !important;z-index:1 !important; }
 .gs-combi { background:#121717;border-top:1px solid rgba(255,255,255,.07);padding:7.5rem 5%;position:relative;z-index:3; }
-.gs-combi__inner { display:grid;grid-template-columns:1fr 1fr;gap:6rem;max-width:1560px;margin:0 auto;align-items:start; }
+.gs-combi__inner { display:block;max-width:1560px;margin:0 auto; }
 .gs-combi__right { display:flex;flex-direction:column;gap:0; }
 .gs-combi__right .gs-map-head { margin-bottom:2rem; }
-.gs-combi__right .gs-map-frame { height:460px; }
-@media(max-width:1200px){ .gs-combi__inner{grid-template-columns:1fr;gap:5rem} .gs-combi{padding:5.5rem 5%} }
-@media(max-width:768px){ .gs-combi{padding:4rem 6%} .gs-combi__right .gs-map-frame{height:320px} }
+.gs-combi__right .gs-map-frame { height:480px; }
+@media(max-width:1200px){ .gs-combi{padding:5.5rem 5%} }
+@media(max-width:768px){ .gs-combi{padding:4rem 6%} .gs-combi__right .gs-map-frame{height:400px} }
 .gs-compare-head { margin-bottom:4rem; }
 .gs-compare-head .caption { margin-bottom:1.5rem; }
 .gs-compare-col-row { display:grid;grid-template-columns:1fr 10rem 10rem;padding:0 0 1.1rem;border-bottom:1px solid rgba(255,255,255,.15); }
@@ -3783,13 +4925,14 @@ setTimeout(function() {
   ];
 
   var MAP_COORDS = [
-    { name:'The Factory',   lat:-33.9305, lng:18.8640, dist:'3 min' },
-    { name:'Union House',   lat:-33.9340, lng:18.8660, dist:'5 min' },
-    { name:'Jonkerzicht',   lat:-33.9325, lng:18.8700, dist:'7 min' },
-    { name:'Bergzicht 63',  lat:-33.9380, lng:18.8710, dist:'12 min' },
-    { name:'Akkerhof',      lat:-33.9355, lng:18.8645, dist:'8 min' },
-    { name:'The Vineyards', lat:-33.9480, lng:18.8820, dist:'2.9km' },
-    { name:'24 Cluver Road',lat:-33.9315, lng:18.8635, dist:'5 min' },
+    { name:'The Factory',   lat:-33.929666, lng:18.868669, dist:'3 min' },   // 8 Soeteweide Rd, Universiteits Oord — Google Maps confirmed
+    { name:'Union House',   lat:-33.9296, lng:18.8700, dist:'5 min' },   // 14 Soeteweide Rd, Universiteits Oord — geocoded west-mid of road
+    { name:'Jonkerzicht',   lat:-33.9301066, lng:18.8762815, dist:'7 min' },   // 116 Merriman Ave, Simonswyk — Google Maps confirmed
+    { name:'Bergzicht 63',  lat:-33.9358, lng:18.8554, dist:'12 min' },  // TODO: confirm exact address with Michael — "Bergzicht Rd" not found as street
+    { name:'Akkerhof',      lat:-33.9311, lng:18.8577, dist:'8 min' },   // 29 Dennesig St, Stellenbosch Central — Google Maps pin confirmed
+    { name:'The Vineyards', lat:-33.9480, lng:18.8820, dist:'2.9km' },   // TODO: confirm address with Michael — unverified
+    { name:'24 Cluver Road',lat:-33.9277, lng:18.8764, dist:'5 min' },   // 24 Cluver Rd — OSM confirmed correct
+    { name:'Rustenhouse',   lat:-33.9214, lng:18.8807, dist:'7 min' },   // 30 Rustenberg St, Idasvallei — Private Property schema confirmed
   ];
 
   /* ── Helpers ───────────────────────────────────────────────────── */
@@ -3820,7 +4963,6 @@ setTimeout(function() {
 
   /* ── Filter state ──────────────────────────────────────────────── */
   var gsf = {
-    priceMax: 12000,
     distance: 'any',
     amenities: [],
   };
@@ -3828,10 +4970,6 @@ setTimeout(function() {
   /* ── Smart match scoring ──────────────────────────────────────── */
   function scoreProperty(p) {
     var score = 0;
-    var prices = p.rooms.map(function(r){ return r.price; });
-    // Price: any room within budget = strong match
-    if (prices.some(function(pr){ return pr <= gsf.priceMax; })) score += 4;
-    else if (Math.min.apply(null, prices) <= gsf.priceMax * 1.15) score += 1;
     // Distance
     if (gsf.distance === 'any') {
       score += 2;
@@ -3857,12 +4995,11 @@ setTimeout(function() {
       if (b.score !== a.score) return b.score - a.score;
       return a.p.walk - b.p.walk;
     });
-    var hasExactPrice = scored[0].score >= 4;
-    return { props: scored, maxScore: maxScore, hasExact: hasExactPrice };
+    return { props: scored, maxScore: maxScore, hasExact: true };
   }
 
   function isDefaultFilters() {
-    return gsf.priceMax === 12000 && gsf.distance === 'any' && gsf.amenities.length === 0;
+    return gsf.distance === 'any' && gsf.amenities.length === 0;
   }
 
   /* ── Smart Filter Bar ─────────────────────────────────────────── */
@@ -3908,13 +5045,6 @@ setTimeout(function() {
         '<div class="gsf-content">' +
           '<div class="gsf-filters">' +
             '<div class="gsf-filter-row">' +
-              '<span class="gsf-lbl">Budget</span>' +
-              '<div class="gsf-slider-wrap">' +
-                '<span class="gsf-slider-val" id="gsf-pval">R12k+/mo</span>' +
-                '<input type="range" class="gsf-slider" id="gsf-price" min="7800" max="12000" step="200" value="12000" aria-label="Maximum monthly budget">' +
-              '</div>' +
-            '</div>' +
-            '<div class="gsf-filter-row">' +
               '<span class="gsf-lbl">Distance</span>' +
               '<div class="gsf-chips" id="gsf-dist-chips">' +
                 '<button class="gsf-chip active" data-dist="any">Any</button>' +
@@ -3942,19 +5072,6 @@ setTimeout(function() {
       '</div></div></div>';
 
     projectsSection.before(bar);
-
-    // Wire slider
-    var slider = document.getElementById('gsf-price');
-    var pval   = document.getElementById('gsf-pval');
-    function updateSlider() {
-      var v = parseInt(slider.value, 10);
-      gsf.priceMax = v;
-      pval.textContent = v >= 12000 ? 'R12k+/mo' : 'Up to ' + fmt(v) + '/mo';
-      var pct = (v - slider.min) / (slider.max - slider.min) * 100;
-      slider.style.background = 'linear-gradient(to right,rgba(200,169,110,.5) ' + pct + '%,rgba(255,255,255,.08) ' + pct + '%)';
-      applySmartFilter();
-    }
-    slider.addEventListener('input', updateSlider);
 
     // Wire distance chips
     document.getElementById('gsf-dist-chips').addEventListener('click', function(e) {
@@ -3993,13 +5110,8 @@ setTimeout(function() {
   }
 
   function resetFilters() {
-    gsf.priceMax  = 12000;
     gsf.distance  = 'any';
     gsf.amenities = [];
-    var slider = document.getElementById('gsf-price');
-    if (slider) { slider.value = 17000; slider.style.background = 'linear-gradient(to right,rgba(200,169,110,.5) 100%,rgba(255,255,255,.08) 100%)'; }
-    var pval = document.getElementById('gsf-pval');
-    if (pval) pval.textContent = 'R12k+/mo';
     document.querySelectorAll('#gsf-dist-chips .gsf-chip').forEach(function(b) {
       b.classList.toggle('active', b.getAttribute('data-dist') === 'any');
     });
@@ -4093,7 +5205,6 @@ setTimeout(function() {
         '<div class="gsf-card-img"><img src="' + p.heroImg + '" alt="' + p.name + '" loading="lazy"></div>' +
         '<div class="gsf-card-body">' +
           '<div class="gsf-card-name">' + p.name + '</div>' +
-          '<div class="gsf-card-price"><strong>' + pRange + '</strong>/mo</div>' +
           '<div class="gsf-card-meta">' +
             '<span class="gsf-card-tag">' + p.walkLabel + '</span>' +
             tags +
@@ -4125,14 +5236,15 @@ setTimeout(function() {
       var meta = document.createElement('div');
       meta.className = 'gs-proj-meta';
       meta.innerHTML =
-        badge(p.status) +
-        '<span class="gs-proj-price"><strong>' + priceRange(p) + '</strong>/mo</span>' +
         '<span class="gs-proj-walk">' +
           '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M12 8l-3 8 3-2 3 2-3-8z"/></svg>' +
           p.walkLabel +
         '</span>';
       var firstP = textEl.querySelector('p.b1');
       if (firstP) textEl.insertBefore(meta, firstP);
+      // Move LEARN MORE button to top of panel
+      var learnBtn = textEl.querySelector('.btn.in-project');
+      if (learnBtn) textEl.insertBefore(learnBtn, textEl.firstChild);
     });
   }
 
@@ -4179,7 +5291,7 @@ setTimeout(function() {
     var roomRows = p.rooms.map(function(r) {
       var cls = roomStatusClass(r.status);
       var lbl = r.status === 'available' ? 'Available' : r.status === 'limited' ? 'Limited' : 'Sold Out';
-      return '<div class="gs-room-row"><span class="gs-room-name">' + r.label + '</span><span class="gs-room-price">' + fmt(r.price) + '/mo</span><span class="gs-badge ' + cls + '"><span class="gs-dot"></span>' + lbl + '</span></div>';
+      return '<div class="gs-room-row"><span class="gs-room-name">' + r.label + '</span></div>';
     }).join('');
     var featPills = p.features.map(function(f){
       return '<span class="gs-feature-pill">' + (FEAT_ICONS[f] || '') + f + '</span>';
@@ -4228,9 +5340,9 @@ setTimeout(function() {
       '<div class="gs-drawer-gallery-nav"><button class="gs-gallery-btn" id="gs-prev">&#8592;</button><button class="gs-gallery-btn" id="gs-next">&#8594;</button></div>' +
       '<div class="gs-drawer-gallery-count" id="gs-gallery-count">1 / ' + slides.length + '</div></div>' +
       '<div class="gs-thumbs-strip" id="gs-thumbs">' + thumbsHtml + '</div>' +
-      '<div class="gs-drawer-header"><div><div class="gs-drawer-title">' + p.name + '</div><div class="gs-drawer-sub">' + p.type + ' &mdash; ' + p.walkLabel + ' to campus</div>' + badge(p.status) + '</div><button class="gs-drawer-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>' +
-      '<div class="gs-drawer-stats"><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + p.walk + '</div><div class="gs-drawer-stat-l">min to campus</div></div><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + availCount + '</div><div class="gs-drawer-stat-l">rooms available</div></div><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + p.rooms.length + '</div><div class="gs-drawer-stat-l">total rooms</div></div></div>' +
-      '<div class="gs-drawer-body"><div><span class="gs-section-lbl">(About)</span><p class="gs-drawer-desc">' + p.desc + '</p></div><div><span class="gs-section-lbl">(Rooms &amp; Pricing)</span><div class="gs-rooms-list">' + roomRows + '</div></div><div><span class="gs-section-lbl">(What\'s Included)</span><div class="gs-features-grid">' + featPills + '</div></div>' + detailsHtml + '</div>' +
+      '<div class="gs-drawer-header"><div><div class="gs-drawer-title">' + p.name + '</div><div class="gs-drawer-sub">' + p.type + ' &mdash; ' + p.walkLabel + ' to campus</div></div><button class="gs-drawer-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>' +
+      '<div class="gs-drawer-stats"><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + p.walk + '</div><div class="gs-drawer-stat-l">min to campus</div></div><div class="gs-drawer-stat"><div class="gs-drawer-stat-n">' + p.rooms.length + '</div><div class="gs-drawer-stat-l">total rooms</div></div></div>' +
+      '<div class="gs-drawer-body"><div><span class="gs-section-lbl">(About)</span><p class="gs-drawer-desc">' + p.desc + '</p></div><div><span class="gs-section-lbl">(Rooms)</span><div class="gs-rooms-list">' + roomRows + '</div></div><div><span class="gs-section-lbl">(What\'s Included)</span><div class="gs-features-grid">' + featPills + '</div></div>' + detailsHtml + '</div>' +
       '<div class="gs-drawer-cta"><button class="gs-btn-primary">Book a Visit</button><button class="gs-btn-outline">Enquire</button></div>';
 
     setupGalleryControls();
@@ -4304,7 +5416,6 @@ setTimeout(function() {
     s.className = 'gs-combi';
     s.innerHTML =
       '<div class="gs-combi__inner">' +
-        '<div class="gs-combi__left"><div class="gs-compare-head"><div class="caption"><div class="h6 mob-h8">(why us)</div></div><h2 class="h5-glare mob-h7" style="margin-top:1.25rem;margin-bottom:1rem">The Gradspace <span class="h5 mob-h7">standard</span></h2><p class="b1" style="max-width:38rem;color:var(--white-alpha-500)">Every Gradspace property is held to a level well above the student accommodation market.</p></div><div class="gs-compare-col-row"><div class="gs-compare-col-label is-left"></div><div class="gs-compare-col-label is-gs">Gradspace</div><div class="gs-compare-col-label">Others</div></div>' + rowsHtml + '</div>' +
         '<div class="gs-combi__right"><div class="gs-map-head"><div><p class="gs-section-lbl">(Location)</p><h2 class="gs-map-h">Close to campus,<br><em>not far from anything</em></h2></div><p class="gs-map-sub">All properties sit 3\u20137 minutes from Stellenbosch University\'s main campus. Click a chip to zoom in.</p></div>' +
         '<div class="gs-map-frame"><div id="gs-leaflet-map"></div></div>' +
         '<div class="gs-map-chips">' + chips + '</div></div>' +
@@ -4324,13 +5435,17 @@ setTimeout(function() {
 
   function initLeafletMap() {
     if (typeof L === 'undefined') { setTimeout(initLeafletMap, 300); return; }
-    var SU = [-33.9321, 18.8665];
+    var SU = [-33.9326, 18.8651]; // Stellenbosch University main campus (OSM verified)
     var map = L.map('gs-leaflet-map', { center:SU, zoom:15, scrollWheelZoom:false });
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      attribution:'Tiles &copy; Esri', maxZoom:20
+    map.getContainer().addEventListener('click', function() { map.scrollWheelZoom.enable(); });
+    document.addEventListener('click', function(e) {
+      if (!map.getContainer().contains(e.target)) { map.scrollWheelZoom.disable(); }
+    });
+    L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+      attribution:'&copy; Google', maxZoom:21, maxNativeZoom:21
     }).addTo(map);
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom:20, opacity:0.8
+    L.tileLayer('https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}', {
+      maxZoom:21, maxNativeZoom:21, opacity:0.9
     }).addTo(map);
     var suIcon = L.divIcon({
       html:'<div style="background:rgba(255,255,255,.92);color:#0a2240;font-size:10px;font-weight:800;letter-spacing:.06em;padding:4px 9px;border-radius:3px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.45);border:1px solid #0a2240;transform:translateX(-50%);display:inline-block">STELLENBOSCH UNIVERSITY</div>',
@@ -4485,6 +5600,9 @@ setTimeout(function() {
   } else {
     run();
   }
+
+  // Expose openDrawer globally so other script blocks can call it
+  window.gsDrawerOpen = openDrawer;
 })();
 </script>
 <!-- ══════════════════════════════════════════════════
@@ -4580,7 +5698,7 @@ setTimeout(function() {
 <script>
 var gsPhotoData = {
   0: ["assets/images/gradspace/Gradspace-010-800-Gallery.jpg", "assets/images/gradspace/Gradspace-019-800-Gallery.jpg", "assets/images/gradspace/Gradspace-037-800-Gallery.jpg", "assets/images/gradspace/Gradspace-054-800-Gallery.jpg", "assets/images/gradspace/Gradspace-066-800-Gallery.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-102719-2282-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103055-2291-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103215-2292-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103304-2295-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103357-2297-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103708-2302-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103723-2303-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-103811-2306-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-104001-2312-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-104045-2314-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-104308-2321-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-105058-2325-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-105145-2327-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-105455-2339-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-110634-2349-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-110734-2354-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-110814-2357-510-3x2-1.jpg"],
-  1: ["assets/images/gradspace/unionhouse-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-107-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-139-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111502-2362-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111630-2366-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111722-2368-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111821-2371-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111913-2373-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112024-2376-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112111-2379-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112143-2380-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112231-2382-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112304-2386-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112342-2387-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112453-2389-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112547-2392-510-3x2-1.jpg"],
+  1: ["assets/images/gradspace/unionhouse-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-107-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-139-510-3x2-1.jpg", "assets/images/gradspace/gradspace-beliefs-bg.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111630-2366-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111722-2368-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111821-2371-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-111913-2373-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112024-2376-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112111-2379-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112143-2380-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112231-2382-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112304-2386-HDR-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112342-2387-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112453-2389-510-3x2-1.jpg", "assets/images/gradspace/Gradspace-Interior-20210115-112547-2392-510-3x2-1.jpg"],
   2: ["assets/images/gradspace/Jonkerzicht-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160215-0023-800-Gallery.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160347-0033-Edit-800-Gallery.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160501-0036-800-Gallery.jpg", "assets/images/gradspace/Gradspace-House-20201201-20201201-160605-0048-800-Gallery.jpg"],
   3: ["assets/images/gradspace/Gradspace-Bergzicht-63-20.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-01-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-02-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-09-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-10-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-13-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-16-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-17-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-21-800-3x2-1.jpg", "assets/images/gradspace/Gradspace-Bergzicht-63-23-800-3x2-1.jpg"],
   4: ["assets/images/gradspace/Gradspace-The-Akkerhof-01-512-400x250-1.jpg"],
@@ -4625,9 +5743,366 @@ var gsPhotoData = {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
-        gsLightboxOpen(parseInt(this.getAttribute('data-project-index')));
+        var idx = parseInt(this.getAttribute('data-project-index'));
+        // "LEARN MORE" buttons (.in-project) show photos only; nav links open the full drawer
+        if (this.classList.contains('in-project')) {
+          gsLightboxOpen(idx);
+        } else if (typeof window.gsDrawerOpen === 'function') {
+          window.gsDrawerOpen(idx);
+        }
       }, true);
     });
   });
+</script>
+<script>
+/* ── Mobile: project title + text override for property slider ── */
+(function() {
+  if (window.innerWidth > 991) return;
+
+  function showSlide(idx) {
+    var titles = document.querySelectorAll('.project-title');
+    var texts  = document.querySelectorAll('.project-text');
+
+    titles.forEach(function(el, i) {
+      var active = (i === idx);
+      el.classList.toggle('is-active', active);
+      if (active) {
+        /* Nuke every inline GSAP transform inside this title */
+        el.style.display = 'block';
+        el.style.opacity = '1';
+        [].forEach.call(el.querySelectorAll('*'), function(child) {
+          child.style.transform = 'none';
+          child.style.opacity   = '1';
+          child.style.overflow  = 'visible';
+          child.style.visibility = 'visible';
+        });
+      }
+    });
+
+    texts.forEach(function(el, i) {
+      var active = (i === idx);
+      el.classList.toggle('is-active', active);
+      if (active) {
+        el.style.display = 'block';
+        el.style.opacity = '1';
+        [].forEach.call(el.querySelectorAll('*'), function(child) {
+          child.style.transform = 'none';
+          child.style.opacity   = '1';
+          child.style.visibility = 'visible';
+        });
+      }
+    });
+  }
+
+  function hookSlider() {
+    if (!window._gsSplide || !window._gsSplide.Components) {
+      setTimeout(hookSlider, 250);
+      return;
+    }
+    /* Fix initial state right away */
+    showSlide(0);
+    /* Fix on every slide change */
+    window._gsSplide.on('moved', function(newIdx) {
+      showSlide(newIdx);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hookSlider);
+  } else {
+    hookSlider();
+  }
+})();
+
+/* ── Amenities: paired image+text cards with scroll-reveal on mobile ── */
+(function() {
+  function initAmenitiesMobile() {
+    if (window.innerWidth > 991) return;
+
+    var images = Array.from(document.querySelectorAll('.amenities-images-big .amenities-slide-imgs'));
+    var boxes  = Array.from(document.querySelectorAll('.amenities-texts-container .amenities-slide-box'));
+    if (!images.length || !boxes.length) return;
+
+    var wrap = document.querySelector('.wrap.amenities-wrap');
+    if (!wrap) return;
+
+    /* Hide original separate containers */
+    var imgCon  = document.querySelector('.amenities-images-container');
+    var txtCon  = document.querySelector('.amenities-texts-container');
+    if (imgCon) imgCon.style.display = 'none';
+    if (txtCon) txtCon.style.display = 'none';
+
+    /* Build paired stack */
+    var stack = document.createElement('div');
+    stack.className = 'amen-mobile-stack';
+
+    var count = Math.min(images.length, boxes.length);
+    for (var i = 0; i < count; i++) {
+      var card = document.createElement('div');
+      card.className = 'amen-mobile-card';
+      card.appendChild(images[i]);
+      card.appendChild(boxes[i]);
+      stack.appendChild(card);
+    }
+
+    wrap.appendChild(stack);
+
+    /* Scroll-reveal via IntersectionObserver */
+    var cards = Array.from(stack.querySelectorAll('.amen-mobile-card'));
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('amen-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      cards.forEach(function(c) { obs.observe(c); });
+    } else {
+      /* Fallback: show immediately */
+      cards.forEach(function(c) { c.classList.add('amen-visible'); });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAmenitiesMobile);
+  } else {
+    initAmenitiesMobile();
+  }
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════
+     GRADSPACE — Extended Blue Accents  2026-04-14
+     Added last so these win the full cascade.
+═══════════════════════════════════════════════════════ -->
+<style>
+
+/* 1. STROKE BUTTONS — hover goes blue (not dark fill) */
+@media (hover: hover) and (pointer: fine) {
+  .stroke-btn:hover,
+  .btn.stroke-btn:hover,
+  .btn.stroke-btn.in-project:hover {
+    border-color: #2ea3f2 !important;
+    color: #2ea3f2 !important;
+    background-color: rgba(46,163,242,.06) !important;
+  }
+  .stroke-btn:active,
+  .btn.stroke-btn:active {
+    border-color: #1a8fd1 !important;
+    color: #1a8fd1 !important;
+    background-color: rgba(46,163,242,.12) !important;
+  }
+}
+
+/* 2. FAQ — open question heading turns blue */
+.faq-dropdown-toggle[aria-expanded="true"] h3 {
+  color: #2ea3f2 !important;
+}
+
+/* 3. FOOTER section labels — (Get in touch) / (location) / (Contact) */
+.footer-col-title h3 {
+  color: #2ea3f2 !important;
+}
+
+/* 4. FOOTER divider lines — blue accent */
+.footer-line {
+  background-color: rgba(46,163,242,.4) !important;
+}
+
+/* 5. FORM INPUT — blue border + glow on hover and focus */
+.input:hover {
+  border-color: rgba(46,163,242,.5) !important;
+}
+.input:focus {
+  border-color: #2ea3f2 !important;
+  box-shadow: 0 0 0 3px rgba(46,163,242,.12) !important;
+  outline: none !important;
+}
+
+/* 6. ABOUT TEXT BOX — editorial blue left-border accent */
+.about-text-box {
+  border-left: 2px solid rgba(46,163,242,.3) !important;
+  padding-left: 1.5em !important;
+}
+
+/* 7. AMENITIES HEADINGS — key word spans in blue */
+.amenities-slide-box h2 span {
+  color: #2ea3f2 !important;
+}
+
+/* 8. CTA FORM HEADING — "Your Application" italic span in blue */
+.form-heading h2 .h5-glare {
+  color: #2ea3f2 !important;
+}
+
+/* 9. STATS BOXES — thin blue top border as card separator */
+.stats-box {
+  border-top: 1.5px solid rgba(46,163,242,.22) !important;
+  padding-top: 1.25rem !important;
+}
+
+/* 10. PROPERTY COUNTER — slide position indicator */
+.gs-proj-counter {
+  color: #2ea3f2 !important;
+}
+
+</style>
+<script>
+/* ── MOBILE BELIEFS FIX — JS nuclear override ────────────────────────
+   Inline styles set via style.setProperty(...,'important') have the
+   highest possible specificity and beat GSAP's plain inline assignments.
+   MutationObserver re-applies whenever GSAP tries to change them.
+   DESKTOP UNTOUCHED: entire block exits immediately if width > 991px.
+────────────────────────────────────────────────────────────────────── */
+(function() {
+  if (window.innerWidth > 991) return;
+
+  var observers = [];
+
+  function applyBeliefsFix() {
+    var section = document.querySelector('section.beliefs');
+    if (!section) return;
+
+    /* 1 — Kill all GSAP tweens on beliefs elements */
+    if (typeof gsap !== 'undefined') {
+      gsap.killTweensOf(section);
+      gsap.killTweensOf('.beliefs-wrap');
+      gsap.killTweensOf('.beliefs-item');
+      gsap.killTweensOf('.beliefs-card');
+    }
+
+    /* 2 — Kill ScrollTriggers whose trigger is inside .beliefs */
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.getAll().forEach(function(st) {
+        try {
+          var el = st.trigger || (st.vars && st.vars.trigger);
+          if (typeof el === 'string') el = document.querySelector(el);
+          if (el && (el === section || section.contains(el) || el.contains(section))) {
+            st.kill();
+          }
+        } catch(e) {}
+      });
+    }
+
+    /* 3 — Force the container open */
+    var wrap = section.querySelector('.beliefs-wrap');
+    if (wrap) {
+      wrap.style.setProperty('display',         'flex',    'important');
+      wrap.style.setProperty('flex-direction',  'column',  'important');
+      wrap.style.setProperty('position',        'relative','important');
+      wrap.style.setProperty('height',          'auto',    'important');
+      wrap.style.setProperty('min-height',      '0',       'important');
+      wrap.style.setProperty('overflow',        'visible', 'important');
+      wrap.style.setProperty('gap',             '0',       'important');
+    }
+
+    /* 4 — Also open the section itself */
+    section.style.setProperty('height',   'auto',    'important');
+    section.style.setProperty('overflow', 'visible', 'important');
+
+    /* 5 — Force each card item, then watch with MutationObserver */
+    var items = section.querySelectorAll('.beliefs-item');
+    observers.forEach(function(o) { try { o.disconnect(); } catch(e) {} });
+    observers = [];
+
+    items.forEach(function(item, idx) {
+      function set() {
+        obs.disconnect();
+        item.style.setProperty('position',       'relative',                        'important');
+        item.style.setProperty('opacity',        '1',                               'important');
+        item.style.setProperty('transform',      'none',                            'important');
+        item.style.setProperty('visibility',     'visible',                         'important');
+        item.style.setProperty('display',        'flex',                            'important');
+        item.style.setProperty('flex-direction', 'row',                             'important');
+        item.style.setProperty('align-items',    'flex-start',                      'important');
+        item.style.setProperty('width',          '100%',                            'important');
+        item.style.setProperty('height',         'auto',                            'important');
+        item.style.setProperty('min-height',     '0',                               'important');
+        item.style.setProperty('padding',        '1.75rem 0',                       'important');
+        item.style.setProperty('border-bottom',  idx < items.length - 1
+                                                   ? '1px solid rgba(255,255,255,0.12)'
+                                                   : 'none',                        'important');
+        obs.observe(item, { attributes: true, attributeFilter: ['style'] });
+      }
+      var obs = new MutationObserver(set);
+      set();
+      observers.push(obs);
+    });
+
+    /* 6 — Refresh scroll positions after we've changed heights */
+    if (typeof ScrollTrigger !== 'undefined') {
+      setTimeout(function() { ScrollTrigger.refresh(); }, 50);
+    }
+  }
+
+  /* Run at load + delayed passes to catch late-firing GSAP tweens */
+  if (document.readyState === 'complete') {
+    applyBeliefsFix();
+  } else {
+    window.addEventListener('load', applyBeliefsFix);
+  }
+  setTimeout(applyBeliefsFix, 300);
+  setTimeout(applyBeliefsFix, 1000);
+  setTimeout(applyBeliefsFix, 2500);
+})();
+</script>
+
+<script>
+/* ── Beliefs card hover via JS (bypasses GSAP/CSS conflicts) ── */
+(function() {
+  function initBeliefsHover() {
+    var cards = document.querySelectorAll('.beliefs-card');
+    if (!cards.length) return;
+    cards.forEach(function(card) {
+      /* Ensure transition is set regardless of GSAP inline overrides */
+      card.style.setProperty('transition',
+        'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
+        'important');
+
+      card.addEventListener('mouseenter', function() {
+        card.style.setProperty('background', 'rgba(255,255,255,0.82)', 'important');
+        card.style.setProperty('border-color', 'rgba(255,255,255,0.6)', 'important');
+        card.style.setProperty('box-shadow', '0 8px 32px rgba(0,0,0,0.14)', 'important');
+        card.style.setProperty('backdrop-filter', 'blur(14px)', 'important');
+        card.style.setProperty('-webkit-backdrop-filter', 'blur(14px)', 'important');
+        var h3 = card.querySelector('h3');
+        if (h3) h3.style.setProperty('color', '#000000', 'important');
+        var p = card.querySelector('p');
+        if (p) p.style.setProperty('color', '#1e293b', 'important');
+        var item = card.closest('.beliefs-item');
+        if (item) {
+          var b4 = item.querySelector('.b4');
+          if (b4) b4.style.setProperty('color', 'rgba(0,0,0,0.7)', 'important');
+        }
+      });
+
+      card.addEventListener('mouseleave', function() {
+        card.style.removeProperty('background');
+        card.style.removeProperty('border-color');
+        card.style.removeProperty('box-shadow');
+        card.style.removeProperty('backdrop-filter');
+        card.style.removeProperty('-webkit-backdrop-filter');
+        var h3 = card.querySelector('h3');
+        if (h3) h3.style.removeProperty('color');
+        var p = card.querySelector('p');
+        if (p) p.style.removeProperty('color');
+        var item = card.closest('.beliefs-item');
+        if (item) {
+          var b4 = item.querySelector('.b4');
+          if (b4) b4.style.removeProperty('color');
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    initBeliefsHover();
+  } else {
+    window.addEventListener('load', initBeliefsHover);
+  }
+  setTimeout(initBeliefsHover, 800);
+})();
 </script>
 </body>
