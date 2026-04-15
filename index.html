@@ -483,12 +483,22 @@
   }
 }
 
-/* ── PROPERTIES: hide Property Explorer name overlay (duplicates project-title) ── */
+/* ── PROPERTIES: hide prev/next property name labels at all widths ──
+   Only the current-property title (gs-slide-title) should be visible.
+   gs-slide-name (prev, top-left) and gs-slide-name-next (next, top-right)
+   create confusion by showing multiple property names at once.         ── */
+.gs-slide-name,
+.gs-slide-name-next {
+  display: none !important;
+}
+
+/* At mobile: ensure the main slide title is still visible */
 @media (max-width: 991px) {
-  .gs-slide-title,
-  .gs-slide-name,
-  .gs-slide-name-next {
-    display: none !important;
+  .gs-slide-title {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-size: clamp(1.8rem, 7vw, 3.5rem) !important;
   }
 }
 
@@ -5085,7 +5095,7 @@ setTimeout(function() {
 /* ── Slider nav bar ────────────────────────────────────────────── */
 /* Property name overlay — top of photo */
 /* Hide original project-titles — replaced by custom top overlays */
-.project-titles { visibility:hidden !important; pointer-events:none !important; }
+.project-titles { display:none !important; pointer-events:none !important; }
 
 /* Large property name — top-center of image */
 .gs-slide-title {
