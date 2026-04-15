@@ -1518,6 +1518,75 @@
 }
 </style>
 
+<style>
+/* ══════════════════════════════════════════════════════════════
+   GRADSPACE — MOBILE FIX: gsf-bar Top Matches + Slider Swipe
+   Two issues on phones:
+   1. "Top matches" + photo cards not clearly visible (dim label,
+      iOS cannot horizontally scroll inside overflow-x:hidden page)
+   2. Properties slider swipe blocked (drag breakpoint too narrow,
+      overflow-x:hidden on .projects kills iOS horizontal gestures)
+══════════════════════════════════════════════════════════════ */
+
+/* ── 1. gsf-bar: Top Matches section on mobile ── */
+@media (max-width: 600px) {
+
+  /* Make "Top matches" label actually readable */
+  .gsf-results-hd {
+    font-size: 0.68rem !important;
+    color: rgba(51, 51, 51, 0.7) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.14em !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Full-width results column */
+  .gsf-results {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Ensure card strip scrolls on iOS */
+  .gsf-cards {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  /* Slightly narrower cards to hint there are more to scroll to */
+  .gsf-card {
+    min-width: 240px !important;
+    flex: 0 0 240px !important;
+  }
+
+  /* Give the entire gsf-bar section enough breathing room */
+  .gsf-inner {
+    padding: 1.25rem 0 1.75rem !important;
+  }
+
+}
+
+/* ── 2. Properties slider: enable swipe on all mobile widths ── */
+@media (max-width: 767px) {
+
+  /* Allow Splide to receive horizontal touch gestures.
+     Without this, overflow-x:hidden on .projects causes iOS Safari
+     to swallow horizontal swipes before Splide can handle them. */
+  .projects .splide__track,
+  .projects .splide__list {
+    touch-action: pan-y !important;
+  }
+
+  /* Remove overflow-x:hidden from .projects — Splide's own track
+     handles clipping; section-level hidden blocks iOS swipe events. */
+  .projects {
+    overflow-x: visible !important;
+  }
+
+}
+</style>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -3039,7 +3108,7 @@ a                         { color: #2ea3f2 !important; }
         drag: false,
         isNavigation: true,
         breakpoints: {
-          480: {
+          767: {
             perPage: 1,
             gap: '1.5rem',
             drag: true,
