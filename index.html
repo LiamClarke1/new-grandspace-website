@@ -522,43 +522,16 @@
 
 /* amen-mobile-card: removed — replaced by v2 amenities block */
 
-/* ── AMENITIES DESKTOP STACKING FIX ───────────────────────────
-   The Webflow CSS sets non-first images/textboxes to position:absolute
-   but without inset:0 they drift out of place.
-   .is-first keeps position:relative (defines container height).
-   Everything else gets inset:0 so it stacks exactly on top.
+/* ── AMENITIES: kill GSAP sticky track at all viewports ──────
+   Without this, the .anim-track retains a tall GSAP-set height
+   at desktop, leaving a large blank scroll area.
 ─────────────────────────────────────────────────────────────── */
-@media (min-width: 992px) {
-  /* Non-first BIG images: pin to same slot as .is-first */
-  .amenities-slide-imgs:not(.is-first) {
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  /* Non-first SMALL images: pin to same slot */
-  .amenities-slide-img-inner:not(.is-first) {
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  /* First small image also needs to fill its container */
-  .amenities-slide-img-inner.is-first {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  /* Text boxes: ALL are position:absolute in Webflow CSS.
-     Give the container an explicit height from the first box,
-     and stack the rest on top with inset:0. */
-  .amenities-texts-container {
-    min-height: 16rem !important;
-  }
-  .amenities-slide-box {
-    inset: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-  }
+.anim-track {
+  height: auto !important;
+  min-height: 0 !important;
+}
+.amenities-triggers {
+  display: none !important;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1177,14 +1150,14 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   GRADSPACE — AMENITIES INTERLEAVED LAYOUT  2026-04-15
-   Problem: HTML has all images in one container, all texts in
-   another. At mobile this stacks 3 images then 3 raw headings.
-   Fix: Dissolve both grouping containers with display:contents
-   so their children join the wrap's flex context, then use CSS
-   order to interleave: img1→text1→img2→text2→img3→text3.
+   GRADSPACE — AMENITIES INTERLEAVED LAYOUT  (ALL VIEWPORTS)
+   Applied globally — not just mobile — because the GSAP scroll
+   animation returns early at ≤991px (window.innerWidth guard),
+   leaving all text boxes stacked at position:absolute with no
+   hiding, causing overlap. Replacing with a CSS-only editorial
+   layout: img → text → img → text → img → text at every width.
 ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 991px) {
+/* ── Applied at every viewport width ── */
 
   /* ── 1. Dissolve container wrappers into the flex context ── */
   .amenities-images-container,
@@ -1290,6 +1263,23 @@
     max-width: 52ch !important;
   }
 
+/* ── Desktop: taller images, more padding ── */
+@media (min-width: 992px) {
+  .amenities-slide-imgs {
+    height: 55vw !important;
+    max-height: 700px !important;
+    min-height: 400px !important;
+  }
+  .amenities-slide-box {
+    padding: 4rem 0 5rem !important;
+  }
+  .amenities-slide-box h2 {
+    font-size: clamp(3rem, 6vw, 7rem) !important;
+  }
+  .amenities-slide-box p {
+    font-size: clamp(1rem, 1.5vw, 1.25rem) !important;
+    max-width: 55ch !important;
+  }
 }
 </style>
 
