@@ -1283,6 +1283,98 @@
 }
 </style>
 
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   GRADSPACE — SECTION CONTAINMENT & VISIBILITY FIX  2026-04-15
+   Problem: full-bg-wrap is position:absolute with no containing
+   position:relative on sections at mobile → dark backgrounds
+   bleed across the page. GSAP-animated elements also stay
+   invisible at split-screen widths.
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+
+  /* ── 1. Every section contains its own absolute children ── */
+  .hero, .about, .projects, .beliefs, .our-beliefs,
+  .amenities, .faq-relative, .faq, .cta, .footer,
+  section, .section {
+    position: relative !important;
+  }
+
+  /* ── 2. full-bg-wrap stays behind content ── */
+  .full-bg-wrap {
+    z-index: 0 !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* ── 3. All content containers sit above background ── */
+  .page-padding, .wrap, .container,
+  .about-wrap, .beliefs-wrap, .our-beliefs-wrap,
+  .cta-wrap, .faq-wrap, .footer-wrap, .projects-wrap,
+  .amenities-wrap, .hero-content, .heading {
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  /* ── 4. Light sections: override any dark full-bg-wrap colour ── */
+  .about .full-bg-wrap,
+  .our-beliefs .full-bg-wrap,
+  .projects .full-bg-wrap,
+  .amenities .full-bg-wrap,
+  .faq-relative .full-bg-wrap,
+  .faq .full-bg-wrap,
+  .cta .full-bg-wrap,
+  .footer .full-bg-wrap {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  /* ── 5. Hero height: viewport-relative (not fixed 60rem/960px) ── */
+  .hero {
+    height: 100svh !important;
+    min-height: 520px !important;
+    max-height: 100vh !important;
+  }
+
+  /* ── 6. Force every GSAP-animated element visible immediately ── */
+  [data-anim], [data-hero], [data-footer], [data-fadeIn],
+  [data-stagger-fd-target], [data-amenities-anim],
+  [data-anim] *, [data-hero] *, [data-amenities-anim] *,
+  .beliefs-item, .beliefs-card, .beliefs-item .b4,
+  .our-beliefs-heading h2, .our-beliefs-heading h2 *,
+  .faq-dropdown-toggle h3, .faq-dropdown-toggle .h6,
+  .cta-heading h2, .cta-heading p,
+  .form-heading h2, .form-heading p {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  /* ── 7. GSAP line/char/word split wrappers ── */
+  [class*="line"], [class*="word"], [class*="char"],
+  .char-mask {
+    opacity: 1 !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  /* ── 8. Clip-path overrides (GSAP reveal animations) ── */
+  [data-anim="clip"], [data-anim="clip"] *,
+  [data-anim="split"], [data-anim="split"] *,
+  [data-anim="element"], [data-anim="element"] * {
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+
+}
+</style>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
