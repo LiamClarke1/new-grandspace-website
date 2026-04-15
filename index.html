@@ -522,18 +522,6 @@
 
 /* amen-mobile-card: removed — replaced by v2 amenities block */
 
-/* ── AMENITIES: kill GSAP sticky track at all viewports ──────
-   Without this, the .anim-track retains a tall GSAP-set height
-   at desktop, leaving a large blank scroll area.
-─────────────────────────────────────────────────────────────── */
-.anim-track {
-  height: auto !important;
-  min-height: 0 !important;
-}
-.amenities-triggers {
-  display: none !important;
-}
-
 /* ══════════════════════════════════════════════════════
    GRADSPACE — MOBILE FIX v3  2026-04-15
    ALL rules are max-width:991px — desktop UNTOUCHED
@@ -1149,29 +1137,28 @@
 </style>
 
 <style>
-/* ═══════════════════════════════════════════════════════════════
-   GRADSPACE — AMENITIES INTERLEAVED LAYOUT  (ALL VIEWPORTS)
-   Applied globally — not just mobile — because the GSAP scroll
-   animation returns early at ≤991px (window.innerWidth guard),
-   leaving all text boxes stacked at position:absolute with no
-   hiding, causing overlap. Replacing with a CSS-only editorial
-   layout: img → text → img → text → img → text at every width.
-═══════════════════════════════════════════════════════════════ */
-/* ── Applied at every viewport width ── */
+/* ══════════════════════════════════════════════════════════════
+   GRADSPACE — AMENITIES INTERLEAVED LAYOUT  (≤991px only)
+   GSAP handles desktop (≥992px) — do not override those styles.
+   At tablet/mobile, GSAP returns early (innerWidth guard), so we
+   provide a static editorial layout per slide:
+   [big image] → [small image] → [text paragraph].
+══════════════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
 
-  /* ── 1. Dissolve container wrappers into the flex context ── */
+  /* ── 1. Flatten all container wrappers into the flex context ── */
   .amenities-images-container,
   .amenities-images-big,
+  .amenities-images-small,
   .amenities-texts-container {
     display: contents !important;
   }
-  .amenities-images-small,
   .amenities-progress,
   .amenities-triggers {
     display: none !important;
   }
 
-  /* ── 2. Amenities wrap becomes the single flex column ── */
+  /* ── 2. Amenities wrap: single flex column ── */
   .wrap.amenities-wrap {
     display: flex !important;
     flex-direction: column !important;
@@ -1182,31 +1169,37 @@
     height: auto !important;
     top: auto !important;
   }
+  .anim-track { height: auto !important; min-height: 0 !important; }
 
-  /* ── 3. Interleave: image then text for each amenity ── */
-  /* Images */
-  .amenities-slide-imgs.is-first                            { order: 1 !important; }
-  .amenities-images-big .amenities-slide-imgs:nth-child(2)  { order: 3 !important; }
-  .amenities-images-big .amenities-slide-imgs:nth-child(3)  { order: 5 !important; }
+  /* ── 3. Interleave: big image → small image → text (per slide) ── */
+  /* Slide 1 */
+  .amenities-slide-imgs.is-first                                  { order: 1 !important; }
+  .amenities-slide-img-inner.is-first                             { order: 2 !important; }
+  .amenities-slide-box.is-first                                   { order: 3 !important; }
 
-  /* Texts (nth-child counts from .amenities-texts-container:
-     child 1 = .amenities-progress (hidden),
-     child 2 = .amenities-slide-box.is-first,
-     child 3 = second text box,
-     child 4 = third text box ) */
-  .amenities-slide-box.is-first                                          { order: 2 !important; }
-  .amenities-texts-container .amenities-slide-box:nth-child(3)           { order: 4 !important; }
-  .amenities-texts-container .amenities-slide-box:nth-child(4)           { order: 6 !important; }
+  /* Slide 2 */
+  .amenities-images-big .amenities-slide-imgs:nth-child(2)        { order: 4 !important; }
+  .amenities-images-small .amenities-slide-img-inner:nth-child(2) { order: 5 !important; }
+  .amenities-texts-container .amenities-slide-box:nth-child(3)    { order: 6 !important; }
 
-  /* ── 4. Image sizing ── */
+  /* Slide 3 */
+  .amenities-images-big .amenities-slide-imgs:nth-child(3)        { order: 7 !important; }
+  .amenities-images-small .amenities-slide-img-inner:nth-child(3) { order: 8 !important; }
+  .amenities-texts-container .amenities-slide-box:nth-child(4)    { order: 9 !important; }
+
+  /* Space above slides 2 and 3 */
+  .amenities-images-big .amenities-slide-imgs:nth-child(2) { margin-top: 2rem !important; }
+  .amenities-images-big .amenities-slide-imgs:nth-child(3) { margin-top: 2rem !important; }
+
+  /* ── 4. Big image ── */
   .amenities-slide-imgs {
     width: 100% !important;
-    height: 58vw !important;
+    height: 55vw !important;
     min-height: 200px !important;
-    max-height: 340px !important;
+    max-height: 320px !important;
     position: relative !important;
     overflow: hidden !important;
-    border-radius: 0.4rem !important;
+    border-radius: 0.4rem 0.4rem 0 0 !important;
     flex-shrink: 0 !important;
     margin-bottom: 0 !important;
     opacity: 1 !important;
@@ -1229,7 +1222,38 @@
     transform: none !important;
   }
 
-  /* ── 5. Text block styling ── */
+  /* ── 5. Small image ── */
+  .amenities-slide-img-inner {
+    width: 100% !important;
+    height: 28vw !important;
+    min-height: 100px !important;
+    max-height: 180px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 0 0 0.4rem 0.4rem !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 1.5rem !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    display: block !important;
+  }
+  .amenities-slide-img-inner img,
+  .amenities-slide-img-inner .img-full-cover {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  /* ── 6. Text block ── */
   .amenities-slide-box {
     position: relative !important;
     inset: auto !important;
@@ -1237,7 +1261,7 @@
     visibility: visible !important;
     transform: none !important;
     width: 100% !important;
-    padding: 2rem 0 2.5rem !important;
+    padding: 1.5rem 0 2.5rem !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
   }
   .amenities-slide-box:last-of-type {
@@ -1265,23 +1289,6 @@
     max-width: 52ch !important;
   }
 
-/* ── Desktop: taller images, more padding ── */
-@media (min-width: 992px) {
-  .amenities-slide-imgs {
-    height: 55vw !important;
-    max-height: 700px !important;
-    min-height: 400px !important;
-  }
-  .amenities-slide-box {
-    padding: 4rem 0 5rem !important;
-  }
-  .amenities-slide-box h2 {
-    font-size: clamp(3rem, 6vw, 7rem) !important;
-  }
-  .amenities-slide-box p {
-    font-size: clamp(1rem, 1.5vw, 1.25rem) !important;
-    max-width: 55ch !important;
-  }
 }
 </style>
 
