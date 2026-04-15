@@ -933,6 +933,356 @@
   html { scroll-behavior: smooth; }
 
 </style>
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   GRADSPACE — TABLET BREAKPOINT FIX  2026-04-15
+   Prevents full mobile reflow at split-screen widths.
+   Desktop (≥992px): untouched — Webflow/GSAP handles it.
+   Tablet (600–991px): clean intermediate layout.
+   Mobile (<600px): existing mobile rules still apply.
+═══════════════════════════════════════════════════════ */
+
+@media (min-width: 600px) and (max-width: 991px) {
+
+  /* ── HERO ──────────────────────────────────────────── */
+  /* Keep heading as a row but tighten font size */
+  .heading.hero-heading {
+    display: flex !important;
+    flex-flow: row !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    gap: 2rem !important;
+  }
+  h1.hero-title {
+    font-size: clamp(3.5rem, 9vw, 7rem) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  .hero-right {
+    max-width: 22rem !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* ── ABOUT ─────────────────────────────────────────── */
+  /* Keep two-column row at tablet — just scale content */
+  .about-info {
+    display: flex !important;
+    flex-flow: row !important;
+    align-items: flex-start !important;
+    padding-top: 5rem !important;
+    padding-bottom: 3rem !important;
+    gap: 2rem !important;
+  }
+  /* about-left takes a fixed 54% — gap handled by flex, not width sum */
+  .about-left {
+    flex: 0 0 54% !important;
+    width: 54% !important;
+    max-width: 54% !important;
+    grid-template-columns: 1fr !important;
+    flex-flow: column !important;
+    display: flex !important;
+    gap: 1.5rem !important;
+  }
+  /* about-text-box fills whatever remains */
+  .about-text-box {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding-top: 3rem !important;
+  }
+
+  /* About image: respect natural aspect ratio, no bleed-out at tablet */
+  .about-img {
+    position: relative !important;
+    overflow: hidden !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 800 / 533 !important;
+    max-height: 400px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0.5rem !important;
+  }
+  .about-img .img-full-cover {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* ── STATS ──────────────────────────────────────────── */
+  .stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+    column-gap: 2.5rem !important;
+    row-gap: 3rem !important;
+  }
+  .stats .h2, .stats .h2.mob-h5 {
+    font-size: 4.5rem !important;
+    line-height: 1.1 !important;
+  }
+
+  /* ── PROPERTIES ─────────────────────────────────────── */
+  .project-title.is-active h2,
+  .project-title.is-active * {
+    font-size: clamp(2rem, 5.5vw, 4rem) !important;
+  }
+  .projects-slide,
+  .projects-slide-img {
+    height: 26rem !important;
+  }
+
+  /* ── OUR BELIEFS ────────────────────────────────────── */
+  .our-beliefs-img {
+    width: 100% !important;
+    margin-left: 0 !important;
+    height: 50vw !important;
+    max-height: 380px !important;
+    min-height: 220px !important;
+  }
+
+  /* ── BELIEFS CARDS ──────────────────────────────────── */
+  /* 2-column grid at tablet — better than full column stack */
+  .beliefs-wrap {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    flex-direction: unset !important;
+    gap: 1rem !important;
+    padding-right: 0 !important;
+  }
+  /* Text box spans both columns */
+  #w-node-d88d786b-358f-44e1-a1ef-46994c97ead0-546b46eb.beliefs-text-box {
+    grid-column: 1 / -1 !important;
+  }
+  .beliefs-item {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    padding: 1.5rem 0 !important;
+  }
+  .beliefs-card h3 {
+    font-size: 1.75rem !important;
+  }
+  .beliefs-card p {
+    font-size: 1rem !important;
+  }
+
+  /* ── AMENITIES ──────────────────────────────────────── */
+  .amenities-slide-imgs {
+    height: 48vw !important;
+    max-height: 350px !important;
+    min-height: 180px !important;
+  }
+  .amenities-slide-box h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem) !important;
+    white-space: normal !important;
+  }
+
+  /* ── FAQ ────────────────────────────────────────────── */
+  .faq-dropdown-toggle h3,
+  .faq-dropdown-toggle .h6 {
+    font-size: clamp(1rem, 3vw, 1.4rem) !important;
+  }
+  .faq-dropdown-box p {
+    font-size: clamp(0.85rem, 2.5vw, 1rem) !important;
+  }
+
+  /* ── CTA FORM ───────────────────────────────────────── */
+  .wrap.cta-wrap {
+    flex-flow: row !important;
+    gap: 3rem !important;
+    align-items: flex-start !important;
+  }
+  .heading.cta-heading {
+    flex: 1 !important;
+  }
+  .form-wrap {
+    flex: 1 !important;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  .wrap.footer-wrap {
+    grid-column-gap: 3rem !important;
+    grid-row-gap: 2rem !important;
+  }
+
+  /* Prevent any 100vw bleed-out images from causing horizontal scroll */
+  html, body, .page-wrapper {
+    overflow-x: hidden !important;
+  }
+
+}
+
+/* ── Fine-tune smaller tablet / large mobile (480–599px) ── */
+@media (min-width: 480px) and (max-width: 599px) {
+
+  /* Hero: single column but proper font size */
+  h1.hero-title {
+    font-size: clamp(3rem, 10vw, 5rem) !important;
+    width: auto !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  /* About image: respect aspect ratio, not 130vw height */
+  .about-img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 800 / 533 !important;
+    max-height: 340px !important;
+    margin-left: 0 !important;
+  }
+
+  /* Stats: 2-col at this range */
+  .stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    column-gap: 2rem !important;
+    row-gap: 2.5rem !important;
+  }
+  .stats .h2, .stats .h2.mob-h5 {
+    font-size: 3.5rem !important;
+  }
+
+  /* Our beliefs img */
+  .our-beliefs-img {
+    width: 100% !important;
+    margin-left: 0 !important;
+    height: 55vw !important;
+    max-height: 320px !important;
+  }
+
+}
+</style>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   GRADSPACE — AMENITIES INTERLEAVED LAYOUT  2026-04-15
+   Problem: HTML has all images in one container, all texts in
+   another. At mobile this stacks 3 images then 3 raw headings.
+   Fix: Dissolve both grouping containers with display:contents
+   so their children join the wrap's flex context, then use CSS
+   order to interleave: img1→text1→img2→text2→img3→text3.
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+
+  /* ── 1. Dissolve container wrappers into the flex context ── */
+  .amenities-images-container,
+  .amenities-images-big,
+  .amenities-texts-container {
+    display: contents !important;
+  }
+  .amenities-images-small,
+  .amenities-progress,
+  .amenities-triggers {
+    display: none !important;
+  }
+
+  /* ── 2. Amenities wrap becomes the single flex column ── */
+  .wrap.amenities-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    position: relative !important;
+    height: auto !important;
+    top: auto !important;
+  }
+
+  /* ── 3. Interleave: image then text for each amenity ── */
+  /* Images */
+  .amenities-slide-imgs.is-first                            { order: 1 !important; }
+  .amenities-images-big .amenities-slide-imgs:nth-child(2)  { order: 3 !important; }
+  .amenities-images-big .amenities-slide-imgs:nth-child(3)  { order: 5 !important; }
+
+  /* Texts (nth-child counts from .amenities-texts-container:
+     child 1 = .amenities-progress (hidden),
+     child 2 = .amenities-slide-box.is-first,
+     child 3 = second text box,
+     child 4 = third text box ) */
+  .amenities-slide-box.is-first                                          { order: 2 !important; }
+  .amenities-texts-container .amenities-slide-box:nth-child(3)           { order: 4 !important; }
+  .amenities-texts-container .amenities-slide-box:nth-child(4)           { order: 6 !important; }
+
+  /* ── 4. Image sizing ── */
+  .amenities-slide-imgs {
+    width: 100% !important;
+    height: 58vw !important;
+    min-height: 200px !important;
+    max-height: 340px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 0.4rem !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    display: block !important;
+  }
+  .amenities-slide-imgs img,
+  .amenities-slide-imgs .img-full-cover {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* ── 5. Text block styling ── */
+  .amenities-slide-box {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    width: 100% !important;
+    padding: 2rem 0 2.5rem !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+  }
+  .amenities-slide-box:last-of-type {
+    border-bottom: none !important;
+  }
+  .amenities-slide-box h2,
+  .amenities-slide-box h2 *,
+  .amenities-slide-box p,
+  .amenities-slide-box [data-amenities-anim],
+  .amenities-slide-box [data-amenities-anim] * {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+  .amenities-slide-box h2 {
+    font-size: clamp(1.8rem, 5vw, 3.5rem) !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.15 !important;
+  }
+  .amenities-slide-box p {
+    font-size: clamp(0.9rem, 2.8vw, 1.1rem) !important;
+    line-height: 1.65 !important;
+    max-width: 52ch !important;
+  }
+
+}
+</style>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -6108,6 +6458,136 @@ var gsPhotoData = {
     window.addEventListener('load', initBeliefsHover);
   }
   setTimeout(initBeliefsHover, 800);
+})();
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   GRADSPACE — RESIZE HANDLER  2026-04-15
+   Problem: GSAP/ScrollTrigger calibrates on page load. When the user
+   splits the screen after loading at desktop width, animations become
+   stale and elements stay hidden or in wrong positions.
+   Fix:
+     1. Refresh ScrollTrigger on every resize (debounced).
+     2. When crossing from desktop (>991px) to tablet/mobile (≤991px),
+        re-apply element visibility overrides and re-run beliefs fix.
+     3. When crossing back to desktop, kill mobile JS overrides and
+        let GSAP take over again.
+═══════════════════════════════════════════════════════════════════ */
+(function() {
+  var MOBILE_THRESHOLD = 991;
+  var lastIsMobile = window.innerWidth <= MOBILE_THRESHOLD;
+  var debounceTimer = null;
+
+  /* ── Force all GSAP-animated elements visible at mobile/tablet ── */
+  function forceMobileVisibility() {
+    var sel = [
+      '[data-anim]','[data-hero]','[data-footer]','[data-fadeIn]',
+      '[data-stagger-fd-target]','.amenities-slide-box','[data-amenities-anim]',
+      '.project-title.is-active','.project-text.is-active',
+      '.char-mask','h1.hero-title .char','h1.hero-title span',
+      '.beliefs-item','.beliefs-card','.beliefs-item .b4',
+      '.our-beliefs-heading h2','.faq-dropdown-toggle h3',
+      '.cta-heading h2','.cta-heading p','.form-heading h2',
+    ].join(',');
+
+    document.querySelectorAll(sel).forEach(function(el) {
+      el.style.opacity        = '1';
+      el.style.visibility     = 'visible';
+      el.style.transform      = 'none';
+      el.style.clip           = 'auto';
+      el.style.clipPath       = 'none';
+      el.style.webkitClipPath = 'none';
+    });
+
+    /* Unclip SplitText children */
+    document.querySelectorAll('[class*="line"],[class*="word"],[class*="char"]').forEach(function(c) {
+      if (c.style.transform) c.style.transform = 'none';
+      if (parseFloat(window.getComputedStyle(c).opacity) < 0.1) c.style.opacity = '1';
+    });
+  }
+
+  /* ── Run the beliefs GSAP-kill fix (mirrors the on-load version) ── */
+  function runBeliefsMobileFix() {
+    var section = document.querySelector('section.beliefs');
+    if (!section) return;
+
+    /* Kill lingering GSAP tweens on beliefs elements */
+    if (typeof gsap !== 'undefined') {
+      gsap.killTweensOf(section);
+      gsap.killTweensOf('.beliefs-wrap');
+      gsap.killTweensOf('.beliefs-item');
+      gsap.killTweensOf('.beliefs-card');
+    }
+
+    /* Kill ScrollTriggers scoped to this section */
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.getAll().forEach(function(st) {
+        try {
+          var el = st.trigger || (st.vars && st.vars.trigger);
+          if (typeof el === 'string') el = document.querySelector(el);
+          if (el && (el === section || section.contains(el) || el.contains(section))) st.kill();
+        } catch(e) {}
+      });
+    }
+
+    /* Force items visible */
+    section.querySelectorAll('.beliefs-item').forEach(function(item) {
+      item.style.setProperty('position',      'relative', 'important');
+      item.style.setProperty('opacity',       '1',        'important');
+      item.style.setProperty('transform',     'none',     'important');
+      item.style.setProperty('visibility',    'visible',  'important');
+      item.style.setProperty('display',       'flex',     'important');
+      item.style.setProperty('align-items',   'flex-start','important');
+      item.style.setProperty('width',         '100%',     'important');
+      item.style.setProperty('height',        'auto',     'important');
+    });
+
+    section.style.setProperty('height',   'auto',    'important');
+    section.style.setProperty('overflow', 'visible', 'important');
+  }
+
+  /* ── Main resize logic ── */
+  function onResize() {
+    var nowIsMobile = window.innerWidth <= MOBILE_THRESHOLD;
+
+    /* Always refresh ScrollTrigger so scroll positions recalculate */
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh(true);
+    }
+
+    /* Crossing from desktop → mobile/tablet */
+    if (!lastIsMobile && nowIsMobile) {
+      forceMobileVisibility();
+      runBeliefsMobileFix();
+      /* Second pass after layout settles */
+      setTimeout(function() {
+        forceMobileVisibility();
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      }, 300);
+    }
+
+    /* Crossing from mobile/tablet → desktop — let GSAP re-animate */
+    if (lastIsMobile && !nowIsMobile) {
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(function() { ScrollTrigger.refresh(true); }, 100);
+      }
+    }
+
+    lastIsMobile = nowIsMobile;
+  }
+
+  /* Debounced resize listener */
+  window.addEventListener('resize', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(onResize, 150);
+  }, { passive: true });
+
+  window.addEventListener('orientationchange', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(onResize, 300);
+  });
+
 })();
 </script>
 </body>
