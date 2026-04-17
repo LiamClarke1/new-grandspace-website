@@ -1,6 +1,6 @@
 /**
  * apply-nav.js
- * Multi-step application form navigation, validation, and review for Elyse Residence.
+ * Multi-step application form navigation, validation, and review for Grandspace.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
