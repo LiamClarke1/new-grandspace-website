@@ -50,12 +50,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function isValidFile(file) {
-    const allowedTypes = ['application/pdf', 'image/jpeg'];
-    const maxBytes = 2 * 1024 * 1024; // 2 MB
+    const allowedTypes = [
+      'application/pdf',
+      'image/jpeg', 'image/jpg',
+      'image/png', 'image/webp',
+      'image/heic', 'image/heif'
+    ];
+    const maxBytes = 5 * 1024 * 1024; // 5 MB
     if (!file) return { ok: false, reason: 'Please upload a file.' };
-    if (!allowedTypes.includes(file.type)) return { ok: false, reason: 'File must be a PDF or JPG.' };
-    if (file.size > maxBytes) return { ok: false, reason: 'File must be 2 MB or smaller.' };
+    // Accept if MIME type matches, or if browser reports empty type but filename looks right
+    const typeOk = allowedTypes.includes(file.type) || file.type === '' || file.type.startsWith('image/');
+    if (!typeOk) return { ok: false, reason: 'File must be a PDF or image (JPG, PNG).' };
+    if (file.size > maxBytes) return { ok: false, reason: 'File must be 5 MB or smaller.' };
     return { ok: true };
+  }
+
+  // Find the visible upload label for a file input (used for error anchoring)
+  function getUploadLabel(inputId) {
+    return document.querySelector('label[for="' + inputId + '"].gs-upload-label');
+  }
+
+  function showUploadError(inputId, message) {
+    const label = getUploadLabel(inputId);
+    const anchor = label || document.getElementById(inputId);
+    if (!anchor) return;
+    anchor.classList.add('gs-field-error');
+    const parent = anchor.parentElement;
+    const existing = parent.querySelector('.gs-error-msg');
+    if (existing) existing.remove();
+    const msg = document.createElement('span');
+    msg.className = 'gs-error-msg';
+    msg.setAttribute('role', 'alert');
+    msg.textContent = message;
+    parent.appendChild(msg);
   }
 
   // ── Validation ───────────────────────────────────────────────────────────────
@@ -95,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const file = upload && upload.files[0];
       const fileCheck = isValidFile(file);
       if (!fileCheck.ok) {
-        showError(upload, fileCheck.reason);
+        showUploadError('gs-enrolment-upload', fileCheck.reason);
         valid = false;
       }
     }
@@ -105,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const file   = upload && upload.files[0];
       const fileCheck = isValidFile(file);
       if (!fileCheck.ok) {
-        showError(upload, fileCheck.reason);
+        showUploadError('gs-id-upload', fileCheck.reason);
         valid = false;
       }
     }
@@ -294,8 +321,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupUploadPreview(inputId, defaultText) {
     const input = document.getElementById(inputId);
     if (!input) return;
-    const label = input.previousElementSibling;
-    if (!label || !label.classList.contains('gs-upload-label')) return;
+    const label = document.querySelector('label[for="' + inputId + '"].gs-upload-label');
+    if (!label) return;
 
     const PDF_SVG =
       '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
