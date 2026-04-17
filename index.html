@@ -1841,28 +1841,52 @@ a                         { color: #2ea3f2 !important; }
 .form-bottom-text p       { color: #aaaaaa !important; }
 
 /* ── CTA clean block (logo + heading + button, no inputs) ── */
-.gs-cta-clean {
+/* ── Clean CTA: centered, on dark bg, no white card ─── */
+#book-a-visit .cta-heading        { display: none !important; }
+#book-a-visit .wrap.cta-wrap {
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 0 !important;
+  padding: 4rem 1rem !important;
+}
+#book-a-visit .form-wrap {
+  width: 100% !important;
+  max-width: 560px !important;
+  flex: none !important;
+}
+.form-block.gs-cta-clean {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 1.75rem !important;
-  padding: 2.25rem 2rem !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  padding: 0 !important;
 }
 .gs-cta-logo {
   display: block;
-  width: 140px;
+  width: 160px;
   height: auto;
-  opacity: 0.9;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+.form-block.gs-cta-clean h2,
+.form-block.gs-cta-clean h2 span {
+  color: #ffffff !important;
+  text-align: center !important;
 }
 .gs-cta-btn {
-  background-color: #050505 !important;
-  border-color:     #050505 !important;
-  color: #ffffff !important;
-  letter-spacing: 0.06em;
+  background-color: #ffffff !important;
+  border-color:     #ffffff !important;
+  color: #050505 !important;
+  letter-spacing: 0.08em;
+  min-width: 200px;
 }
 .gs-cta-btn:hover {
-  background-color: #333333 !important;
-  border-color:     #333333 !important;
+  background-color: rgba(255,255,255,0.85) !important;
+  border-color:     rgba(255,255,255,0.85) !important;
 }
 
 /* ── 15. Footer ──────────────────────────────────────── */
@@ -1882,8 +1906,9 @@ a                         { color: #2ea3f2 !important; }
 
 /* ── CRITICAL FIXES ──────────────────────────────────── */
 /* 1. form-block uses --green-700 (#254441, dark green) not --black-900.
-      Text is now dark, so we must make the form background light.     */
-.form-block {
+      Text is now dark, so we must make the form background light.
+      Exception: gs-cta-clean is transparent (lives on dark bg).       */
+.form-block:not(.gs-cta-clean) {
   background-color: #ffffff !important;
 }
 /* Ensure all text inside the form is dark and readable */
