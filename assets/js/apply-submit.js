@@ -85,7 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
         property_preferences:    getCheckedProperties(),
         movein_date:             val('gs-movein') || null,
         lease_duration:          val('gs-lease'),
-        status:                  'pending'
+        status:                  'pending',
+        submitted_at:            new Date().toISOString()
       });
 
       if (appInsert.error) throw new Error(appInsert.error.message);

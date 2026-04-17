@@ -284,6 +284,95 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Upload preview ───────────────────────────────────────────────────────────
+
+  function formatBytes(bytes) {
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function setupUploadPreview(inputId, defaultText) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const label = input.previousElementSibling;
+    if (!label || !label.classList.contains('gs-upload-label')) return;
+
+    const PDF_SVG =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+      '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>';
+
+    input.addEventListener('change', function () {
+      const file = input.files[0];
+      if (!file) return;
+
+      // Clear any existing error state on the label
+      label.classList.remove('gs-field-error');
+      label.classList.add('has-file');
+
+      const isImage = file.type.startsWith('image/');
+      const sizeText = formatBytes(file.size);
+
+      // Safely escape the filename for display
+      const nameEl = document.createElement('span');
+      nameEl.className = 'gs-upload-filename';
+      nameEl.title = file.name;
+      nameEl.textContent = file.name;
+
+      const sizeEl = document.createElement('span');
+      sizeEl.className = 'gs-upload-filesize';
+      sizeEl.textContent = sizeText;
+
+      const changeEl = document.createElement('span');
+      changeEl.className = 'gs-upload-change';
+      changeEl.textContent = 'Change file';
+
+      label.innerHTML = '';
+
+      if (isImage) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = document.createElement('img');
+          img.className = 'gs-upload-preview';
+          img.src = e.target.result;
+          img.alt = 'Preview: ' + file.name;
+
+          const infoEl = document.createElement('div');
+          infoEl.className = 'gs-upload-file-info';
+          infoEl.appendChild(nameEl);
+          infoEl.appendChild(sizeEl);
+          infoEl.appendChild(changeEl);
+
+          label.appendChild(img);
+          label.appendChild(infoEl);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        // PDF — show icon + filename
+        const iconEl = document.createElement('div');
+        iconEl.className = 'gs-upload-file-icon';
+        iconEl.innerHTML = PDF_SVG;
+
+        const infoEl = document.createElement('div');
+        infoEl.className = 'gs-upload-file-info';
+        infoEl.appendChild(nameEl);
+        infoEl.appendChild(sizeEl);
+        infoEl.appendChild(changeEl);
+
+        const rowEl = document.createElement('div');
+        rowEl.className = 'gs-upload-file-row';
+        rowEl.appendChild(iconEl);
+        rowEl.appendChild(infoEl);
+
+        label.appendChild(rowEl);
+      }
+    });
+  }
+
+  setupUploadPreview('gs-enrolment-upload', 'Click to upload enrolment letter or acceptance letter');
+  setupUploadPreview('gs-id-upload', 'Click to upload your ID or passport');
+
   // ── Init ─────────────────────────────────────────────────────────────────────
 
   showCurrentStep();

@@ -22,7 +22,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin — Grandspace</title>
 
-  <!-- Google Fonts: Open Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -33,13 +32,13 @@
     html { font-size: 16px; }
     body {
       font-family: 'Open Sans', sans-serif;
-      background: #f5f5f5;
+      background: #ffffff;
       color: #333333;
       line-height: 1.6;
       min-height: 100vh;
     }
 
-    /* ─── Header ────────────────────────────────────────────── */
+    /* ─── Header (matches apply.html exactly) ───────────────── */
     .apply-header {
       position: sticky;
       top: 0;
@@ -65,21 +64,24 @@
       align-items: center;
       gap: 1.75rem;
     }
-    .apply-header__nav a,
+    .apply-header__nav span {
+      font-size: 0.76rem;
+      color: #aaaaaa;
+      letter-spacing: 0.05em;
+    }
     .apply-header__nav button {
       font-size: 0.76rem;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #666666;
-      text-decoration: none;
       background: none;
       border: none;
       cursor: pointer;
       transition: color 150ms ease;
       font-family: 'Open Sans', sans-serif;
+      display: none;
     }
-    .apply-header__nav a:hover,
     .apply-header__nav button:hover { color: #050505; }
 
     /* ─── Login Screen ──────────────────────────────────────── */
@@ -89,24 +91,33 @@
       justify-content: center;
       min-height: calc(100vh - 60px);
       padding: 2rem 1rem;
+      background: #fafafa;
     }
     .gs-login-card {
       background: #ffffff;
       border: 1px solid #ebebeb;
-      border-radius: 4px;
+      border-radius: 3px;
       padding: 2.5rem 2rem;
       width: 100%;
       max-width: 380px;
     }
+    .gs-login-card__label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999999;
+      margin-bottom: 0.5rem;
+    }
     .gs-login-card h1 {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 700;
       letter-spacing: -0.01em;
       color: #050505;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
     }
-    .gs-login-card p {
-      font-size: 0.85rem;
+    .gs-login-card__sub {
+      font-size: 0.84rem;
       color: #888888;
       margin-bottom: 1.75rem;
     }
@@ -123,7 +134,9 @@
       text-transform: uppercase;
       color: #444444;
     }
-    .gs-field input {
+    .gs-field input,
+    .gs-field textarea,
+    .gs-field select {
       width: 100%;
       border: 1px solid #dddddd;
       border-radius: 3px;
@@ -135,14 +148,27 @@
       outline: none;
       transition: border-color 150ms ease, box-shadow 150ms ease;
     }
-    .gs-field input:focus {
+    .gs-field input:focus,
+    .gs-field textarea:focus,
+    .gs-field select:focus {
       border-color: #333333;
       box-shadow: 0 0 0 2px rgba(51,51,51,0.12);
     }
+    .gs-field input::placeholder { color: #bbbbbb; }
+    .gs-field textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .gs-login-error {
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: #c0392b;
+      display: none;
+    }
+
+    /* ─── Grandspace Buttons ────────────────────────────────── */
     .gs-btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 0.4rem;
       background: #ffffff;
       color: #050505;
       border: 3px solid #050505;
@@ -155,21 +181,23 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: background 150ms ease, color 150ms ease;
-      text-decoration: none;
       white-space: nowrap;
+      text-decoration: none;
     }
     .gs-btn-primary:hover { background: #050505; color: #ffffff; }
     .gs-btn-primary:focus-visible { outline: 2px solid #333333; outline-offset: 3px; }
-    .gs-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .gs-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
     .gs-btn-outline {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 0.4rem;
       background: transparent;
       color: #666666;
       border: 1.5px solid #cccccc;
       border-radius: 3px;
-      padding: 0.45em 1em;
+      padding: 0.55em 1.1em;
       font-family: 'Open Sans', sans-serif;
       font-size: 0.72rem;
       font-weight: 600;
@@ -180,13 +208,54 @@
       white-space: nowrap;
     }
     .gs-btn-outline:hover { border-color: #333333; color: #333333; }
-    .gs-login-error {
-      margin-top: 0.75rem;
-      font-size: 0.82rem;
-      color: #c0392b;
-      display: none;
+    .gs-btn-outline:focus-visible { outline: 2px solid #333333; outline-offset: 3px; }
+    .gs-btn-outline:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Action-specific variants — keep color for clear intent */
+    .gs-btn-approve {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      background: transparent; color: #065f46;
+      border: 1.5px solid #10b981; border-radius: 3px;
+      padding: 0.55em 1.1em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+      white-space: nowrap;
     }
-    #gs-login-btn { width: 100%; margin-top: 0.5rem; }
+    .gs-btn-approve:hover { background: #10b981; color: #ffffff; }
+    .gs-btn-approve:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .gs-btn-reject {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      background: transparent; color: #991b1b;
+      border: 1.5px solid #ef4444; border-radius: 3px;
+      padding: 0.55em 1.1em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+      white-space: nowrap;
+    }
+    .gs-btn-reject:hover { background: #ef4444; color: #ffffff; }
+    .gs-btn-reject:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .gs-btn-message {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      background: transparent; color: #666666;
+      border: 1.5px solid #cccccc; border-radius: 3px;
+      padding: 0.55em 1.1em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 150ms ease, color 150ms ease;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .gs-btn-message:hover { border-color: #333333; color: #050505; }
 
     /* ─── Dashboard ─────────────────────────────────────────── */
     #gs-dashboard {
@@ -196,257 +265,538 @@
       padding: 2.5rem 1.5rem 5rem;
     }
 
-    /* Heading row */
+    /* Page heading */
     .gs-dash-heading {
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
     .gs-dash-heading h1 {
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #050505;
+      margin-bottom: 0.15rem;
     }
-    .gs-count-badge {
+    .gs-dash-heading__sub {
       font-size: 0.78rem;
-      font-weight: 600;
-      background: #ebebeb;
-      color: #555555;
-      border-radius: 20px;
-      padding: 0.2em 0.75em;
-      letter-spacing: 0.04em;
+      color: #aaaaaa;
+      letter-spacing: 0.02em;
     }
 
-    /* Stat pills */
+    /* ─── KPI stat cards ────────────────────────────────────── */
     .gs-stats {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 0.75rem;
-      flex-wrap: wrap;
       margin-bottom: 2rem;
     }
-    .gs-stat-pill {
+    .gs-stat-card {
       background: #ffffff;
       border: 1px solid #ebebeb;
       border-radius: 3px;
-      padding: 0.75rem 1.25rem;
-      min-width: 110px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      position: relative;
     }
-    .gs-stat-pill__label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+    .gs-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+      border-radius: 3px 0 0 3px;
+      background: transparent;
+      transition: background 150ms ease;
+    }
+    .gs-stat-card:hover,
+    .gs-stat-card.is-active {
+      border-color: #cccccc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .gs-stat-card.is-active::before         { background: #050505; }
+    .gs-stat-card--pending.is-active::before  { background: #d97706; }
+    .gs-stat-card--approved.is-active::before { background: #059669; }
+    .gs-stat-card--rejected.is-active::before { background: #dc2626; }
+
+    .gs-stat-card__label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #999999;
-      margin-bottom: 0.2rem;
+      color: #aaaaaa;
+      margin-bottom: 0.4rem;
     }
-    .gs-stat-pill__value {
-      font-size: 1.5rem;
+    .gs-stat-card__value {
+      font-size: 2rem;
       font-weight: 700;
       color: #050505;
-      line-height: 1.2;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .gs-stat-card__hint {
+      font-size: 0.72rem;
+      color: #cccccc;
     }
 
-    /* Table wrapper */
-    .gs-table-wrap {
-      background: #ffffff;
-      border: 1px solid #ebebeb;
-      border-radius: 4px;
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 700px;
-    }
-    thead th {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #999999;
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid #ebebeb;
-      text-align: left;
-      white-space: nowrap;
-    }
-    tbody tr {
-      border-bottom: 1px solid #f0f0f0;
-      transition: background 120ms ease;
-    }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: #fafafa; }
-    tbody td {
-      font-size: 0.85rem;
-      color: #333333;
-      padding: 0.85rem 1rem;
-      vertical-align: middle;
-    }
-    .gs-td-name { font-weight: 600; color: #050505; white-space: nowrap; }
-    .gs-td-props {
-      font-size: 0.78rem;
-      color: #666666;
-      max-width: 200px;
-    }
-    .gs-td-date { white-space: nowrap; color: #777777; font-size: 0.8rem; }
-
-    /* Status badge */
-    .gs-status {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-radius: 20px;
-      padding: 0.25em 0.75em;
-    }
-    .gs-status--pending  { background: #fef3c7; color: #92400e; }
-    .gs-status--approved { background: #d1fae5; color: #065f46; }
-    .gs-status--rejected { background: #fee2e2; color: #991b1b; }
-
-    /* Action buttons */
-    .gs-td-actions { white-space: nowrap; }
-    .gs-td-actions .gs-btn-outline { margin-right: 0.4rem; }
-    .gs-btn-approve {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: transparent; color: #065f46;
-      border: 1.5px solid #10b981; border-radius: 3px;
-      padding: 0.45em 1em; font-family: 'Open Sans', sans-serif;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; cursor: pointer;
-      transition: background 150ms ease, color 150ms ease;
-      white-space: nowrap;
-    }
-    .gs-btn-approve:hover { background: #10b981; color: #ffffff; }
-    .gs-btn-reject {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: transparent; color: #991b1b;
-      border: 1.5px solid #ef4444; border-radius: 3px;
-      padding: 0.45em 1em; font-family: 'Open Sans', sans-serif;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; cursor: pointer;
-      transition: background 150ms ease, color 150ms ease;
-      white-space: nowrap;
-    }
-    .gs-btn-reject:hover { background: #ef4444; color: #ffffff; }
-
-    /* Loading / empty state */
-    .gs-table-state {
-      padding: 3rem 1rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #aaaaaa;
-    }
-
-    /* ─── Modal ─────────────────────────────────────────────── */
-    #gs-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 100;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-    #gs-modal-overlay.gs-modal--open { display: flex; }
-    .gs-modal {
-      background: #ffffff;
-      border-radius: 4px;
-      width: 100%;
-      max-width: 640px;
-      margin: auto;
-      position: relative;
-      padding: 2rem;
-    }
-    .gs-modal__close {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: none; border: none; cursor: pointer;
-      color: #aaaaaa; font-size: 1.4rem; line-height: 1;
-      transition: color 120ms ease;
-    }
-    .gs-modal__close:hover { color: #333333; }
-    .gs-modal__title {
-      font-size: 1.1rem; font-weight: 700;
-      color: #050505; margin-bottom: 1.5rem;
-      padding-right: 2rem;
-    }
-    .gs-modal__section {
-      margin-bottom: 1.5rem;
-    }
-    .gs-modal__section-heading {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: #999999; margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid #ebebeb;
-    }
-    .gs-modal__row {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 0.25rem 0.75rem;
-      margin-bottom: 0.4rem;
-      font-size: 0.85rem;
-    }
-    .gs-modal__row dt {
-      color: #888888; font-weight: 500;
-    }
-    .gs-modal__row dd {
-      color: #222222; font-weight: 400;
-    }
-    .gs-modal__doc-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #333333;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      cursor: pointer;
-      background: none; border: none;
-      font-family: 'Open Sans', sans-serif;
-      transition: color 150ms ease;
-      padding: 0;
-    }
-    .gs-modal__doc-link:hover { color: #050505; }
-    .gs-modal__docs { display: flex; flex-direction: column; gap: 0.6rem; }
-    .gs-modal__footer {
+    /* ─── Toolbar ────────────────────────────────────────────── */
+    .gs-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-top: 1.75rem;
-      padding-top: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .gs-toolbar__left  { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+    .gs-toolbar__right { display: flex; align-items: center; gap: 0.5rem; }
+
+    /* Filter pills */
+    .gs-filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35em 0.85em;
+      border-radius: 2px;
+      border: 1.5px solid #dddddd;
+      background: #ffffff;
+      color: #888888;
+      cursor: pointer;
+      transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .gs-filter-pill:hover { border-color: #999999; color: #333333; }
+    .gs-filter-pill.is-active {
+      background: #050505;
+      border-color: #050505;
+      color: #ffffff;
+    }
+    .gs-filter-pill--pending.is-active  { background: #d97706; border-color: #d97706; }
+    .gs-filter-pill--approved.is-active { background: #059669; border-color: #059669; }
+    .gs-filter-pill--rejected.is-active { background: #dc2626; border-color: #dc2626; }
+
+    .gs-filter-pill__count {
+      font-size: 0.63rem;
+      padding: 0.08em 0.4em;
+      border-radius: 2px;
+      background: rgba(0,0,0,0.12);
+      line-height: 1.4;
+    }
+    .gs-filter-pill:not(.is-active) .gs-filter-pill__count {
+      background: #f0f0f0;
+      color: #888888;
+    }
+
+    /* Search input */
+    .gs-search-wrap { position: relative; }
+    .gs-search-wrap__icon {
+      position: absolute;
+      left: 0.7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #cccccc;
+    }
+    .gs-search-input {
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 0.55em 0.875em 0.55em 2.1rem;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.82rem;
+      color: #333333;
+      background: #ffffff;
+      outline: none;
+      width: 210px;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+    .gs-search-input:focus { border-color: #333333; box-shadow: 0 0 0 2px rgba(51,51,51,0.10); }
+    .gs-search-input::placeholder { color: #cccccc; }
+
+    /* Sort select */
+    .gs-sort-select {
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 0.55em 2.2em 0.55em 0.875em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.78rem;
+      color: #555555;
+      background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 0.75em center;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 150ms ease;
+    }
+    .gs-sort-select:focus { border-color: #333333; }
+
+    /* Results label */
+    .gs-results-label {
+      font-size: 0.72rem;
+      color: #bbbbbb;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── Table ──────────────────────────────────────────────── */
+    .gs-table-wrap {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 3px;
+      overflow-x: auto;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    thead th {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #ebebeb;
+      text-align: left;
+      white-space: nowrap;
+      user-select: none;
+    }
+    tbody tr {
+      border-bottom: 1px solid #f5f5f5;
+      transition: background 120ms ease;
+      cursor: pointer;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #fafaf8; }
+    tbody td {
+      font-size: 0.85rem;
+      color: #444444;
+      padding: 0.8rem 1rem;
+      vertical-align: middle;
+    }
+
+    .gs-td-initials {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f2f0eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #888888;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .gs-td-name-cell  { display: flex; align-items: center; gap: 0.65rem; }
+    .gs-td-name       { font-weight: 600; color: #050505; white-space: nowrap; font-size: 0.85rem; }
+    .gs-td-email-sub  { font-size: 0.74rem; color: #aaaaaa; margin-top: 0.05rem; }
+    .gs-td-props      { font-size: 0.78rem; color: #888888; max-width: 180px; line-height: 1.5; }
+    .gs-td-date       { white-space: nowrap; font-size: 0.78rem; color: #999999; }
+    .gs-td-actions    { white-space: nowrap; opacity: 0; transition: opacity 150ms ease; }
+    tbody tr:hover .gs-td-actions { opacity: 1; }
+    .gs-td-actions button + button { margin-left: 0.35rem; }
+
+    /* Status badge */
+    .gs-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      padding: 0.28em 0.7em;
+    }
+    .gs-status__dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .gs-status--pending  { background: #fef3c7; color: #92400e; }
+    .gs-status--pending  .gs-status__dot { background: #d97706; }
+    .gs-status--approved { background: #d1fae5; color: #065f46; }
+    .gs-status--approved .gs-status__dot { background: #059669; }
+    .gs-status--rejected { background: #fee2e2; color: #991b1b; }
+    .gs-status--rejected .gs-status__dot { background: #dc2626; }
+
+    /* Empty / loading state */
+    .gs-table-state {
+      padding: 3rem 1rem;
+      text-align: center;
+      font-size: 0.84rem;
+      color: #cccccc;
+    }
+    .gs-table-state strong { display: block; font-size: 0.9rem; color: #bbbbbb; margin-bottom: 0.2rem; }
+
+    /* ─── Detail Drawer ──────────────────────────────────────── */
+    #gs-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: 80;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+    }
+    #gs-drawer-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+    #gs-drawer {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 480px;
+      max-width: 100vw;
+      background: #ffffff;
+      border-left: 1px solid #ebebeb;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #gs-drawer.is-open { transform: translateX(0); }
+
+    /* Drawer header */
+    .gs-drawer__header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #ebebeb;
+      flex-shrink: 0;
+    }
+    .gs-drawer__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 150ms ease;
+      font-family: 'Open Sans', sans-serif;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .gs-drawer__back:hover { color: #333333; }
+    .gs-drawer__header-info { flex: 1; min-width: 0; }
+    .gs-drawer__name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #050505;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .gs-drawer__email {
+      font-size: 0.75rem;
+      color: #aaaaaa;
+    }
+    .gs-drawer__close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #cccccc;
+      padding: 0.2rem;
+      border-radius: 2px;
+      transition: color 120ms ease;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .gs-drawer__close:hover { color: #333333; }
+
+    /* Status strip */
+    .gs-drawer__status-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      background: #fafafa;
+      border-bottom: 1px solid #ebebeb;
+      flex-shrink: 0;
+    }
+    .gs-drawer__status-strip-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #cccccc;
+    }
+
+    /* Drawer body */
+    .gs-drawer__body { flex: 1; overflow-y: auto; }
+
+    .gs-drawer__section {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .gs-drawer__section:last-of-type { border-bottom: none; }
+
+    .gs-drawer__section-heading {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #bbbbbb;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    .gs-data-grid {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0.5rem 0.75rem;
+    }
+    .gs-data-grid dt { font-size: 0.78rem; color: #aaaaaa; font-weight: 500; }
+    .gs-data-grid dd { font-size: 0.84rem; color: #222222; word-break: break-word; }
+
+    /* Document buttons */
+    .gs-doc-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .gs-doc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #333333;
+      background: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 0.65em 1em;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif;
+      transition: border-color 150ms ease, background 150ms ease;
+      text-align: left;
+      width: 100%;
+      letter-spacing: 0.01em;
+    }
+    .gs-doc-btn:hover { border-color: #333333; background: #fafafa; }
+    .gs-doc-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Drawer footer */
+    .gs-drawer__footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #ebebeb;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .gs-drawer__footer-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .gs-drawer__footer-row .gs-btn-approve,
+    .gs-drawer__footer-row .gs-btn-reject { flex: 1; justify-content: center; }
+
+    /* ─── Compose Overlay ────────────────────────────────────── */
+    #gs-compose-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 110;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+    #gs-compose-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+    .gs-compose-modal {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 3px;
+      width: 100%;
+      max-width: 500px;
+      transform: translateY(10px);
+      transition: transform 200ms ease;
+    }
+    #gs-compose-overlay.is-open .gs-compose-modal { transform: translateY(0); }
+
+    .gs-compose-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid #ebebeb;
+    }
+    .gs-compose-modal__title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #050505;
+      letter-spacing: -0.01em;
+    }
+    .gs-compose-modal__close {
+      background: none; border: none; cursor: pointer;
+      color: #cccccc; line-height: 1;
+      transition: color 120ms ease;
+    }
+    .gs-compose-modal__close:hover { color: #333333; }
+    .gs-compose-modal__body { padding: 1.5rem; }
+    .gs-compose-modal__note {
+      font-size: 0.76rem;
+      color: #999999;
+      background: #f8f8f8;
+      border: 1px solid #ebebeb;
+      border-radius: 3px;
+      padding: 0.6rem 0.875rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.55;
+    }
+    .gs-compose-modal__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
       border-top: 1px solid #ebebeb;
     }
-    .gs-modal__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
     /* ─── Toast ─────────────────────────────────────────────── */
     #gs-toast {
-      position: fixed; bottom: 1.5rem; right: 1.5rem;
-      background: #050505; color: #ffffff;
-      font-size: 0.82rem; font-weight: 600;
-      padding: 0.75rem 1.25rem; border-radius: 3px;
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: #050505;
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 600;
       letter-spacing: 0.04em;
-      opacity: 0; pointer-events: none;
-      transition: opacity 200ms ease;
+      padding: 0.65rem 1.25rem;
+      border-radius: 3px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease, transform 200ms ease;
       z-index: 200;
+      white-space: nowrap;
     }
-    #gs-toast.gs-toast--show { opacity: 1; }
+    #gs-toast.gs-toast--show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    #gs-toast.gs-toast--success { background: #059669; }
+    #gs-toast.gs-toast--error   { background: #c0392b; }
 
-    /* ─── Responsive ────────────────────────────────────────── */
-    @media (max-width: 520px) {
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .gs-stats { grid-template-columns: repeat(2, 1fr); }
+      #gs-drawer { width: 100vw; }
+    }
+    @media (max-width: 640px) {
       .apply-header { padding: 0 1rem; }
+      .apply-header__nav span { display: none; }
       #gs-dashboard { padding: 1.5rem 0.75rem 4rem; }
-      .gs-modal { padding: 1.25rem; }
-      .gs-modal__row { grid-template-columns: 1fr; }
-      .gs-modal__row dt { color: #999; font-size: 0.75rem; }
+      .gs-stats { gap: 0.5rem; }
+      .gs-toolbar { flex-direction: column; align-items: stretch; }
+      .gs-toolbar__right { flex-wrap: wrap; }
+      .gs-search-input { width: 100%; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -462,16 +812,17 @@
   <header class="apply-header">
     <a href="index.html" class="apply-header__logo">Grandspace</a>
     <nav class="apply-header__nav" aria-label="Admin navigation">
-      <span id="gs-admin-email" style="font-size:0.76rem;color:#aaa;letter-spacing:0.05em;"></span>
-      <button id="gs-signout-btn" style="display:none;" aria-label="Sign out">Sign Out</button>
+      <span id="gs-admin-email"></span>
+      <button id="gs-signout-btn" aria-label="Sign out">Sign Out</button>
     </nav>
   </header>
 
-  <!-- ─── Login Screen ────────────────────────────────────── -->
+  <!-- ─── Login ────────────────────────────────────────────── -->
   <div id="gs-login-screen" role="main">
     <div class="gs-login-card">
-      <h1>Admin Sign In</h1>
-      <p>Grandspace — Applications Dashboard</p>
+      <p class="gs-login-card__label">Grandspace Admin</p>
+      <h1>Sign In</h1>
+      <p class="gs-login-card__sub">Applications management dashboard</p>
       <div class="gs-field">
         <label for="gs-login-email">Email</label>
         <input type="email" id="gs-login-email" autocomplete="email" placeholder="admin@grandspace.co.za" />
@@ -480,50 +831,92 @@
         <label for="gs-login-password">Password</label>
         <input type="password" id="gs-login-password" autocomplete="current-password" placeholder="••••••••" />
       </div>
-      <button class="gs-btn-primary" id="gs-login-btn">Sign In</button>
-      <p class="gs-login-error" id="gs-login-error" role="alert">Invalid email or password.</p>
+      <button class="gs-btn-primary" id="gs-login-btn" style="width:100%;margin-top:0.5rem;">Sign In</button>
+      <p class="gs-login-error" id="gs-login-error" role="alert">Incorrect email or password.</p>
     </div>
   </div>
 
-  <!-- ─── Dashboard ───────────────────────────────────────── -->
+  <!-- ─── Dashboard ────────────────────────────────────────── -->
   <main id="gs-dashboard" aria-label="Applications dashboard">
 
     <div class="gs-dash-heading">
-      <h1>Applications</h1>
-      <span class="gs-count-badge" id="gs-total-badge">0</span>
+      <div>
+        <h1>Applications</h1>
+        <p class="gs-dash-heading__sub" id="gs-last-updated">Loading…</p>
+      </div>
+      <button class="gs-btn-outline" id="gs-export-btn" aria-label="Export as CSV">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Export CSV
+      </button>
     </div>
 
-    <!-- Stat pills -->
-    <div class="gs-stats" role="region" aria-label="Application statistics">
-      <div class="gs-stat-pill">
-        <div class="gs-stat-pill__label">Total</div>
-        <div class="gs-stat-pill__value" id="gs-stat-total">—</div>
+    <!-- KPI Cards -->
+    <div class="gs-stats" id="gs-kpi-row">
+      <div class="gs-stat-card is-active" data-filter="all" role="button" tabindex="0" aria-label="Show all">
+        <div class="gs-stat-card__label">Total</div>
+        <div class="gs-stat-card__value" id="gs-stat-total">—</div>
+        <div class="gs-stat-card__hint">All applications</div>
       </div>
-      <div class="gs-stat-pill">
-        <div class="gs-stat-pill__label">Pending</div>
-        <div class="gs-stat-pill__value" id="gs-stat-pending">—</div>
+      <div class="gs-stat-card gs-stat-card--pending" data-filter="pending" role="button" tabindex="0" aria-label="Filter pending">
+        <div class="gs-stat-card__label">Pending</div>
+        <div class="gs-stat-card__value" id="gs-stat-pending">—</div>
+        <div class="gs-stat-card__hint">Awaiting review</div>
       </div>
-      <div class="gs-stat-pill">
-        <div class="gs-stat-pill__label">Approved</div>
-        <div class="gs-stat-pill__value" id="gs-stat-approved">—</div>
+      <div class="gs-stat-card gs-stat-card--approved" data-filter="approved" role="button" tabindex="0" aria-label="Filter approved">
+        <div class="gs-stat-card__label">Approved</div>
+        <div class="gs-stat-card__value" id="gs-stat-approved">—</div>
+        <div class="gs-stat-card__hint">Offers issued</div>
       </div>
-      <div class="gs-stat-pill">
-        <div class="gs-stat-pill__label">Rejected</div>
-        <div class="gs-stat-pill__value" id="gs-stat-rejected">—</div>
+      <div class="gs-stat-card gs-stat-card--rejected" data-filter="rejected" role="button" tabindex="0" aria-label="Filter rejected">
+        <div class="gs-stat-card__label">Rejected</div>
+        <div class="gs-stat-card__value" id="gs-stat-rejected">—</div>
+        <div class="gs-stat-card__hint">Not progressed</div>
       </div>
     </div>
 
-    <!-- Applications table -->
+    <!-- Toolbar -->
+    <div class="gs-toolbar">
+      <div class="gs-toolbar__left" id="gs-filter-pills">
+        <button class="gs-filter-pill is-active" data-filter="all">
+          All <span class="gs-filter-pill__count" id="pill-count-all">0</span>
+        </button>
+        <button class="gs-filter-pill gs-filter-pill--pending" data-filter="pending">
+          Pending <span class="gs-filter-pill__count" id="pill-count-pending">0</span>
+        </button>
+        <button class="gs-filter-pill gs-filter-pill--approved" data-filter="approved">
+          Approved <span class="gs-filter-pill__count" id="pill-count-approved">0</span>
+        </button>
+        <button class="gs-filter-pill gs-filter-pill--rejected" data-filter="rejected">
+          Rejected <span class="gs-filter-pill__count" id="pill-count-rejected">0</span>
+        </button>
+      </div>
+      <div class="gs-toolbar__right">
+        <div class="gs-search-wrap">
+          <svg class="gs-search-wrap__icon" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="search" class="gs-search-input" id="gs-search" placeholder="Search name or email…" autocomplete="off" />
+        </div>
+        <select class="gs-sort-select" id="gs-sort-select" aria-label="Sort applications">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="name-az">Name A–Z</option>
+          <option value="name-za">Name Z–A</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="gs-results-label" id="gs-results-label"></p>
+
+    <!-- Table -->
     <div class="gs-table-wrap">
       <table aria-label="Applications list">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Applicant</th>
             <th>Properties</th>
+            <th>Move-in</th>
             <th>Submitted</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th style="width:1%;"></th>
           </tr>
         </thead>
         <tbody id="gs-table-body">
@@ -531,64 +924,136 @@
         </tbody>
       </table>
     </div>
+
   </main>
 
-  <!-- ─── Detail Modal ─────────────────────────────────────── -->
-  <div id="gs-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="gs-modal-title">
-    <div class="gs-modal">
-      <button class="gs-modal__close" id="gs-modal-close" aria-label="Close modal">&#x2715;</button>
-      <h2 class="gs-modal__title" id="gs-modal-title">Application Details</h2>
+  <!-- ─── Detail Drawer ────────────────────────────────────── -->
+  <div id="gs-drawer-overlay" aria-hidden="true"></div>
+  <aside id="gs-drawer" role="complementary" aria-label="Application detail" aria-hidden="true">
 
-      <!-- Personal -->
-      <div class="gs-modal__section">
-        <div class="gs-modal__section-heading">Personal Details</div>
-        <dl>
-          <div class="gs-modal__row"><dt>Name</dt><dd id="md-name"></dd></div>
-          <div class="gs-modal__row"><dt>Date of Birth</dt><dd id="md-dob"></dd></div>
-          <div class="gs-modal__row"><dt>Nationality</dt><dd id="md-nationality"></dd></div>
-          <div class="gs-modal__row"><dt>Phone</dt><dd id="md-phone"></dd></div>
-          <div class="gs-modal__row"><dt>Email</dt><dd id="md-email"></dd></div>
+    <div class="gs-drawer__header">
+      <button class="gs-drawer__back" id="gs-drawer-back" aria-label="Close panel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
+      <div class="gs-drawer__header-info">
+        <div class="gs-drawer__name" id="dw-name">—</div>
+        <div class="gs-drawer__email" id="dw-email">—</div>
+      </div>
+      <button class="gs-drawer__close" id="gs-drawer-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="gs-drawer__status-strip">
+      <span class="gs-drawer__status-strip-label">Status</span>
+      <span id="dw-status-badge" class="gs-status gs-status--pending">
+        <span class="gs-status__dot"></span> Pending
+      </span>
+    </div>
+
+    <div class="gs-drawer__body">
+
+      <div class="gs-drawer__section">
+        <div class="gs-drawer__section-heading">Personal Details</div>
+        <dl class="gs-data-grid">
+          <dt>Full Name</dt><dd id="dw-fullname">—</dd>
+          <dt>Date of Birth</dt><dd id="dw-dob">—</dd>
+          <dt>Nationality</dt><dd id="dw-nationality">—</dd>
+          <dt>Phone</dt><dd id="dw-phone">—</dd>
         </dl>
       </div>
 
-      <!-- University -->
-      <div class="gs-modal__section">
-        <div class="gs-modal__section-heading">University</div>
-        <dl>
-          <div class="gs-modal__row"><dt>Institution</dt><dd id="md-institution"></dd></div>
-          <div class="gs-modal__row"><dt>Year of Study</dt><dd id="md-year"></dd></div>
+      <div class="gs-drawer__section">
+        <div class="gs-drawer__section-heading">University</div>
+        <dl class="gs-data-grid">
+          <dt>Institution</dt><dd id="dw-institution">—</dd>
+          <dt>Year of Study</dt><dd id="dw-year">—</dd>
         </dl>
       </div>
 
-      <!-- Preferences -->
-      <div class="gs-modal__section">
-        <div class="gs-modal__section-heading">Preferences</div>
-        <dl>
-          <div class="gs-modal__row"><dt>Properties</dt><dd id="md-properties"></dd></div>
-          <div class="gs-modal__row"><dt>Move-in Date</dt><dd id="md-movein"></dd></div>
-          <div class="gs-modal__row"><dt>Lease Duration</dt><dd id="md-lease"></dd></div>
+      <div class="gs-drawer__section">
+        <div class="gs-drawer__section-heading">Property Preferences</div>
+        <dl class="gs-data-grid">
+          <dt>Properties</dt><dd id="dw-properties">—</dd>
+          <dt>Move-in Date</dt><dd id="dw-movein">—</dd>
+          <dt>Lease Duration</dt><dd id="dw-lease">—</dd>
         </dl>
       </div>
 
-      <!-- Documents -->
-      <div class="gs-modal__section">
-        <div class="gs-modal__section-heading">Documents</div>
-        <div class="gs-modal__docs">
-          <button class="gs-modal__doc-link" id="md-enrolment-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            View Enrolment Document
+      <div class="gs-drawer__section">
+        <div class="gs-drawer__section-heading">Documents</div>
+        <div class="gs-doc-list">
+          <button class="gs-doc-btn" id="dw-enrolment-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Enrolment / Acceptance Letter
           </button>
-          <button class="gs-modal__doc-link" id="md-id-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" stroke="#333" stroke-width="1.5"/><circle cx="8" cy="12" r="2" stroke="#333" stroke-width="1.5"/><path d="M13 10h4M13 14h3" stroke="#333" stroke-width="1.5" stroke-linecap="round"/></svg>
-            View ID Document
+          <button class="gs-doc-btn" id="dw-id-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M13 10h4M13 14h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            ID / Passport Document
           </button>
         </div>
       </div>
 
-      <!-- Footer: status + actions -->
-      <div class="gs-modal__footer">
-        <span id="md-status-badge" class="gs-status gs-status--pending">Pending</span>
-        <div class="gs-modal__actions" id="md-actions"></div>
+      <div class="gs-drawer__section">
+        <div class="gs-drawer__section-heading">Submission</div>
+        <dl class="gs-data-grid">
+          <dt>Submitted</dt><dd id="dw-submitted">—</dd>
+          <dt>Reference</dt><dd id="dw-ref" style="font-size:0.72rem;color:#bbbbbb;word-break:break-all;">—</dd>
+        </dl>
+      </div>
+
+    </div>
+
+    <div class="gs-drawer__footer">
+      <div class="gs-drawer__footer-row">
+        <button class="gs-btn-approve" id="dw-approve-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Approve
+        </button>
+        <button class="gs-btn-reject" id="dw-reject-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          Reject
+        </button>
+      </div>
+      <button class="gs-btn-message" id="dw-message-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Send Message to Applicant
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ─── Compose Overlay ───────────────────────────────────── -->
+  <div id="gs-compose-overlay" role="dialog" aria-modal="true" aria-labelledby="gs-compose-title">
+    <div class="gs-compose-modal">
+      <div class="gs-compose-modal__header">
+        <span class="gs-compose-modal__title" id="gs-compose-title">Send Message</span>
+        <button class="gs-compose-modal__close" id="gs-compose-close" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="gs-compose-modal__body">
+        <p class="gs-compose-modal__note">This will open your default email app with the message pre-filled. You can edit it before sending.</p>
+        <div class="gs-field">
+          <label for="gs-compose-to">To</label>
+          <input type="email" id="gs-compose-to" readonly style="background:#fafafa;cursor:default;" />
+        </div>
+        <div class="gs-field">
+          <label for="gs-compose-subject">Subject</label>
+          <input type="text" id="gs-compose-subject" />
+        </div>
+        <div class="gs-field" style="margin-bottom:0;">
+          <label for="gs-compose-body">Message</label>
+          <textarea id="gs-compose-body" placeholder="Write your message here…"></textarea>
+        </div>
+      </div>
+      <div class="gs-compose-modal__footer">
+        <button class="gs-btn-outline" id="gs-compose-cancel">Cancel</button>
+        <button class="gs-btn-primary" id="gs-compose-send" style="padding:0.55em 1.25em;font-size:0.72rem;border-width:2px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m22 2-11 11M22 2 15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Open in Email App
+        </button>
       </div>
     </div>
   </div>
@@ -602,14 +1067,12 @@
   <script>
     'use strict';
 
-    // ── Config ────────────────────────────────────────────────
     var SUPABASE_URL      = 'https://royqbympojdlgtszkemk.supabase.co';
     var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJveXFieW1wb2pkbGd0c3prZW1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDgxNDEsImV4cCI6MjA5MTk4NDE0MX0.S2I6WP4LlJO_F3sXU6xZnTC4VNFOHrbxCG2wW7RscTA';
     var STORAGE_BUCKET    = 'application-docs';
-
     var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // ── Element refs ──────────────────────────────────────────
+    // ── Refs ───────────────────────────────────────────────────
     var loginScreen    = document.getElementById('gs-login-screen');
     var dashboard      = document.getElementById('gs-dashboard');
     var loginEmailEl   = document.getElementById('gs-login-email');
@@ -619,341 +1082,428 @@
     var signoutBtn     = document.getElementById('gs-signout-btn');
     var adminEmailEl   = document.getElementById('gs-admin-email');
     var tableBody      = document.getElementById('gs-table-body');
-    var modalOverlay   = document.getElementById('gs-modal-overlay');
-    var modalCloseBtn  = document.getElementById('gs-modal-close');
+    var drawerOverlay  = document.getElementById('gs-drawer-overlay');
+    var drawer         = document.getElementById('gs-drawer');
+    var drawerBackBtn  = document.getElementById('gs-drawer-back');
+    var drawerCloseBtn = document.getElementById('gs-drawer-close');
     var toast          = document.getElementById('gs-toast');
+    var searchInput    = document.getElementById('gs-search');
+    var sortSelect     = document.getElementById('gs-sort-select');
+    var resultsLabel   = document.getElementById('gs-results-label');
+    var exportBtn      = document.getElementById('gs-export-btn');
+    var lastUpdatedEl  = document.getElementById('gs-last-updated');
+    var composeOverlay = document.getElementById('gs-compose-overlay');
+    var composeTo      = document.getElementById('gs-compose-to');
+    var composeSubject = document.getElementById('gs-compose-subject');
+    var composeBody    = document.getElementById('gs-compose-body');
 
-    // stat elements
     var statTotal    = document.getElementById('gs-stat-total');
     var statPending  = document.getElementById('gs-stat-pending');
     var statApproved = document.getElementById('gs-stat-approved');
     var statRejected = document.getElementById('gs-stat-rejected');
-    var totalBadge   = document.getElementById('gs-total-badge');
 
-    // modal fields
-    var mdName        = document.getElementById('md-name');
-    var mdDob         = document.getElementById('md-dob');
-    var mdNationality = document.getElementById('md-nationality');
-    var mdPhone       = document.getElementById('md-phone');
-    var mdEmail       = document.getElementById('md-email');
-    var mdInstitution = document.getElementById('md-institution');
-    var mdYear        = document.getElementById('md-year');
-    var mdProperties  = document.getElementById('md-properties');
-    var mdMovein      = document.getElementById('md-movein');
-    var mdLease       = document.getElementById('md-lease');
-    var mdStatusBadge = document.getElementById('md-status-badge');
-    var mdActions     = document.getElementById('md-actions');
-    var mdEnrolmentBtn= document.getElementById('md-enrolment-link');
-    var mdIdBtn       = document.getElementById('md-id-link');
+    var dwName        = document.getElementById('dw-name');
+    var dwEmail       = document.getElementById('dw-email');
+    var dwFullname    = document.getElementById('dw-fullname');
+    var dwDob         = document.getElementById('dw-dob');
+    var dwNationality = document.getElementById('dw-nationality');
+    var dwPhone       = document.getElementById('dw-phone');
+    var dwInstitution = document.getElementById('dw-institution');
+    var dwYear        = document.getElementById('dw-year');
+    var dwProperties  = document.getElementById('dw-properties');
+    var dwMovein      = document.getElementById('dw-movein');
+    var dwLease       = document.getElementById('dw-lease');
+    var dwStatusBadge = document.getElementById('dw-status-badge');
+    var dwApproveBtn  = document.getElementById('dw-approve-btn');
+    var dwRejectBtn   = document.getElementById('dw-reject-btn');
+    var dwMessageBtn  = document.getElementById('dw-message-btn');
+    var dwEnrolmentBtn= document.getElementById('dw-enrolment-btn');
+    var dwIdBtn       = document.getElementById('dw-id-btn');
+    var dwSubmitted   = document.getElementById('dw-submitted');
+    var dwRef         = document.getElementById('dw-ref');
 
-    // ── State ─────────────────────────────────────────────────
-    var allApplications   = [];
+    // ── State ──────────────────────────────────────────────────
+    var allApplications    = [];
     var currentApplication = null;
+    var activeFilter       = 'all';
+    var searchQuery        = '';
+    var sortOrder          = 'newest';
+    var toastTimer         = null;
 
-    // ── Helpers ───────────────────────────────────────────────
-
+    // ── Helpers ────────────────────────────────────────────────
     function formatDate(iso) {
       if (!iso) return '—';
       var d = new Date(iso);
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
     }
-
+    function formatDateTime(iso) {
+      if (!iso) return '—';
+      var d = new Date(iso);
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear()
+        + ' at ' + d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+    }
+    function capitalise(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+    function escHtml(str) {
+      if (!str && str !== 0) return '—';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function initials(f, l) { return ((f||'').charAt(0)+(l||'').charAt(0)).toUpperCase()||'?'; }
     function statusBadgeHTML(status) {
-      var cls = 'gs-status gs-status--' + (status || 'pending');
-      return '<span class="' + cls + '">' + capitalise(status || 'pending') + '</span>';
+      var s = status || 'pending';
+      return '<span class="gs-status gs-status--'+s+'"><span class="gs-status__dot"></span>'+capitalise(s)+'</span>';
     }
-
-    function capitalise(s) {
-      return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
-    }
-
-    function showToast(msg) {
+    function showToast(msg, type) {
+      if (toastTimer) clearTimeout(toastTimer);
       toast.textContent = msg;
-      toast.classList.add('gs-toast--show');
-      setTimeout(function () { toast.classList.remove('gs-toast--show'); }, 2500);
+      toast.className = 'gs-toast--show' + (type ? ' gs-toast--' + type : '');
+      toastTimer = setTimeout(function(){ toast.className = ''; }, 3000);
     }
 
-    // ── Auth ──────────────────────────────────────────────────
-
+    // ── Auth ───────────────────────────────────────────────────
     async function checkSession() {
-      var result = await client.auth.getSession();
-      if (result.data && result.data.session) {
-        onSignedIn(result.data.session.user);
-      }
+      var r = await client.auth.getSession();
+      if (r.data && r.data.session) onSignedIn(r.data.session.user);
     }
-
     async function signIn() {
       loginErrorEl.style.display = 'none';
       loginBtn.disabled = true;
       loginBtn.textContent = 'Signing in…';
-
-      var email    = loginEmailEl.value.trim();
-      var password = loginPassEl.value;
-
-      var result = await client.auth.signInWithPassword({ email: email, password: password });
-
-      if (result.error) {
+      var r = await client.auth.signInWithPassword({
+        email: loginEmailEl.value.trim(),
+        password: loginPassEl.value
+      });
+      if (r.error) {
         loginErrorEl.style.display = 'block';
         loginBtn.disabled = false;
         loginBtn.textContent = 'Sign In';
         return;
       }
-
-      onSignedIn(result.data.user);
+      onSignedIn(r.data.user);
     }
-
     async function signOut() {
       await client.auth.signOut();
-      adminEmailEl.textContent = '';
-      signoutBtn.style.display = 'none';
-      dashboard.style.display  = 'none';
+      adminEmailEl.textContent  = '';
+      signoutBtn.style.display  = 'none';
+      dashboard.style.display   = 'none';
       loginScreen.style.display = 'flex';
       loginPassEl.value = '';
     }
-
     function onSignedIn(user) {
-      loginScreen.style.display  = 'none';
-      dashboard.style.display    = 'block';
-      signoutBtn.style.display   = '';
-      adminEmailEl.textContent   = user.email;
-      loginBtn.disabled          = false;
-      loginBtn.textContent       = 'Sign In';
+      loginScreen.style.display = 'none';
+      dashboard.style.display   = 'block';
+      signoutBtn.style.display  = '';
+      adminEmailEl.textContent  = user.email;
+      loginBtn.disabled         = false;
+      loginBtn.textContent      = 'Sign In';
       loadApplications();
     }
 
-    // ── Data ──────────────────────────────────────────────────
-
+    // ── Data ───────────────────────────────────────────────────
     async function loadApplications() {
-      tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">Loading…</td></tr>';
-
-      var result = await client
-        .from('applications')
-        .select('*')
-        .order('submitted_at', { ascending: false });
-
-      if (result.error) {
-        tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">Failed to load applications.</td></tr>';
+      tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">Loading applications…</td></tr>';
+      var r = await client.from('applications').select('*').order('submitted_at', { ascending: false });
+      if (r.error) {
+        tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state"><strong>Failed to load.</strong>Check your connection and refresh.</td></tr>';
         return;
       }
-
-      allApplications = result.data || [];
-      renderTable();
+      allApplications = r.data || [];
       renderStats();
+      renderFiltered();
+      lastUpdatedEl.textContent = 'Updated ' + formatDateTime(new Date().toISOString());
     }
 
     function renderStats() {
       var total    = allApplications.length;
-      var pending  = allApplications.filter(function(a){ return a.status === 'pending'; }).length;
-      var approved = allApplications.filter(function(a){ return a.status === 'approved'; }).length;
-      var rejected = allApplications.filter(function(a){ return a.status === 'rejected'; }).length;
-
-      totalBadge.textContent   = total;
+      var pending  = allApplications.filter(function(a){ return a.status==='pending';  }).length;
+      var approved = allApplications.filter(function(a){ return a.status==='approved'; }).length;
+      var rejected = allApplications.filter(function(a){ return a.status==='rejected'; }).length;
       statTotal.textContent    = total;
       statPending.textContent  = pending;
       statApproved.textContent = approved;
       statRejected.textContent = rejected;
+      document.getElementById('pill-count-all').textContent      = total;
+      document.getElementById('pill-count-pending').textContent  = pending;
+      document.getElementById('pill-count-approved').textContent = approved;
+      document.getElementById('pill-count-rejected').textContent = rejected;
     }
 
-    function renderTable() {
-      if (!allApplications.length) {
-        tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">No applications yet.</td></tr>';
+    function getFiltered() {
+      var q = searchQuery.toLowerCase();
+      return allApplications.filter(function(a) {
+        var matchStatus = activeFilter === 'all' || a.status === activeFilter;
+        var matchSearch = !q ||
+          ((a.first_name||'')+' '+(a.last_name||'')).toLowerCase().includes(q) ||
+          (a.email||'').toLowerCase().includes(q) ||
+          (a.institution||'').toLowerCase().includes(q);
+        return matchStatus && matchSearch;
+      }).sort(function(a, b) {
+        if (sortOrder==='newest') return new Date(b.submitted_at||b.created_at) - new Date(a.submitted_at||a.created_at);
+        if (sortOrder==='oldest') return new Date(a.submitted_at||a.created_at) - new Date(b.submitted_at||b.created_at);
+        if (sortOrder==='name-az') return (a.first_name||'').localeCompare(b.first_name||'');
+        if (sortOrder==='name-za') return (b.first_name||'').localeCompare(a.first_name||'');
+        return 0;
+      });
+    }
+
+    function renderFiltered() {
+      var filtered = getFiltered();
+      resultsLabel.textContent = filtered.length + ' of ' + allApplications.length + ' application' + (allApplications.length===1?'':'s');
+      renderTable(filtered);
+    }
+
+    function renderTable(apps) {
+      if (!apps || !apps.length) {
+        var msg = searchQuery ? 'No results for "' + escHtml(searchQuery) + '".' : 'No applications yet.';
+        tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">' + msg + '</td></tr>';
         return;
       }
-
       tableBody.innerHTML = '';
-      allApplications.forEach(function(app) {
+      apps.forEach(function(app) {
         var tr = document.createElement('tr');
         tr.dataset.id = app.id;
-
         var props = Array.isArray(app.property_preferences)
           ? app.property_preferences.join(', ')
-          : (app.property_preferences || '—');
-
-        var actionBtns = '<button class="gs-btn-outline gs-action-view" data-id="' + app.id + '">View</button>';
-        if (app.status === 'pending') {
-          actionBtns += '<button class="gs-btn-approve gs-action-approve" data-id="' + app.id + '">Approve</button>';
-        } else if (app.status === 'approved') {
-          actionBtns += '<button class="gs-btn-reject gs-action-reject" data-id="' + app.id + '">Reject</button>';
+          : (app.property_preferences||'—');
+        var quickBtn = '';
+        if (app.status==='pending') {
+          quickBtn = '<button class="gs-btn-approve gs-action-approve" style="font-size:0.65rem;padding:0.3em 0.7em;" data-id="'+app.id+'" aria-label="Approve">Approve</button>';
+        } else if (app.status==='approved') {
+          quickBtn = '<button class="gs-btn-reject gs-action-reject" style="font-size:0.65rem;padding:0.3em 0.7em;" data-id="'+app.id+'" aria-label="Reject">Reject</button>';
         }
-
-        tr.innerHTML = [
-          '<td class="gs-td-name">' + escHtml(app.first_name + ' ' + app.last_name) + '</td>',
-          '<td>' + escHtml(app.email || '—') + '</td>',
-          '<td class="gs-td-props">' + escHtml(props) + '</td>',
-          '<td class="gs-td-date">' + formatDate(app.submitted_at || app.created_at) + '</td>',
-          '<td>' + statusBadgeHTML(app.status) + '</td>',
-          '<td class="gs-td-actions">' + actionBtns + '</td>'
-        ].join('');
-
+        tr.innerHTML =
+          '<td>' +
+            '<div class="gs-td-name-cell">' +
+              '<div class="gs-td-initials">'+escHtml(initials(app.first_name,app.last_name))+'</div>' +
+              '<div>' +
+                '<div class="gs-td-name">'+escHtml(app.first_name+' '+app.last_name)+'</div>' +
+                '<div class="gs-td-email-sub">'+escHtml(app.email)+'</div>' +
+              '</div>' +
+            '</div>' +
+          '</td>' +
+          '<td class="gs-td-props">'+escHtml(props)+'</td>' +
+          '<td class="gs-td-date">'+(app.movein_date ? formatDate(app.movein_date) : '—')+'</td>' +
+          '<td class="gs-td-date">'+formatDate(app.submitted_at||app.created_at)+'</td>' +
+          '<td>'+statusBadgeHTML(app.status)+'</td>' +
+          '<td class="gs-td-actions">'+quickBtn+'</td>';
         tableBody.appendChild(tr);
       });
     }
 
-    function escHtml(str) {
-      if (!str) return '—';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
-    // ── Table click delegation ────────────────────────────────
-
+    // ── Table delegation ───────────────────────────────────────
     tableBody.addEventListener('click', function(e) {
       var btn = e.target.closest('button');
-      if (!btn) return;
-      var id = btn.dataset.id;
-      if (!id) return;
-
-      if (btn.classList.contains('gs-action-view')) {
-        openModal(id);
-      } else if (btn.classList.contains('gs-action-approve')) {
-        updateStatus(id, 'approved', null);
-      } else if (btn.classList.contains('gs-action-reject')) {
-        updateStatus(id, 'rejected', null);
+      if (btn) {
+        var id = btn.dataset.id;
+        if (!id) return;
+        e.stopPropagation();
+        if (btn.classList.contains('gs-action-approve')) { updateStatus(id, 'approved'); return; }
+        if (btn.classList.contains('gs-action-reject'))  { updateStatus(id, 'rejected'); return; }
       }
+      var row = e.target.closest('tr[data-id]');
+      if (row) openDrawer(row.dataset.id);
     });
 
-    // ── Status update ─────────────────────────────────────────
-
-    async function updateStatus(id, newStatus, closeModalAfter) {
-      var result = await client
-        .from('applications')
-        .update({ status: newStatus })
-        .eq('id', id);
-
-      if (result.error) {
-        showToast('Update failed. Please try again.');
-        return;
-      }
-
-      // Update local cache
-      var app = allApplications.find(function(a){ return a.id === id; });
+    // ── Status update ──────────────────────────────────────────
+    async function updateStatus(id, newStatus) {
+      var r = await client.from('applications').update({ status: newStatus }).eq('id', id);
+      if (r.error) { showToast('Update failed. Please try again.', 'error'); return; }
+      var app = allApplications.find(function(a){ return a.id===id; });
       if (app) app.status = newStatus;
-
-      // Update table row in place
-      var tr = tableBody.querySelector('tr[data-id="' + id + '"]');
-      if (tr) {
-        var statusCell  = tr.querySelector('td:nth-child(5)');
-        var actionsCell = tr.querySelector('td:nth-child(6)');
-        if (statusCell)  statusCell.innerHTML = statusBadgeHTML(newStatus);
-        if (actionsCell) {
-          var actionBtns = '<button class="gs-btn-outline gs-action-view" data-id="' + id + '">View</button>';
-          if (newStatus === 'pending') {
-            actionBtns += '<button class="gs-btn-approve gs-action-approve" data-id="' + id + '">Approve</button>';
-          } else if (newStatus === 'approved') {
-            actionBtns += '<button class="gs-btn-reject gs-action-reject" data-id="' + id + '">Reject</button>';
-          }
-          actionsCell.innerHTML = actionBtns;
-        }
-      }
-
       renderStats();
-      showToast('Status updated to ' + newStatus + '.');
-
-      if (closeModalAfter !== null) {
-        closeModal();
+      renderFiltered();
+      if (currentApplication && currentApplication.id===id) {
+        currentApplication.status = newStatus;
+        refreshDrawerStatus(newStatus);
       }
+      showToast('Marked as ' + newStatus + '.', 'success');
     }
 
-    // ── Modal ─────────────────────────────────────────────────
+    function refreshDrawerStatus(status) {
+      dwStatusBadge.className = 'gs-status gs-status--' + status;
+      dwStatusBadge.innerHTML = '<span class="gs-status__dot"></span>' + capitalise(status);
+      dwApproveBtn.disabled = (status === 'approved');
+      dwRejectBtn.disabled  = (status === 'rejected');
+    }
 
-    async function openModal(id) {
-      var app = allApplications.find(function(a){ return a.id === id; });
+    // ── Drawer ─────────────────────────────────────────────────
+    function openDrawer(id) {
+      var app = allApplications.find(function(a){ return a.id===id; });
       if (!app) return;
       currentApplication = app;
 
-      // Populate fields
-      mdName.textContent        = (app.first_name || '') + ' ' + (app.last_name || '');
-      mdDob.textContent         = app.date_of_birth ? formatDate(app.date_of_birth) : '—';
-      mdNationality.textContent = app.nationality || '—';
-      mdPhone.textContent       = app.phone || '—';
-      mdEmail.textContent       = app.email || '—';
-      mdInstitution.textContent = app.institution || '—';
-      mdYear.textContent        = app.year_of_study || '—';
-      mdProperties.textContent  = Array.isArray(app.property_preferences)
+      dwName.textContent        = (app.first_name||'') + ' ' + (app.last_name||'');
+      dwEmail.textContent       = app.email || '—';
+      dwFullname.textContent    = (app.first_name||'') + ' ' + (app.last_name||'');
+      dwDob.textContent         = app.date_of_birth ? formatDate(app.date_of_birth) : '—';
+      dwNationality.textContent = app.nationality || '—';
+      dwPhone.textContent       = app.phone || '—';
+      dwInstitution.textContent = app.institution || '—';
+      dwYear.textContent        = app.year_of_study || '—';
+      dwProperties.textContent  = Array.isArray(app.property_preferences)
         ? app.property_preferences.join(', ')
-        : (app.property_preferences || '—');
-      mdMovein.textContent      = app.movein_date ? formatDate(app.movein_date) : '—';
-      mdLease.textContent       = app.lease_duration || '—';
+        : (app.property_preferences||'—');
+      dwMovein.textContent      = app.movein_date ? formatDate(app.movein_date) : '—';
+      dwLease.textContent       = app.lease_duration || '—';
+      dwSubmitted.textContent   = formatDateTime(app.submitted_at||app.created_at);
+      dwRef.textContent         = app.id || '—';
 
-      // Status badge
-      mdStatusBadge.className   = 'gs-status gs-status--' + (app.status || 'pending');
-      mdStatusBadge.textContent = capitalise(app.status || 'pending');
+      refreshDrawerStatus(app.status || 'pending');
+      setupDocBtn(dwEnrolmentBtn, app.enrolment_document_path, 'Enrolment / Acceptance Letter',
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      setupDocBtn(dwIdBtn, app.id_document_path, 'ID / Passport Document',
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M13 10h4M13 14h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>');
 
-      // Action buttons
-      mdActions.innerHTML = '';
-      if (app.status === 'pending') {
-        var approveBtn = document.createElement('button');
-        approveBtn.className   = 'gs-btn-approve';
-        approveBtn.textContent = 'Approve';
-        approveBtn.addEventListener('click', function() { updateStatus(app.id, 'approved', true); });
-        mdActions.appendChild(approveBtn);
-      } else if (app.status === 'approved') {
-        var rejectBtn = document.createElement('button');
-        rejectBtn.className   = 'gs-btn-reject';
-        rejectBtn.textContent = 'Reject';
-        rejectBtn.addEventListener('click', function() { updateStatus(app.id, 'rejected', true); });
-        mdActions.appendChild(rejectBtn);
-      }
-
-      // Document links
-      setupDocLink(mdEnrolmentBtn, app.enrolment_document_path);
-      setupDocLink(mdIdBtn,        app.id_document_path);
-
-      modalOverlay.classList.add('gs-modal--open');
+      drawerOverlay.classList.add('is-open');
+      drawer.classList.add('is-open');
+      drawer.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
 
-    function setupDocLink(btn, filePath) {
-      btn.onclick = null;
-      if (!filePath) {
-        btn.style.opacity = '0.4';
-        btn.style.pointerEvents = 'none';
-        return;
-      }
-      btn.style.opacity = '1';
-      btn.style.pointerEvents = '';
-      btn.onclick = async function() {
-        btn.textContent = 'Generating link…';
-        var result = await client.storage
-          .from(STORAGE_BUCKET)
-          .createSignedUrl(filePath, 3600);
-        if (result.error || !result.data) {
-          showToast('Could not generate document link.');
-          btn.textContent = btn === mdEnrolmentBtn ? 'View Enrolment Document' : 'View ID Document';
-          return;
-        }
-        window.open(result.data.signedUrl, '_blank', 'noopener,noreferrer');
-        btn.textContent = btn === mdEnrolmentBtn ? 'View Enrolment Document' : 'View ID Document';
-      };
-    }
-
-    function closeModal() {
-      modalOverlay.classList.remove('gs-modal--open');
+    function closeDrawer() {
+      drawerOverlay.classList.remove('is-open');
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       currentApplication = null;
     }
 
-    modalCloseBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', function(e) {
-      if (e.target === modalOverlay) closeModal();
-    });
+    function setupDocBtn(btn, filePath, label, svgHtml) {
+      btn.innerHTML = svgHtml + label;
+      btn.onclick = null;
+      if (!filePath) {
+        btn.disabled = true;
+        btn.title = 'No document uploaded';
+        return;
+      }
+      btn.disabled = false;
+      btn.title = '';
+      btn.onclick = async function() {
+        btn.innerHTML = svgHtml + 'Generating link…';
+        btn.disabled = true;
+        var r = await client.storage.from(STORAGE_BUCKET).createSignedUrl(filePath, 3600);
+        btn.innerHTML = svgHtml + label;
+        btn.disabled = false;
+        if (r.error || !r.data) { showToast('Could not open document.', 'error'); return; }
+        window.open(r.data.signedUrl, '_blank', 'noopener,noreferrer');
+      };
+    }
+
+    drawerBackBtn.addEventListener('click', closeDrawer);
+    drawerCloseBtn.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModal();
+      if (e.key==='Escape') {
+        if (composeOverlay.classList.contains('is-open')) closeCompose();
+        else closeDrawer();
+      }
     });
 
-    // ── Event bindings ────────────────────────────────────────
+    dwApproveBtn.addEventListener('click', function() {
+      if (currentApplication) updateStatus(currentApplication.id, 'approved');
+    });
+    dwRejectBtn.addEventListener('click', function() {
+      if (currentApplication) updateStatus(currentApplication.id, 'rejected');
+    });
+    dwMessageBtn.addEventListener('click', function() {
+      if (!currentApplication) return;
+      composeTo.value      = currentApplication.email || '';
+      composeSubject.value = 'Re: Your Grandspace Application';
+      composeBody.value    = 'Hi ' + (currentApplication.first_name || '') + ',\n\nThank you for submitting your application to Grandspace.\n\n';
+      openCompose();
+    });
 
+    // ── Compose ────────────────────────────────────────────────
+    function openCompose()  { composeOverlay.classList.add('is-open'); composeBody.focus(); }
+    function closeCompose() { composeOverlay.classList.remove('is-open'); }
+
+    document.getElementById('gs-compose-close').addEventListener('click', closeCompose);
+    document.getElementById('gs-compose-cancel').addEventListener('click', closeCompose);
+    composeOverlay.addEventListener('click', function(e) {
+      if (e.target===composeOverlay) closeCompose();
+    });
+    document.getElementById('gs-compose-send').addEventListener('click', function() {
+      var to      = composeTo.value.trim();
+      var subject = encodeURIComponent(composeSubject.value.trim());
+      var body    = encodeURIComponent(composeBody.value.trim());
+      window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+      closeCompose();
+      showToast('Email app opened.', 'success');
+    });
+
+    // ── KPI card filter ────────────────────────────────────────
+    document.getElementById('gs-kpi-row').addEventListener('click', function(e) {
+      var card = e.target.closest('[data-filter]');
+      if (card) setFilter(card.dataset.filter);
+    });
+    document.getElementById('gs-kpi-row').addEventListener('keydown', function(e) {
+      if (e.key==='Enter'||e.key===' ') {
+        var card = e.target.closest('[data-filter]');
+        if (card) { e.preventDefault(); setFilter(card.dataset.filter); }
+      }
+    });
+    document.getElementById('gs-filter-pills').addEventListener('click', function(e) {
+      var pill = e.target.closest('[data-filter]');
+      if (pill) setFilter(pill.dataset.filter);
+    });
+
+    function setFilter(filter) {
+      activeFilter = filter;
+      document.querySelectorAll('.gs-stat-card').forEach(function(c) {
+        c.classList.toggle('is-active', c.dataset.filter===filter);
+      });
+      document.querySelectorAll('.gs-filter-pill').forEach(function(p) {
+        p.classList.toggle('is-active', p.dataset.filter===filter);
+      });
+      renderFiltered();
+    }
+
+    // ── Search ─────────────────────────────────────────────────
+    var searchTimer;
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function() {
+        searchQuery = searchInput.value.trim();
+        renderFiltered();
+      }, 180);
+    });
+
+    // ── Sort ───────────────────────────────────────────────────
+    sortSelect.addEventListener('change', function() {
+      sortOrder = this.value;
+      renderFiltered();
+    });
+
+    // ── Export CSV ─────────────────────────────────────────────
+    exportBtn.addEventListener('click', function() {
+      var filtered = getFiltered();
+      if (!filtered.length) { showToast('No data to export.', 'error'); return; }
+      var headers = ['First Name','Last Name','Email','Phone','Nationality','Date of Birth','Institution','Year','Properties','Move-in Date','Lease Duration','Status','Submitted'];
+      var rows = filtered.map(function(a) {
+        var props = Array.isArray(a.property_preferences) ? a.property_preferences.join(' | ') : (a.property_preferences||'');
+        return [a.first_name,a.last_name,a.email,a.phone,a.nationality,a.date_of_birth,
+          a.institution,a.year_of_study,props,a.movein_date,a.lease_duration,a.status,
+          a.submitted_at||a.created_at
+        ].map(function(v){ return v ? '"'+String(v).replace(/"/g,'""')+'"' : ''; }).join(',');
+      });
+      var csv  = [headers.join(',')].concat(rows).join('\n');
+      var blob = new Blob([csv], { type: 'text/csv' });
+      var url  = URL.createObjectURL(blob);
+      var a    = document.createElement('a');
+      a.href = url;
+      a.download = 'grandspace-applications-' + new Date().toISOString().slice(0,10) + '.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('CSV downloaded.', 'success');
+    });
+
+    // ── Login bindings ─────────────────────────────────────────
     loginBtn.addEventListener('click', signIn);
-    loginPassEl.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') signIn();
-    });
+    loginPassEl.addEventListener('keydown', function(e){ if (e.key==='Enter') signIn(); });
     signoutBtn.addEventListener('click', signOut);
 
-    // ── Init ──────────────────────────────────────────────────
+    // ── Init ───────────────────────────────────────────────────
     checkSession();
   </script>
 </body>
