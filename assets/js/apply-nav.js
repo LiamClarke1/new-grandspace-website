@@ -318,87 +318,92 @@ document.addEventListener('DOMContentLoaded', () => {
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   }
 
-  function setupUploadPreview(inputId, defaultText) {
+  function setupUploadPreview(inputId) {
     const input = document.getElementById(inputId);
     if (!input) return;
     const label = document.querySelector('label[for="' + inputId + '"].gs-upload-label');
     if (!label) return;
 
-    const PDF_SVG =
+    // Build a hidden preview row inside the label once, then show/update it on change
+    const previewImg = document.createElement('img');
+    previewImg.className = 'gs-upload-preview';
+    previewImg.alt = '';
+    previewImg.style.display = 'none';
+
+    const fileRow = document.createElement('div');
+    fileRow.className = 'gs-upload-file-row';
+    fileRow.style.display = 'none';
+
+    const fileIconEl = document.createElement('div');
+    fileIconEl.className = 'gs-upload-file-icon';
+    fileIconEl.innerHTML =
       '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
       '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
       '<path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
       '</svg>';
 
+    const fileInfoEl = document.createElement('div');
+    fileInfoEl.className = 'gs-upload-file-info';
+
+    const fileNameEl = document.createElement('span');
+    fileNameEl.className = 'gs-upload-filename';
+
+    const fileSizeEl = document.createElement('span');
+    fileSizeEl.className = 'gs-upload-filesize';
+
+    const changeEl = document.createElement('span');
+    changeEl.className = 'gs-upload-change';
+    changeEl.textContent = 'Change file';
+
+    fileInfoEl.appendChild(fileNameEl);
+    fileInfoEl.appendChild(fileSizeEl);
+    fileInfoEl.appendChild(changeEl);
+    fileRow.appendChild(fileIconEl);
+    fileRow.appendChild(fileInfoEl);
+
+    label.appendChild(previewImg);
+    label.appendChild(fileRow);
+
     input.addEventListener('change', function () {
       const file = input.files[0];
       if (!file) return;
 
-      // Clear any existing error state on the label
       label.classList.remove('gs-field-error');
       label.classList.add('has-file');
 
-      const isImage = file.type.startsWith('image/');
-      const sizeText = formatBytes(file.size);
+      // Hide original label content (SVG icon + text spans)
+      Array.from(label.children).forEach(function (child) {
+        if (child !== previewImg && child !== fileRow) {
+          child.style.display = 'none';
+        }
+      });
 
-      // Safely escape the filename for display
-      const nameEl = document.createElement('span');
-      nameEl.className = 'gs-upload-filename';
-      nameEl.title = file.name;
-      nameEl.textContent = file.name;
+      fileNameEl.textContent = file.name;
+      fileNameEl.title = file.name;
+      fileSizeEl.textContent = formatBytes(file.size);
 
-      const sizeEl = document.createElement('span');
-      sizeEl.className = 'gs-upload-filesize';
-      sizeEl.textContent = sizeText;
-
-      const changeEl = document.createElement('span');
-      changeEl.className = 'gs-upload-change';
-      changeEl.textContent = 'Change file';
-
-      label.innerHTML = '';
-
-      if (isImage) {
+      if (file.type.startsWith('image/')) {
+        fileRow.style.display = 'none';
+        previewImg.style.display = 'block';
+        previewImg.alt = 'Preview: ' + file.name;
         const reader = new FileReader();
         reader.onload = function (e) {
-          const img = document.createElement('img');
-          img.className = 'gs-upload-preview';
-          img.src = e.target.result;
-          img.alt = 'Preview: ' + file.name;
-
-          const infoEl = document.createElement('div');
-          infoEl.className = 'gs-upload-file-info';
-          infoEl.appendChild(nameEl);
-          infoEl.appendChild(sizeEl);
-          infoEl.appendChild(changeEl);
-
-          label.appendChild(img);
-          label.appendChild(infoEl);
+          previewImg.src = e.target.result;
+          // Show file info below the image
+          fileRow.style.display = 'flex';
+          fileIconEl.style.display = 'none';
         };
         reader.readAsDataURL(file);
       } else {
-        // PDF — show icon + filename
-        const iconEl = document.createElement('div');
-        iconEl.className = 'gs-upload-file-icon';
-        iconEl.innerHTML = PDF_SVG;
-
-        const infoEl = document.createElement('div');
-        infoEl.className = 'gs-upload-file-info';
-        infoEl.appendChild(nameEl);
-        infoEl.appendChild(sizeEl);
-        infoEl.appendChild(changeEl);
-
-        const rowEl = document.createElement('div');
-        rowEl.className = 'gs-upload-file-row';
-        rowEl.appendChild(iconEl);
-        rowEl.appendChild(infoEl);
-
-        label.appendChild(rowEl);
+        previewImg.style.display = 'none';
+        fileIconEl.style.display = '';
+        fileRow.style.display = 'flex';
       }
     });
   }
 
-  setupUploadPreview('gs-enrolment-upload', 'Click to upload enrolment letter or acceptance letter');
-  setupUploadPreview('gs-id-upload', 'Click to upload your ID or passport');
+  setupUploadPreview('gs-enrolment-upload');
+  setupUploadPreview('gs-id-upload');
 
   // ── Init ─────────────────────────────────────────────────────────────────────
 
