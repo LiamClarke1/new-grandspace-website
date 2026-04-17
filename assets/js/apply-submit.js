@@ -39,7 +39,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function getCheckedProperties() {
     return Array.from(document.querySelectorAll('input[name="gs-property"]:checked'))
-      .map(function (cb) { return cb.value; });
+      .map(function (cb) {
+        var card = cb.closest('.gs-prop-card');
+        var roomSelect = card ? card.querySelector('.gs-prop-type') : null;
+        var roomVal = roomSelect && roomSelect.value ? ' \u2013 ' + roomSelect.value : '';
+        return cb.value + roomVal;
+      });
   }
 
   async function uploadFile(file, folder, appId) {

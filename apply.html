@@ -424,6 +424,149 @@
       font-weight: 400;
     }
 
+    /* Property selection cards */
+    .gs-prop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 560px) {
+      .gs-prop-grid { grid-template-columns: 1fr; }
+    }
+
+    .gs-prop-card {
+      position: relative;
+      border: 1.5px solid #ebebeb;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      background: #ffffff;
+      display: block;
+    }
+
+    .gs-prop-card:hover {
+      border-color: #bbbbbb;
+    }
+
+    .gs-prop-card.is-selected {
+      border-color: #050505;
+      border-width: 2px;
+      box-shadow: 0 0 0 1px #050505;
+    }
+
+    .gs-prop-check {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    .gs-prop-checkmark {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #cccccc;
+      border-radius: 3px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 150ms ease, border-color 150ms ease;
+      z-index: 2;
+    }
+
+    .gs-prop-card.is-selected .gs-prop-checkmark {
+      background: #050505;
+      border-color: #050505;
+    }
+
+    .gs-prop-img-wrap {
+      width: 100%;
+      height: 110px;
+      overflow: hidden;
+      background: #f2f2f2;
+    }
+
+    .gs-prop-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gs-prop-body {
+      padding: 0.65rem 0.75rem 0.75rem;
+    }
+
+    .gs-prop-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #050505;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .gs-prop-meta {
+      font-size: 0.7rem;
+      color: #999999;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .gs-prop-price {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #333333;
+      background: #f5f5f5;
+      border-radius: 2px;
+      padding: 0.12rem 0.4rem;
+      display: inline-block;
+    }
+
+    .gs-prop-type-wrap {
+      display: none;
+      margin-top: 0.55rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid #ebebeb;
+    }
+
+    .gs-prop-card.is-selected .gs-prop-type-wrap {
+      display: block;
+    }
+
+    .gs-prop-type-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #888888;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .gs-prop-type {
+      width: 100%;
+      font-size: 0.78rem;
+      padding: 0.38rem 0.5rem;
+      border: 1.5px solid #cccccc;
+      border-radius: 3px;
+      background: #ffffff;
+      color: #050505;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .gs-prop-type:focus {
+      outline: none;
+      border-color: #050505;
+    }
+
     /* Accuracy confirmation checkbox */
     .gs-confirm-item {
       display: flex;
@@ -921,41 +1064,151 @@
           <span class="gs-checkbox-label" id="gs-property-legend">
             Preferred Properties <span class="gs-req" aria-hidden="true">*</span>
           </span>
-          <p class="gs-checkbox-hint">Select up to 3 properties.</p>
+          <p class="gs-checkbox-hint">Select up to 3 properties. Choose your preferred room type once selected.</p>
           <div
-            class="gs-checkbox-group"
+            class="gs-prop-grid"
             id="gs-property-group"
             role="group"
             aria-labelledby="gs-property-legend"
           >
-            <label class="gs-checkbox-item">
-              <input type="checkbox" name="gs-property" value="1 Van Riebeeck Street" />
-              <span>1 Van Riebeeck Street</span>
+
+            <!-- The Factory -->
+            <label class="gs-prop-card" for="prop-factory">
+              <input class="gs-prop-check" type="checkbox" name="gs-property" id="prop-factory" value="The Factory" />
+              <div class="gs-prop-checkmark" aria-hidden="true">
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="gs-prop-img-wrap">
+                <img class="gs-prop-img" src="assets/gradspace-factory-hero.jpg" alt="The Factory" loading="lazy" />
+              </div>
+              <div class="gs-prop-body">
+                <span class="gs-prop-name">The Factory</span>
+                <span class="gs-prop-meta">56 rooms · WiFi &amp; water included</span>
+                <span class="gs-prop-price">R8,700 – R16,250 / mo</span>
+                <div class="gs-prop-type-wrap">
+                  <span class="gs-prop-type-label">Room type</span>
+                  <select class="gs-prop-type" name="gs-room-factory" data-prop="prop-factory">
+                    <option value="">Select room type</option>
+                    <option value="Studio Room">Studio Room (~R8,700/mo)</option>
+                    <option value="Standard Room">Standard Room (~R13,000–R15,000/mo)</option>
+                    <option value="Lead Room">Lead Room (R16,250/mo)</option>
+                  </select>
+                </div>
+              </div>
             </label>
-            <label class="gs-checkbox-item">
-              <input type="checkbox" name="gs-property" value="3 Van Riebeeck Street" />
-              <span>3 Van Riebeeck Street</span>
+
+            <!-- Union House -->
+            <label class="gs-prop-card" for="prop-union">
+              <input class="gs-prop-check" type="checkbox" name="gs-property" id="prop-union" value="Union House" />
+              <div class="gs-prop-checkmark" aria-hidden="true">
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="gs-prop-img-wrap">
+                <img class="gs-prop-img" src="assets/gradspace-union-1.png" alt="Union House" loading="lazy" />
+              </div>
+              <div class="gs-prop-body">
+                <span class="gs-prop-name">Union House</span>
+                <span class="gs-prop-meta">20 rooms</span>
+                <span class="gs-prop-price">R13,750 – R15,933 / mo</span>
+                <div class="gs-prop-type-wrap">
+                  <span class="gs-prop-type-label">Room type</span>
+                  <select class="gs-prop-type" name="gs-room-union" data-prop="prop-union">
+                    <option value="">Select room type</option>
+                    <option value="Standard Room">Standard Room (R13,750/mo)</option>
+                    <option value="Premium Room">Premium Room (R15,933/mo)</option>
+                  </select>
+                </div>
+              </div>
             </label>
-            <label class="gs-checkbox-item">
-              <input type="checkbox" name="gs-property" value="5 Van Riebeeck Street" />
-              <span>5 Van Riebeeck Street</span>
+
+            <!-- Jonkerzicht -->
+            <label class="gs-prop-card" for="prop-jonkerzicht">
+              <input class="gs-prop-check" type="checkbox" name="gs-property" id="prop-jonkerzicht" value="Jonkerzicht" />
+              <div class="gs-prop-checkmark" aria-hidden="true">
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="gs-prop-img-wrap">
+                <img class="gs-prop-img" src="assets/gradspace-jonkerzicht.png" alt="Jonkerzicht" loading="lazy" />
+              </div>
+              <div class="gs-prop-body">
+                <span class="gs-prop-name">Jonkerzicht</span>
+                <span class="gs-prop-meta">10 rooms</span>
+                <span class="gs-prop-price">R12,600 – R13,600 / mo</span>
+                <div class="gs-prop-type-wrap">
+                  <span class="gs-prop-type-label">Room type</span>
+                  <select class="gs-prop-type" name="gs-room-jonkerzicht" data-prop="prop-jonkerzicht">
+                    <option value="">Select room type</option>
+                    <option value="Standard Room">Standard Room (R12,600/mo)</option>
+                    <option value="Premium Room">Premium Room (R13,600/mo)</option>
+                  </select>
+                </div>
+              </div>
             </label>
-            <label class="gs-checkbox-item">
-              <input type="checkbox" name="gs-property" value="7 Van Riebeeck Street" />
-              <span>7 Van Riebeeck Street</span>
+
+            <!-- Bergzicht 63 -->
+            <label class="gs-prop-card" for="prop-bergzicht">
+              <input class="gs-prop-check" type="checkbox" name="gs-property" id="prop-bergzicht" value="Bergzicht 63" />
+              <div class="gs-prop-checkmark" aria-hidden="true">
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="gs-prop-img-wrap">
+                <img class="gs-prop-img" src="assets/communal-lounge-big-4k.jpg" alt="Bergzicht 63" loading="lazy" />
+              </div>
+              <div class="gs-prop-body">
+                <span class="gs-prop-name">Bergzicht 63</span>
+                <span class="gs-prop-meta">Stellenbosch</span>
+                <span class="gs-prop-price">Contact for pricing</span>
+              </div>
             </label>
-            <label class="gs-checkbox-item">
-              <input type="checkbox" name="gs-property" value="9 Van Riebeeck Street" />
-              <span>9 Van Riebeeck Street</span>
+
+            <!-- Akkerhof -->
+            <label class="gs-prop-card" for="prop-akkerhof">
+              <input class="gs-prop-check" type="checkbox" name="gs-property" id="prop-akkerhof" value="Akkerhof" />
+              <div class="gs-prop-checkmark" aria-hidden="true">
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="gs-prop-img-wrap">
+                <img class="gs-prop-img" src="assets/693881b0a57115d8cd3a12c2_livings-img-1--d.avif" alt="Akkerhof" loading="lazy" />
+              </div>
+              <div class="gs-prop-body">
+                <span class="gs-prop-name">Akkerhof</span>
+                <span class="gs-prop-meta">Stellenbosch</span>
+                <span class="gs-prop-price">Contact for pricing</span>
+              </div>
             </label>
-            <label class="gs-checkbox-item">
-              <input type="checkbox" name="gs-property" value="11 Van Riebeeck Street" />
-              <span>11 Van Riebeeck Street</span>
+
+            <!-- The Vineyards -->
+            <label class="gs-prop-card" for="prop-vineyards">
+              <input class="gs-prop-check" type="checkbox" name="gs-property" id="prop-vineyards" value="The Vineyards" />
+              <div class="gs-prop-checkmark" aria-hidden="true">
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="gs-prop-img-wrap">
+                <img class="gs-prop-img" src="assets/stellenbosch-vineyard-big-4k.jpg" alt="The Vineyards" loading="lazy" />
+              </div>
+              <div class="gs-prop-body">
+                <span class="gs-prop-name">The Vineyards</span>
+                <span class="gs-prop-meta">Stellenbosch</span>
+                <span class="gs-prop-price">Contact for pricing</span>
+              </div>
             </label>
-            <label class="gs-checkbox-item">
-              <input type="checkbox" name="gs-property" value="13 Van Riebeeck Street" />
-              <span>13 Van Riebeeck Street</span>
+
+            <!-- 24 Cluver Road -->
+            <label class="gs-prop-card" for="prop-cluver">
+              <input class="gs-prop-check" type="checkbox" name="gs-property" id="prop-cluver" value="24 Cluver Road" />
+              <div class="gs-prop-checkmark" aria-hidden="true">
+                <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="gs-prop-img-wrap">
+                <img class="gs-prop-img" src="assets/693881b0422731c7d2c5fcac_livings-img-2--d.avif" alt="24 Cluver Road" loading="lazy" />
+              </div>
+              <div class="gs-prop-body">
+                <span class="gs-prop-name">24 Cluver Road</span>
+                <span class="gs-prop-meta">Stellenbosch</span>
+                <span class="gs-prop-price">Contact for pricing</span>
+              </div>
             </label>
+
           </div>
         </div>
 

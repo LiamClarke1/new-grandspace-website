@@ -170,26 +170,43 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
   }
 
-  // ── Step 4: max-3 property checkbox enforcement ──────────────────────────────
+  // ── Step 4: property card selection + max-3 enforcement ─────────────────────
 
   document.querySelectorAll('input[name="gs-property"]').forEach(cb => {
     cb.addEventListener('change', () => {
       const checked = document.querySelectorAll('input[name="gs-property"]:checked');
       if (checked.length > 3) {
         cb.checked = false;
-        // Show a transient message near the group
         const existing = document.querySelector('.gs-prop-limit-msg');
         if (!existing) {
           const msg = document.createElement('span');
           msg.className = 'gs-prop-limit-msg gs-error-msg';
           msg.setAttribute('role', 'alert');
           msg.textContent = 'You can select up to 3 properties.';
-          cb.parentElement.parentElement.appendChild(msg);
+          const grid = document.getElementById('gs-property-group');
+          if (grid) grid.appendChild(msg);
           setTimeout(() => msg.remove(), 3000);
+        }
+        return;
+      }
+      // Toggle selected state on card
+      const card = cb.closest('.gs-prop-card');
+      if (card) {
+        card.classList.toggle('is-selected', cb.checked);
+        // Reset room type select when deselected
+        if (!cb.checked) {
+          const roomSelect = card.querySelector('.gs-prop-type');
+          if (roomSelect) roomSelect.value = '';
         }
       }
     });
   });
+
+  // ── Set move-in date minimum to today ────────────────────────────────────────
+  const moveInInput = document.getElementById('gs-movein');
+  if (moveInInput) {
+    moveInInput.min = new Date().toISOString().split('T')[0];
+  }
 
   // ── Review summary ───────────────────────────────────────────────────────────
 
@@ -208,7 +225,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!container) return;
 
     const selected = Array.from(document.querySelectorAll('input[name="gs-property"]:checked'))
-      .map(cb => cb.value || cb.dataset.label || cb.nextSibling?.textContent?.trim() || cb.id)
+      .map(cb => {
+        const card = cb.closest('.gs-prop-card');
+        const roomSelect = card ? card.querySelector('.gs-prop-type') : null;
+        const roomVal = roomSelect && roomSelect.value ? ' \u2013 ' + roomSelect.value : '';
+        return cb.value + roomVal;
+      })
       .join(', ') || '(none)';
 
     const rows = [
