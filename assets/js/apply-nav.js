@@ -102,6 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (id === 'gs-email' && !isValidEmail(el.value.trim())) {
           showError(el, 'Please enter a valid email address.');
           valid = false;
+        } else if (id === 'gs-dob' && el.value) {
+          const yearPart = el.value.split('-')[0];
+          if (yearPart && yearPart.length !== 4) {
+            showError(el, 'Please enter a valid 4-digit year.');
+            valid = false;
+          }
         }
       });
     }
@@ -206,6 +212,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const moveInInput = document.getElementById('gs-movein');
   if (moveInInput) {
     moveInInput.min = new Date().toISOString().split('T')[0];
+  }
+
+  // ── Date of birth: cap year to 4 digits, max = today ─────────────────────────
+  const dobInput = document.getElementById('gs-dob');
+  if (dobInput) {
+    dobInput.max = new Date().toISOString().split('T')[0];
+    dobInput.addEventListener('change', function () {
+      if (!this.value) return;
+      const parts = this.value.split('-');
+      const year = parts[0];
+      if (year.length > 4) {
+        // Truncate to last 4 digits typed
+        parts[0] = year.slice(-4);
+        this.value = parts.join('-');
+      }
+    });
   }
 
   // ── Review summary ───────────────────────────────────────────────────────────
