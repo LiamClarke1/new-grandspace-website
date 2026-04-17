@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apply — Elyse Residence by Grandspace</title>
+  <meta name="description" content="Apply for student accommodation at Elyse Residence, Stellenbosch." />
+
+  <!-- Google Fonts: Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Grandspace shared styles -->
+  <link href="assets/css/grandspace.shared.min.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #ffffff;
+      color: #333333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── Page Header ───────────────────────────────────────── */
+    .apply-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffff;
+      border-bottom: 1px solid #ebebeb;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .apply-header__logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #050505;
+      text-decoration: none;
+    }
+
+    .apply-header__nav {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .apply-header__nav a {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .apply-header__nav a:hover { color: #050505; }
+
+    /* ─── Main Layout ───────────────────────────────────────── */
+    .apply-main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .apply-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #050505;
+      margin-bottom: 0.4rem;
+    }
+
+    .apply-subtitle {
+      font-size: 0.9rem;
+      color: #777777;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── Progress Indicator ────────────────────────────────── */
+    .gs-progress {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .gs-progress__step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      position: relative;
+      cursor: default;
+    }
+
+    /* Connector line between steps */
+    .gs-progress__step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: calc(50% + 14px);
+      right: calc(-50% + 14px);
+      height: 1px;
+      background: #dddddd;
+      z-index: 0;
+      transition: background 250ms ease;
+    }
+
+    .gs-progress__step.is-completed:not(:last-child)::after {
+      background: #333333;
+    }
+
+    .gs-progress__circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid #dddddd;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #aaaaaa;
+      position: relative;
+      z-index: 1;
+      transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+      flex-shrink: 0;
+    }
+
+    .gs-progress__step.is-active .gs-progress__circle {
+      border-color: #333333;
+      background: #333333;
+      color: #ffffff;
+    }
+
+    .gs-progress__step.is-completed .gs-progress__circle {
+      border-color: #333333;
+      background: #333333;
+      color: #ffffff;
+    }
+
+    /* Checkmark SVG for completed steps */
+    .gs-check-icon { display: none; }
+    .gs-progress__step.is-completed .gs-check-icon { display: block; }
+    .gs-progress__step.is-completed .gs-progress__num { display: none; }
+
+    .gs-progress__label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      text-align: center;
+      white-space: nowrap;
+      transition: color 200ms ease;
+    }
+
+    .gs-progress__step.is-active .gs-progress__label { color: #333333; }
+    .gs-progress__step.is-completed .gs-progress__label { color: #555555; }
+
+    /* ─── Step Panels ───────────────────────────────────────── */
+    .gs-step {
+      display: none;
+    }
+
+    .gs-step--active {
+      display: block;
+    }
+
+    .gs-step__heading {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #050505;
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    /* ─── Form Fields ───────────────────────────────────────── */
+    .gs-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .gs-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .gs-field--full { grid-column: 1 / -1; }
+
+    .gs-field label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #444444;
+    }
+
+    .gs-field label .gs-req {
+      color: #cc3333;
+      margin-left: 0.15em;
+    }
+
+    .gs-field input[type="text"],
+    .gs-field input[type="email"],
+    .gs-field input[type="tel"],
+    .gs-field input[type="date"],
+    .gs-field select {
+      width: 100%;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 0.75em 0.875em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.875rem;
+      color: #333333;
+      background: #ffffff;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      outline: none;
+      cursor: text;
+    }
+
+    .gs-field select { cursor: pointer; }
+
+    .gs-field input[type="text"]:focus,
+    .gs-field input[type="email"]:focus,
+    .gs-field input[type="tel"]:focus,
+    .gs-field input[type="date"]:focus,
+    .gs-field select:focus {
+      border-color: #333333;
+      box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.12);
+    }
+
+    .gs-field input::placeholder { color: #bbbbbb; }
+
+    .gs-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.875em center;
+      padding-right: 2.5em;
+    }
+
+    /* File upload */
+    .gs-upload-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: 1.5px dashed #cccccc;
+      border-radius: 3px;
+      padding: 1.75rem 1rem;
+      cursor: pointer;
+      transition: border-color 150ms ease, background 150ms ease;
+      text-align: center;
+    }
+
+    .gs-upload-label:hover {
+      border-color: #333333;
+      background: #fafafa;
+    }
+
+    .gs-upload-label__text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .gs-upload-label__hint {
+      font-size: 0.72rem;
+      color: #999999;
+    }
+
+    .gs-upload-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    /* Checkbox group */
+    .gs-checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .gs-checkbox-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #444444;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .gs-checkbox-hint {
+      font-size: 0.72rem;
+      color: #999999;
+      margin-top: -0.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .gs-checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      cursor: pointer;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      transition: border-color 150ms ease, background 150ms ease;
+    }
+
+    .gs-checkbox-item:hover {
+      border-color: #333333;
+      background: #fafafa;
+    }
+
+    .gs-checkbox-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      accent-color: #333333;
+      cursor: pointer;
+    }
+
+    .gs-checkbox-item span {
+      font-size: 0.85rem;
+      color: #333333;
+      font-weight: 400;
+    }
+
+    /* Accuracy confirmation checkbox */
+    .gs-confirm-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      margin-top: 1.5rem;
+      cursor: pointer;
+    }
+
+    .gs-confirm-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      accent-color: #333333;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .gs-confirm-item span {
+      font-size: 0.85rem;
+      color: #444444;
+      line-height: 1.5;
+    }
+
+    /* Review summary */
+    #gs-review-summary {
+      background: #f8f8f8;
+      border: 1px solid #ebebeb;
+      border-radius: 3px;
+      padding: 1.5rem;
+      min-height: 160px;
+      font-size: 0.85rem;
+      color: #555555;
+      line-height: 1.7;
+    }
+
+    /* ─── Navigation Buttons ────────────────────────────────── */
+    .gs-form-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ebebeb;
+      gap: 1rem;
+    }
+
+    .gs-form-nav__left { display: flex; }
+    .gs-form-nav__right { display: flex; gap: 0.75rem; }
+
+    /* gs-btn-primary: white bg, dark text, dark border — matches Grandspace spec */
+    .gs-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #050505;
+      border: 3px solid #050505;
+      border-radius: 3px;
+      padding: 0.65em 1.5em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .gs-btn-primary:hover {
+      background: #050505;
+      color: #ffffff;
+    }
+
+    .gs-btn-primary:focus-visible {
+      outline: 2px solid #333333;
+      outline-offset: 3px;
+    }
+
+    .gs-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: #666666;
+      border: 1.5px solid #cccccc;
+      border-radius: 3px;
+      padding: 0.65em 1.5em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 150ms ease, color 150ms ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .gs-btn-outline:hover {
+      border-color: #333333;
+      color: #333333;
+    }
+
+    .gs-btn-outline:focus-visible {
+      outline: 2px solid #333333;
+      outline-offset: 3px;
+    }
+
+    /* ─── Confirmation Screen ───────────────────────────────── */
+    #gs-confirm {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      min-height: 320px;
+    }
+
+    #gs-confirm.gs-confirm--visible {
+      display: flex;
+    }
+
+    .gs-confirm__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .gs-confirm__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #050505;
+      margin-bottom: 0.75rem;
+    }
+
+    .gs-confirm__message {
+      font-size: 0.9rem;
+      color: #666666;
+      max-width: 380px;
+      line-height: 1.7;
+    }
+
+    /* ─── Utilities ─────────────────────────────────────────── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 520px) {
+      .apply-header { padding: 0 1rem; }
+      .apply-header__nav { display: none; }
+
+      .apply-main { padding: 2rem 1rem 4rem; }
+      .apply-title { font-size: 1.35rem; }
+
+      .gs-progress__label { font-size: 0.58rem; }
+
+      .gs-form-row { grid-template-columns: 1fr; }
+      .gs-field--full { grid-column: 1; }
+
+      .gs-form-nav {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+      .gs-form-nav__left,
+      .gs-form-nav__right { width: 100%; }
+      .gs-form-nav__right { flex-direction: column; }
+      .gs-btn-primary,
+      .gs-btn-outline { width: 100%; justify-content: center; }
+    }
+
+    @media (min-width: 521px) and (max-width: 768px) {
+      .apply-header__nav { gap: 1rem; }
+      .apply-main { padding: 2.5rem 1.5rem 4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    .gs-upload-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #888888;
+      background: #fdfaf5;
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 3px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .apply-footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.75rem;
+      color: #aaaaaa;
+      letter-spacing: 0.05em;
+    }
+    .apply-footer a {
+      color: #888888;
+      text-decoration: none;
+    }
+    .apply-footer a:hover { color: #333333; }
+    .apply-footer__sep { margin: 0 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Page Header ───────────────────────────────────────── -->
+  <header class="apply-header">
+    <a href="index.html" class="apply-header__logo">Grandspace</a>
+    <nav class="apply-header__nav" aria-label="Site navigation">
+      <a href="index.html">Home</a>
+      <a href="index.html#properties">Properties</a>
+    </nav>
+  </header>
+
+  <!-- ─── Main ─────────────────────────────────────────────── -->
+  <main class="apply-main">
+    <h1 class="apply-title">Apply for Accommodation</h1>
+    <p class="apply-subtitle">Complete all five steps. Your application will be reviewed within 48 hours.</p>
+
+    <!-- ── Progress Indicator ──────────────────────────────── -->
+    <nav class="gs-progress" aria-label="Application steps">
+
+      <div class="gs-progress__step is-active" data-progress-step="1" aria-current="step">
+        <div class="gs-progress__circle" aria-hidden="true">
+          <span class="gs-progress__num">1</span>
+          <svg class="gs-check-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+            <path d="M2 5.5L4.5 8L9 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="gs-progress__label">Personal</span>
+      </div>
+
+      <div class="gs-progress__step" data-progress-step="2">
+        <div class="gs-progress__circle" aria-hidden="true">
+          <span class="gs-progress__num">2</span>
+          <svg class="gs-check-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+            <path d="M2 5.5L4.5 8L9 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="gs-progress__label">University</span>
+      </div>
+
+      <div class="gs-progress__step" data-progress-step="3">
+        <div class="gs-progress__circle" aria-hidden="true">
+          <span class="gs-progress__num">3</span>
+          <svg class="gs-check-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+            <path d="M2 5.5L4.5 8L9 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="gs-progress__label">Identity</span>
+      </div>
+
+      <div class="gs-progress__step" data-progress-step="4">
+        <div class="gs-progress__circle" aria-hidden="true">
+          <span class="gs-progress__num">4</span>
+          <svg class="gs-check-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+            <path d="M2 5.5L4.5 8L9 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="gs-progress__label">Preferences</span>
+      </div>
+
+      <div class="gs-progress__step" data-progress-step="5">
+        <div class="gs-progress__circle" aria-hidden="true">
+          <span class="gs-progress__num">5</span>
+          <svg class="gs-check-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+            <path d="M2 5.5L4.5 8L9 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="gs-progress__label">Review</span>
+      </div>
+
+    </nav>
+
+    <!-- ── Application Form ────────────────────────────────── -->
+    <form
+      id="gs-apply-form"
+      action="FORMSPREE_ENDPOINT_PLACEHOLDER"
+      method="POST"
+      enctype="multipart/form-data"
+      novalidate
+    >
+
+      <!-- Step 1 — Personal Details -->
+      <section class="gs-step gs-step--active" data-step="1" aria-labelledby="gs-step1-heading">
+        <h2 class="gs-step__heading" id="gs-step1-heading">Personal Details</h2>
+
+        <div class="gs-form-row">
+          <div class="gs-field">
+            <label for="gs-fname">
+              First Name <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="gs-fname"
+              name="first_name"
+              placeholder="Jane"
+              required
+              autocomplete="given-name"
+            />
+          </div>
+
+          <div class="gs-field">
+            <label for="gs-lname">
+              Last Name <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="gs-lname"
+              name="last_name"
+              placeholder="Smith"
+              required
+              autocomplete="family-name"
+            />
+          </div>
+        </div>
+
+        <div class="gs-form-row">
+          <div class="gs-field">
+            <label for="gs-dob">
+              Date of Birth <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="date"
+              id="gs-dob"
+              name="date_of_birth"
+              required
+              autocomplete="bday"
+            />
+          </div>
+
+          <div class="gs-field">
+            <label for="gs-nationality">
+              Nationality <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="gs-nationality"
+              name="nationality"
+              placeholder="South African"
+              required
+              autocomplete="country-name"
+            />
+          </div>
+        </div>
+
+        <div class="gs-form-row">
+          <div class="gs-field">
+            <label for="gs-phone">
+              Phone Number <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="tel"
+              id="gs-phone"
+              name="phone"
+              placeholder="+27 71 000 0000"
+              required
+              autocomplete="tel"
+            />
+          </div>
+
+          <div class="gs-field">
+            <label for="gs-email">
+              Email Address <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="email"
+              id="gs-email"
+              name="email"
+              placeholder="jane@example.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2 — University Info -->
+      <section class="gs-step" data-step="2" aria-labelledby="gs-step2-heading">
+        <h2 class="gs-step__heading" id="gs-step2-heading">University Information</h2>
+
+        <div class="gs-field">
+          <label for="gs-institution">
+            Institution Name <span class="gs-req" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="text"
+            id="gs-institution"
+            name="institution"
+            placeholder="Stellenbosch University"
+            required
+          />
+        </div>
+
+        <div class="gs-field">
+          <label for="gs-year">
+            Year of Study <span class="gs-req" aria-hidden="true">*</span>
+          </label>
+          <select id="gs-year" name="year_of_study" required>
+            <option value="" disabled selected>Select year</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="Postgraduate">Postgraduate</option>
+          </select>
+        </div>
+
+        <div class="gs-field">
+          <label>
+            Student Enrolment Confirmation <span class="gs-req" aria-hidden="true">*</span>
+          </label>
+          <label class="gs-upload-label" for="gs-enrolment-upload">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 15v2a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-2" stroke="#555555" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="gs-upload-label__text">Click to upload enrolment letter or acceptance letter</span>
+            <span class="gs-upload-label__hint">PDF or JPG, max 2MB</span>
+          </label>
+          <input
+            class="gs-upload-input"
+            type="file"
+            id="gs-enrolment-upload"
+            name="enrolment_upload"
+            accept=".pdf,.jpg,.jpeg"
+            required
+          />
+        </div>
+      </section>
+
+      <!-- Step 3 — Identity -->
+      <section class="gs-step" data-step="3" aria-labelledby="gs-step3-heading">
+        <h2 class="gs-step__heading" id="gs-step3-heading">Identity Verification</h2>
+
+        <div class="gs-field">
+          <label>
+            ID or Passport Copy <span class="gs-req" aria-hidden="true">*</span>
+          </label>
+          <label class="gs-upload-label" for="gs-id-upload">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 15v2a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-2" stroke="#555555" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="gs-upload-label__text">Click to upload your ID or passport</span>
+            <span class="gs-upload-label__hint">PDF or JPG, max 2MB</span>
+          </label>
+          <input
+            class="gs-upload-input"
+            type="file"
+            id="gs-id-upload"
+            name="id_upload"
+            accept=".pdf,.jpg,.jpeg"
+            required
+          />
+        </div>
+      </section>
+
+      <!-- Step 4 — Property Preferences -->
+      <section class="gs-step" data-step="4" aria-labelledby="gs-step4-heading">
+        <h2 class="gs-step__heading" id="gs-step4-heading">Property Preferences</h2>
+
+        <div>
+          <span class="gs-checkbox-label" id="gs-property-legend">
+            Preferred Properties <span class="gs-req" aria-hidden="true">*</span>
+          </span>
+          <p class="gs-checkbox-hint">Select up to 3 properties.</p>
+          <div
+            class="gs-checkbox-group"
+            id="gs-property-group"
+            role="group"
+            aria-labelledby="gs-property-legend"
+          >
+            <label class="gs-checkbox-item">
+              <input type="checkbox" name="gs-property" value="1 Van Riebeeck Street" />
+              <span>1 Van Riebeeck Street</span>
+            </label>
+            <label class="gs-checkbox-item">
+              <input type="checkbox" name="gs-property" value="3 Van Riebeeck Street" />
+              <span>3 Van Riebeeck Street</span>
+            </label>
+            <label class="gs-checkbox-item">
+              <input type="checkbox" name="gs-property" value="5 Van Riebeeck Street" />
+              <span>5 Van Riebeeck Street</span>
+            </label>
+            <label class="gs-checkbox-item">
+              <input type="checkbox" name="gs-property" value="7 Van Riebeeck Street" />
+              <span>7 Van Riebeeck Street</span>
+            </label>
+            <label class="gs-checkbox-item">
+              <input type="checkbox" name="gs-property" value="9 Van Riebeeck Street" />
+              <span>9 Van Riebeeck Street</span>
+            </label>
+            <label class="gs-checkbox-item">
+              <input type="checkbox" name="gs-property" value="11 Van Riebeeck Street" />
+              <span>11 Van Riebeeck Street</span>
+            </label>
+            <label class="gs-checkbox-item">
+              <input type="checkbox" name="gs-property" value="13 Van Riebeeck Street" />
+              <span>13 Van Riebeeck Street</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="gs-form-row">
+          <div class="gs-field">
+            <label for="gs-movein">
+              Intended Move-In Date <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="date"
+              id="gs-movein"
+              name="movein_date"
+              required
+            />
+          </div>
+
+          <div class="gs-field">
+            <label for="gs-lease">
+              Lease Duration <span class="gs-req" aria-hidden="true">*</span>
+            </label>
+            <select id="gs-lease" name="lease_duration" required>
+              <option value="" disabled selected>Select duration</option>
+              <option value="6 months">6 months</option>
+              <option value="12 months">12 months</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 5 — Review & Submit -->
+      <section class="gs-step" data-step="5" aria-labelledby="gs-step5-heading">
+        <h2 class="gs-step__heading" id="gs-step5-heading">Review &amp; Submit</h2>
+
+        <p class="gs-upload-notice">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="display:inline;vertical-align:-2px;margin-right:5px;flex-shrink:0;">
+            <circle cx="12" cy="12" r="10" stroke="#c9a96e" stroke-width="1.5"/>
+            <path d="M12 8v4M12 16h.01" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Your documents will be verified by our team after submission. You do not need to send them separately.
+        </p>
+
+        <div
+          id="gs-review-summary"
+          aria-live="polite"
+          aria-label="Application summary"
+        >
+          <!-- JS will populate this -->
+        </div>
+
+        <label class="gs-confirm-item" for="gs-confirm-check">
+          <input
+            type="checkbox"
+            id="gs-confirm-check"
+            name="confirm_accuracy"
+            required
+          />
+          <span>I confirm that all information provided in this application is accurate and complete to the best of my knowledge.</span>
+        </label>
+      </section>
+
+      <!-- ── Form Navigation ──────────────────────────────── -->
+      <div class="gs-form-nav">
+        <div class="gs-form-nav__left">
+          <button
+            type="button"
+            id="gs-prev"
+            class="gs-btn-outline"
+            hidden
+            aria-label="Go to previous step"
+          >Back</button>
+        </div>
+        <div class="gs-form-nav__right">
+          <button
+            type="button"
+            id="gs-next"
+            class="gs-btn-primary"
+            aria-label="Go to next step"
+          >Next</button>
+          <button
+            type="submit"
+            id="gs-submit"
+            class="gs-btn-primary"
+            hidden
+            aria-label="Submit application"
+          >Submit Application</button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- ── Confirmation Screen ──────────────────────────────── -->
+    <div id="gs-confirm" role="alert" aria-live="assertive">
+      <div class="gs-confirm__icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 13l4 4L19 7" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="gs-confirm__title">Application Received</h2>
+      <p class="gs-confirm__message">Your application has been received. We'll be in touch within 48 hours.</p>
+    </div>
+
+  </main>
+
+  <!-- ─── Footer ──────────────────────────────────────────── -->
+  <footer class="apply-footer">
+    <a href="privacy.html">Privacy Policy</a>
+    <span class="apply-footer__sep">·</span>
+    <a href="mailto:admin@grandspace.co.za">admin@grandspace.co.za</a>
+  </footer>
+
+  <!-- ─── Scripts ──────────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/apply-nav.js"></script>
+  <script src="assets/js/apply-submit.js"></script>
+</body>
+</html>

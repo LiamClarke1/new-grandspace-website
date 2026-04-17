@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  GRANDSPACE — Admin Dashboard
+  ============================================================
+
+  SUPABASE RLS POLICIES (run once in Supabase SQL editor):
+  ──────────────────────────────────────────────────────────
+  CREATE POLICY "Auth users read applications"
+    ON applications FOR SELECT TO authenticated USING (true);
+
+  CREATE POLICY "Auth users update applications"
+    ON applications FOR UPDATE TO authenticated USING (true);
+
+  CREATE POLICY "Auth users read documents"
+    ON documents FOR SELECT TO authenticated USING (true);
+  ──────────────────────────────────────────────────────────
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — Grandspace</title>
+
+  <!-- Google Fonts: Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f5f5f5;
+      color: #333333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── Header ────────────────────────────────────────────── */
+    .apply-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffff;
+      border-bottom: 1px solid #ebebeb;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .apply-header__logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #050505;
+      text-decoration: none;
+    }
+    .apply-header__nav {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+    .apply-header__nav a,
+    .apply-header__nav button {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 150ms ease;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .apply-header__nav a:hover,
+    .apply-header__nav button:hover { color: #050505; }
+
+    /* ─── Login Screen ──────────────────────────────────────── */
+    #gs-login-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 60px);
+      padding: 2rem 1rem;
+    }
+    .gs-login-card {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 380px;
+    }
+    .gs-login-card h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #050505;
+      margin-bottom: 0.3rem;
+    }
+    .gs-login-card p {
+      font-size: 0.85rem;
+      color: #888888;
+      margin-bottom: 1.75rem;
+    }
+    .gs-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .gs-field label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #444444;
+    }
+    .gs-field input {
+      width: 100%;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 0.75em 0.875em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.875rem;
+      color: #333333;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+    .gs-field input:focus {
+      border-color: #333333;
+      box-shadow: 0 0 0 2px rgba(51,51,51,0.12);
+    }
+    .gs-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #050505;
+      border: 3px solid #050505;
+      border-radius: 3px;
+      padding: 0.65em 1.5em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .gs-btn-primary:hover { background: #050505; color: #ffffff; }
+    .gs-btn-primary:focus-visible { outline: 2px solid #333333; outline-offset: 3px; }
+    .gs-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .gs-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: #666666;
+      border: 1.5px solid #cccccc;
+      border-radius: 3px;
+      padding: 0.45em 1em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 150ms ease, color 150ms ease;
+      white-space: nowrap;
+    }
+    .gs-btn-outline:hover { border-color: #333333; color: #333333; }
+    .gs-login-error {
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: #c0392b;
+      display: none;
+    }
+    #gs-login-btn { width: 100%; margin-top: 0.5rem; }
+
+    /* ─── Dashboard ─────────────────────────────────────────── */
+    #gs-dashboard {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    /* Heading row */
+    .gs-dash-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .gs-dash-heading h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #050505;
+    }
+    .gs-count-badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: #ebebeb;
+      color: #555555;
+      border-radius: 20px;
+      padding: 0.2em 0.75em;
+      letter-spacing: 0.04em;
+    }
+
+    /* Stat pills */
+    .gs-stats {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .gs-stat-pill {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 3px;
+      padding: 0.75rem 1.25rem;
+      min-width: 110px;
+    }
+    .gs-stat-pill__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999999;
+      margin-bottom: 0.2rem;
+    }
+    .gs-stat-pill__value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #050505;
+      line-height: 1.2;
+    }
+
+    /* Table wrapper */
+    .gs-table-wrap {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+    thead th {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999999;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid #ebebeb;
+      text-align: left;
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 120ms ease;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #fafafa; }
+    tbody td {
+      font-size: 0.85rem;
+      color: #333333;
+      padding: 0.85rem 1rem;
+      vertical-align: middle;
+    }
+    .gs-td-name { font-weight: 600; color: #050505; white-space: nowrap; }
+    .gs-td-props {
+      font-size: 0.78rem;
+      color: #666666;
+      max-width: 200px;
+    }
+    .gs-td-date { white-space: nowrap; color: #777777; font-size: 0.8rem; }
+
+    /* Status badge */
+    .gs-status {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 0.25em 0.75em;
+    }
+    .gs-status--pending  { background: #fef3c7; color: #92400e; }
+    .gs-status--approved { background: #d1fae5; color: #065f46; }
+    .gs-status--rejected { background: #fee2e2; color: #991b1b; }
+
+    /* Action buttons */
+    .gs-td-actions { white-space: nowrap; }
+    .gs-td-actions .gs-btn-outline { margin-right: 0.4rem; }
+    .gs-btn-approve {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; color: #065f46;
+      border: 1.5px solid #10b981; border-radius: 3px;
+      padding: 0.45em 1em; font-family: 'Open Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+      white-space: nowrap;
+    }
+    .gs-btn-approve:hover { background: #10b981; color: #ffffff; }
+    .gs-btn-reject {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; color: #991b1b;
+      border: 1.5px solid #ef4444; border-radius: 3px;
+      padding: 0.45em 1em; font-family: 'Open Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+      white-space: nowrap;
+    }
+    .gs-btn-reject:hover { background: #ef4444; color: #ffffff; }
+
+    /* Loading / empty state */
+    .gs-table-state {
+      padding: 3rem 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #aaaaaa;
+    }
+
+    /* ─── Modal ─────────────────────────────────────────────── */
+    #gs-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 100;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    #gs-modal-overlay.gs-modal--open { display: flex; }
+    .gs-modal {
+      background: #ffffff;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 640px;
+      margin: auto;
+      position: relative;
+      padding: 2rem;
+    }
+    .gs-modal__close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none; border: none; cursor: pointer;
+      color: #aaaaaa; font-size: 1.4rem; line-height: 1;
+      transition: color 120ms ease;
+    }
+    .gs-modal__close:hover { color: #333333; }
+    .gs-modal__title {
+      font-size: 1.1rem; font-weight: 700;
+      color: #050505; margin-bottom: 1.5rem;
+      padding-right: 2rem;
+    }
+    .gs-modal__section {
+      margin-bottom: 1.5rem;
+    }
+    .gs-modal__section-heading {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #999999; margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #ebebeb;
+    }
+    .gs-modal__row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0.25rem 0.75rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+    }
+    .gs-modal__row dt {
+      color: #888888; font-weight: 500;
+    }
+    .gs-modal__row dd {
+      color: #222222; font-weight: 400;
+    }
+    .gs-modal__doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #333333;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+      background: none; border: none;
+      font-family: 'Open Sans', sans-serif;
+      transition: color 150ms ease;
+      padding: 0;
+    }
+    .gs-modal__doc-link:hover { color: #050505; }
+    .gs-modal__docs { display: flex; flex-direction: column; gap: 0.6rem; }
+    .gs-modal__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #ebebeb;
+    }
+    .gs-modal__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    /* ─── Toast ─────────────────────────────────────────────── */
+    #gs-toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      background: #050505; color: #ffffff;
+      font-size: 0.82rem; font-weight: 600;
+      padding: 0.75rem 1.25rem; border-radius: 3px;
+      letter-spacing: 0.04em;
+      opacity: 0; pointer-events: none;
+      transition: opacity 200ms ease;
+      z-index: 200;
+    }
+    #gs-toast.gs-toast--show { opacity: 1; }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 520px) {
+      .apply-header { padding: 0 1rem; }
+      #gs-dashboard { padding: 1.5rem 0.75rem 4rem; }
+      .gs-modal { padding: 1.25rem; }
+      .gs-modal__row { grid-template-columns: 1fr; }
+      .gs-modal__row dt { color: #999; font-size: 0.75rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Header ───────────────────────────────────────────── -->
+  <header class="apply-header">
+    <a href="index.html" class="apply-header__logo">Grandspace</a>
+    <nav class="apply-header__nav" aria-label="Admin navigation">
+      <span id="gs-admin-email" style="font-size:0.76rem;color:#aaa;letter-spacing:0.05em;"></span>
+      <button id="gs-signout-btn" style="display:none;" aria-label="Sign out">Sign Out</button>
+    </nav>
+  </header>
+
+  <!-- ─── Login Screen ────────────────────────────────────── -->
+  <div id="gs-login-screen" role="main">
+    <div class="gs-login-card">
+      <h1>Admin Sign In</h1>
+      <p>Grandspace — Applications Dashboard</p>
+      <div class="gs-field">
+        <label for="gs-login-email">Email</label>
+        <input type="email" id="gs-login-email" autocomplete="email" placeholder="admin@grandspace.co.za" />
+      </div>
+      <div class="gs-field">
+        <label for="gs-login-password">Password</label>
+        <input type="password" id="gs-login-password" autocomplete="current-password" placeholder="••••••••" />
+      </div>
+      <button class="gs-btn-primary" id="gs-login-btn">Sign In</button>
+      <p class="gs-login-error" id="gs-login-error" role="alert">Invalid email or password.</p>
+    </div>
+  </div>
+
+  <!-- ─── Dashboard ───────────────────────────────────────── -->
+  <main id="gs-dashboard" aria-label="Applications dashboard">
+
+    <div class="gs-dash-heading">
+      <h1>Applications</h1>
+      <span class="gs-count-badge" id="gs-total-badge">0</span>
+    </div>
+
+    <!-- Stat pills -->
+    <div class="gs-stats" role="region" aria-label="Application statistics">
+      <div class="gs-stat-pill">
+        <div class="gs-stat-pill__label">Total</div>
+        <div class="gs-stat-pill__value" id="gs-stat-total">—</div>
+      </div>
+      <div class="gs-stat-pill">
+        <div class="gs-stat-pill__label">Pending</div>
+        <div class="gs-stat-pill__value" id="gs-stat-pending">—</div>
+      </div>
+      <div class="gs-stat-pill">
+        <div class="gs-stat-pill__label">Approved</div>
+        <div class="gs-stat-pill__value" id="gs-stat-approved">—</div>
+      </div>
+      <div class="gs-stat-pill">
+        <div class="gs-stat-pill__label">Rejected</div>
+        <div class="gs-stat-pill__value" id="gs-stat-rejected">—</div>
+      </div>
+    </div>
+
+    <!-- Applications table -->
+    <div class="gs-table-wrap">
+      <table aria-label="Applications list">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Properties</th>
+            <th>Submitted</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="gs-table-body">
+          <tr><td colspan="6" class="gs-table-state">Loading applications…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- ─── Detail Modal ─────────────────────────────────────── -->
+  <div id="gs-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="gs-modal-title">
+    <div class="gs-modal">
+      <button class="gs-modal__close" id="gs-modal-close" aria-label="Close modal">&#x2715;</button>
+      <h2 class="gs-modal__title" id="gs-modal-title">Application Details</h2>
+
+      <!-- Personal -->
+      <div class="gs-modal__section">
+        <div class="gs-modal__section-heading">Personal Details</div>
+        <dl>
+          <div class="gs-modal__row"><dt>Name</dt><dd id="md-name"></dd></div>
+          <div class="gs-modal__row"><dt>Date of Birth</dt><dd id="md-dob"></dd></div>
+          <div class="gs-modal__row"><dt>Nationality</dt><dd id="md-nationality"></dd></div>
+          <div class="gs-modal__row"><dt>Phone</dt><dd id="md-phone"></dd></div>
+          <div class="gs-modal__row"><dt>Email</dt><dd id="md-email"></dd></div>
+        </dl>
+      </div>
+
+      <!-- University -->
+      <div class="gs-modal__section">
+        <div class="gs-modal__section-heading">University</div>
+        <dl>
+          <div class="gs-modal__row"><dt>Institution</dt><dd id="md-institution"></dd></div>
+          <div class="gs-modal__row"><dt>Year of Study</dt><dd id="md-year"></dd></div>
+        </dl>
+      </div>
+
+      <!-- Preferences -->
+      <div class="gs-modal__section">
+        <div class="gs-modal__section-heading">Preferences</div>
+        <dl>
+          <div class="gs-modal__row"><dt>Properties</dt><dd id="md-properties"></dd></div>
+          <div class="gs-modal__row"><dt>Move-in Date</dt><dd id="md-movein"></dd></div>
+          <div class="gs-modal__row"><dt>Lease Duration</dt><dd id="md-lease"></dd></div>
+        </dl>
+      </div>
+
+      <!-- Documents -->
+      <div class="gs-modal__section">
+        <div class="gs-modal__section-heading">Documents</div>
+        <div class="gs-modal__docs">
+          <button class="gs-modal__doc-link" id="md-enrolment-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            View Enrolment Document
+          </button>
+          <button class="gs-modal__doc-link" id="md-id-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" stroke="#333" stroke-width="1.5"/><circle cx="8" cy="12" r="2" stroke="#333" stroke-width="1.5"/><path d="M13 10h4M13 14h3" stroke="#333" stroke-width="1.5" stroke-linecap="round"/></svg>
+            View ID Document
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer: status + actions -->
+      <div class="gs-modal__footer">
+        <span id="md-status-badge" class="gs-status gs-status--pending">Pending</span>
+        <div class="gs-modal__actions" id="md-actions"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Toast ────────────────────────────────────────────── -->
+  <div id="gs-toast" role="status" aria-live="polite"></div>
+
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    'use strict';
+
+    // ── Config ────────────────────────────────────────────────
+    var SUPABASE_URL      = 'https://royqbympojdlgtszkemk.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJveXFieW1wb2pkbGd0c3prZW1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MDgxNDEsImV4cCI6MjA5MTk4NDE0MX0.S2I6WP4LlJO_F3sXU6xZnTC4VNFOHrbxCG2wW7RscTA';
+    var STORAGE_BUCKET    = 'application-docs';
+
+    var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // ── Element refs ──────────────────────────────────────────
+    var loginScreen    = document.getElementById('gs-login-screen');
+    var dashboard      = document.getElementById('gs-dashboard');
+    var loginEmailEl   = document.getElementById('gs-login-email');
+    var loginPassEl    = document.getElementById('gs-login-password');
+    var loginBtn       = document.getElementById('gs-login-btn');
+    var loginErrorEl   = document.getElementById('gs-login-error');
+    var signoutBtn     = document.getElementById('gs-signout-btn');
+    var adminEmailEl   = document.getElementById('gs-admin-email');
+    var tableBody      = document.getElementById('gs-table-body');
+    var modalOverlay   = document.getElementById('gs-modal-overlay');
+    var modalCloseBtn  = document.getElementById('gs-modal-close');
+    var toast          = document.getElementById('gs-toast');
+
+    // stat elements
+    var statTotal    = document.getElementById('gs-stat-total');
+    var statPending  = document.getElementById('gs-stat-pending');
+    var statApproved = document.getElementById('gs-stat-approved');
+    var statRejected = document.getElementById('gs-stat-rejected');
+    var totalBadge   = document.getElementById('gs-total-badge');
+
+    // modal fields
+    var mdName        = document.getElementById('md-name');
+    var mdDob         = document.getElementById('md-dob');
+    var mdNationality = document.getElementById('md-nationality');
+    var mdPhone       = document.getElementById('md-phone');
+    var mdEmail       = document.getElementById('md-email');
+    var mdInstitution = document.getElementById('md-institution');
+    var mdYear        = document.getElementById('md-year');
+    var mdProperties  = document.getElementById('md-properties');
+    var mdMovein      = document.getElementById('md-movein');
+    var mdLease       = document.getElementById('md-lease');
+    var mdStatusBadge = document.getElementById('md-status-badge');
+    var mdActions     = document.getElementById('md-actions');
+    var mdEnrolmentBtn= document.getElementById('md-enrolment-link');
+    var mdIdBtn       = document.getElementById('md-id-link');
+
+    // ── State ─────────────────────────────────────────────────
+    var allApplications   = [];
+    var currentApplication = null;
+
+    // ── Helpers ───────────────────────────────────────────────
+
+    function formatDate(iso) {
+      if (!iso) return '—';
+      var d = new Date(iso);
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    }
+
+    function statusBadgeHTML(status) {
+      var cls = 'gs-status gs-status--' + (status || 'pending');
+      return '<span class="' + cls + '">' + capitalise(status || 'pending') + '</span>';
+    }
+
+    function capitalise(s) {
+      return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+    }
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('gs-toast--show');
+      setTimeout(function () { toast.classList.remove('gs-toast--show'); }, 2500);
+    }
+
+    // ── Auth ──────────────────────────────────────────────────
+
+    async function checkSession() {
+      var result = await client.auth.getSession();
+      if (result.data && result.data.session) {
+        onSignedIn(result.data.session.user);
+      }
+    }
+
+    async function signIn() {
+      loginErrorEl.style.display = 'none';
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Signing in…';
+
+      var email    = loginEmailEl.value.trim();
+      var password = loginPassEl.value;
+
+      var result = await client.auth.signInWithPassword({ email: email, password: password });
+
+      if (result.error) {
+        loginErrorEl.style.display = 'block';
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
+        return;
+      }
+
+      onSignedIn(result.data.user);
+    }
+
+    async function signOut() {
+      await client.auth.signOut();
+      adminEmailEl.textContent = '';
+      signoutBtn.style.display = 'none';
+      dashboard.style.display  = 'none';
+      loginScreen.style.display = 'flex';
+      loginPassEl.value = '';
+    }
+
+    function onSignedIn(user) {
+      loginScreen.style.display  = 'none';
+      dashboard.style.display    = 'block';
+      signoutBtn.style.display   = '';
+      adminEmailEl.textContent   = user.email;
+      loginBtn.disabled          = false;
+      loginBtn.textContent       = 'Sign In';
+      loadApplications();
+    }
+
+    // ── Data ──────────────────────────────────────────────────
+
+    async function loadApplications() {
+      tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">Loading…</td></tr>';
+
+      var result = await client
+        .from('applications')
+        .select('*')
+        .order('submitted_at', { ascending: false });
+
+      if (result.error) {
+        tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">Failed to load applications.</td></tr>';
+        return;
+      }
+
+      allApplications = result.data || [];
+      renderTable();
+      renderStats();
+    }
+
+    function renderStats() {
+      var total    = allApplications.length;
+      var pending  = allApplications.filter(function(a){ return a.status === 'pending'; }).length;
+      var approved = allApplications.filter(function(a){ return a.status === 'approved'; }).length;
+      var rejected = allApplications.filter(function(a){ return a.status === 'rejected'; }).length;
+
+      totalBadge.textContent   = total;
+      statTotal.textContent    = total;
+      statPending.textContent  = pending;
+      statApproved.textContent = approved;
+      statRejected.textContent = rejected;
+    }
+
+    function renderTable() {
+      if (!allApplications.length) {
+        tableBody.innerHTML = '<tr><td colspan="6" class="gs-table-state">No applications yet.</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = '';
+      allApplications.forEach(function(app) {
+        var tr = document.createElement('tr');
+        tr.dataset.id = app.id;
+
+        var props = Array.isArray(app.property_preferences)
+          ? app.property_preferences.join(', ')
+          : (app.property_preferences || '—');
+
+        var actionBtns = '<button class="gs-btn-outline gs-action-view" data-id="' + app.id + '">View</button>';
+        if (app.status === 'pending') {
+          actionBtns += '<button class="gs-btn-approve gs-action-approve" data-id="' + app.id + '">Approve</button>';
+        } else if (app.status === 'approved') {
+          actionBtns += '<button class="gs-btn-reject gs-action-reject" data-id="' + app.id + '">Reject</button>';
+        }
+
+        tr.innerHTML = [
+          '<td class="gs-td-name">' + escHtml(app.first_name + ' ' + app.last_name) + '</td>',
+          '<td>' + escHtml(app.email || '—') + '</td>',
+          '<td class="gs-td-props">' + escHtml(props) + '</td>',
+          '<td class="gs-td-date">' + formatDate(app.submitted_at || app.created_at) + '</td>',
+          '<td>' + statusBadgeHTML(app.status) + '</td>',
+          '<td class="gs-td-actions">' + actionBtns + '</td>'
+        ].join('');
+
+        tableBody.appendChild(tr);
+      });
+    }
+
+    function escHtml(str) {
+      if (!str) return '—';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ── Table click delegation ────────────────────────────────
+
+    tableBody.addEventListener('click', function(e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var id = btn.dataset.id;
+      if (!id) return;
+
+      if (btn.classList.contains('gs-action-view')) {
+        openModal(id);
+      } else if (btn.classList.contains('gs-action-approve')) {
+        updateStatus(id, 'approved', null);
+      } else if (btn.classList.contains('gs-action-reject')) {
+        updateStatus(id, 'rejected', null);
+      }
+    });
+
+    // ── Status update ─────────────────────────────────────────
+
+    async function updateStatus(id, newStatus, closeModalAfter) {
+      var result = await client
+        .from('applications')
+        .update({ status: newStatus })
+        .eq('id', id);
+
+      if (result.error) {
+        showToast('Update failed. Please try again.');
+        return;
+      }
+
+      // Update local cache
+      var app = allApplications.find(function(a){ return a.id === id; });
+      if (app) app.status = newStatus;
+
+      // Update table row in place
+      var tr = tableBody.querySelector('tr[data-id="' + id + '"]');
+      if (tr) {
+        var statusCell  = tr.querySelector('td:nth-child(5)');
+        var actionsCell = tr.querySelector('td:nth-child(6)');
+        if (statusCell)  statusCell.innerHTML = statusBadgeHTML(newStatus);
+        if (actionsCell) {
+          var actionBtns = '<button class="gs-btn-outline gs-action-view" data-id="' + id + '">View</button>';
+          if (newStatus === 'pending') {
+            actionBtns += '<button class="gs-btn-approve gs-action-approve" data-id="' + id + '">Approve</button>';
+          } else if (newStatus === 'approved') {
+            actionBtns += '<button class="gs-btn-reject gs-action-reject" data-id="' + id + '">Reject</button>';
+          }
+          actionsCell.innerHTML = actionBtns;
+        }
+      }
+
+      renderStats();
+      showToast('Status updated to ' + newStatus + '.');
+
+      if (closeModalAfter !== null) {
+        closeModal();
+      }
+    }
+
+    // ── Modal ─────────────────────────────────────────────────
+
+    async function openModal(id) {
+      var app = allApplications.find(function(a){ return a.id === id; });
+      if (!app) return;
+      currentApplication = app;
+
+      // Populate fields
+      mdName.textContent        = (app.first_name || '') + ' ' + (app.last_name || '');
+      mdDob.textContent         = app.date_of_birth ? formatDate(app.date_of_birth) : '—';
+      mdNationality.textContent = app.nationality || '—';
+      mdPhone.textContent       = app.phone || '—';
+      mdEmail.textContent       = app.email || '—';
+      mdInstitution.textContent = app.institution || '—';
+      mdYear.textContent        = app.year_of_study || '—';
+      mdProperties.textContent  = Array.isArray(app.property_preferences)
+        ? app.property_preferences.join(', ')
+        : (app.property_preferences || '—');
+      mdMovein.textContent      = app.movein_date ? formatDate(app.movein_date) : '—';
+      mdLease.textContent       = app.lease_duration || '—';
+
+      // Status badge
+      mdStatusBadge.className   = 'gs-status gs-status--' + (app.status || 'pending');
+      mdStatusBadge.textContent = capitalise(app.status || 'pending');
+
+      // Action buttons
+      mdActions.innerHTML = '';
+      if (app.status === 'pending') {
+        var approveBtn = document.createElement('button');
+        approveBtn.className   = 'gs-btn-approve';
+        approveBtn.textContent = 'Approve';
+        approveBtn.addEventListener('click', function() { updateStatus(app.id, 'approved', true); });
+        mdActions.appendChild(approveBtn);
+      } else if (app.status === 'approved') {
+        var rejectBtn = document.createElement('button');
+        rejectBtn.className   = 'gs-btn-reject';
+        rejectBtn.textContent = 'Reject';
+        rejectBtn.addEventListener('click', function() { updateStatus(app.id, 'rejected', true); });
+        mdActions.appendChild(rejectBtn);
+      }
+
+      // Document links
+      setupDocLink(mdEnrolmentBtn, app.enrolment_document_path);
+      setupDocLink(mdIdBtn,        app.id_document_path);
+
+      modalOverlay.classList.add('gs-modal--open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function setupDocLink(btn, filePath) {
+      btn.onclick = null;
+      if (!filePath) {
+        btn.style.opacity = '0.4';
+        btn.style.pointerEvents = 'none';
+        return;
+      }
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = '';
+      btn.onclick = async function() {
+        btn.textContent = 'Generating link…';
+        var result = await client.storage
+          .from(STORAGE_BUCKET)
+          .createSignedUrl(filePath, 3600);
+        if (result.error || !result.data) {
+          showToast('Could not generate document link.');
+          btn.textContent = btn === mdEnrolmentBtn ? 'View Enrolment Document' : 'View ID Document';
+          return;
+        }
+        window.open(result.data.signedUrl, '_blank', 'noopener,noreferrer');
+        btn.textContent = btn === mdEnrolmentBtn ? 'View Enrolment Document' : 'View ID Document';
+      };
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('gs-modal--open');
+      document.body.style.overflow = '';
+      currentApplication = null;
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ── Event bindings ────────────────────────────────────────
+
+    loginBtn.addEventListener('click', signIn);
+    loginPassEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') signIn();
+    });
+    signoutBtn.addEventListener('click', signOut);
+
+    // ── Init ──────────────────────────────────────────────────
+    checkSession();
+  </script>
+</body>
+</html>

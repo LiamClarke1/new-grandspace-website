@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Grandspace</title>
+  <meta name="description" content="Privacy Policy for Grandspace student accommodation applications, in accordance with POPIA." />
+
+  <!-- Google Fonts: Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Grandspace shared styles -->
+  <link href="assets/css/grandspace.shared.min.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #ffffff;
+      color: #333333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── Page Header ───────────────────────────────────────── */
+    .apply-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffff;
+      border-bottom: 1px solid #ebebeb;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .apply-header__logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #050505;
+      text-decoration: none;
+    }
+
+    .apply-header__nav {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .apply-header__nav a {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .apply-header__nav a:hover { color: #050505; }
+
+    /* ─── Main Layout ───────────────────────────────────────── */
+    .privacy-main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* ─── Back link ─────────────────────────────────────────── */
+    .privacy-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #666666;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: color 150ms ease;
+    }
+
+    .privacy-back:hover { color: #050505; }
+
+    /* ─── Page title ────────────────────────────────────────── */
+    .privacy-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #050505;
+      margin-bottom: 0.4rem;
+    }
+
+    .privacy-subtitle {
+      font-size: 0.9rem;
+      color: #777777;
+      margin-bottom: 2.75rem;
+    }
+
+    /* ─── Content sections ──────────────────────────────────── */
+    .privacy-section {
+      margin-bottom: 2.25rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    .privacy-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .privacy-section__heading {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #050505;
+      margin-bottom: 0.9rem;
+    }
+
+    .privacy-section p {
+      font-size: 0.9rem;
+      color: #444444;
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .privacy-section p:last-child { margin-bottom: 0; }
+
+    .privacy-section ul {
+      margin: 0.5rem 0 0.75rem 1.25rem;
+      padding: 0;
+    }
+
+    .privacy-section ul li {
+      font-size: 0.9rem;
+      color: #444444;
+      line-height: 1.75;
+      margin-bottom: 0.25rem;
+    }
+
+    .privacy-contact-link {
+      color: #333333;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .privacy-contact-link:hover { color: #050505; }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    .privacy-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ebebeb;
+      font-size: 0.78rem;
+      color: #999999;
+      line-height: 1.6;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 520px) {
+      .apply-header { padding: 0 1rem; }
+      .apply-header__nav { display: none; }
+      .privacy-main { padding: 2rem 1rem 4rem; }
+      .privacy-title { font-size: 1.35rem; }
+    }
+
+    @media (min-width: 521px) and (max-width: 768px) {
+      .apply-header__nav { gap: 1rem; }
+      .privacy-main { padding: 2.5rem 1.5rem 4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Page Header ───────────────────────────────────────── -->
+  <header class="apply-header">
+    <a href="index.html" class="apply-header__logo">Grandspace</a>
+    <nav class="apply-header__nav" aria-label="Site navigation">
+      <a href="index.html">Home</a>
+      <a href="index.html#properties">Properties</a>
+    </nav>
+  </header>
+
+  <!-- ─── Main ─────────────────────────────────────────────── -->
+  <main class="privacy-main">
+
+    <a href="index.html" class="privacy-back">← Back to Grandspace</a>
+
+    <h1 class="privacy-title">Privacy Policy</h1>
+    <p class="privacy-subtitle">How we collect, use, and protect your personal information in accordance with the Protection of Personal Information Act (POPIA), Act 4 of 2013.</p>
+
+    <!-- 1. What data we collect -->
+    <section class="privacy-section" aria-labelledby="pp-collect">
+      <h2 class="privacy-section__heading" id="pp-collect">1. What Data We Collect</h2>
+      <p>When you submit an accommodation application through this website, we collect the following categories of personal information:</p>
+      <ul>
+        <li>Full name (first and last)</li>
+        <li>Date of birth</li>
+        <li>Nationality</li>
+        <li>Phone number and email address</li>
+        <li>Copy of your South African ID or passport</li>
+        <li>Student enrolment letter or university acceptance document</li>
+        <li>Institution name and year of study</li>
+        <li>Property preferences, intended move-in date, and preferred lease duration</li>
+      </ul>
+      <p>We do not collect payment information, social media profiles, or any data beyond what is required for processing your application.</p>
+    </section>
+
+    <!-- 2. Why it is collected -->
+    <section class="privacy-section" aria-labelledby="pp-purpose">
+      <h2 class="privacy-section__heading" id="pp-purpose">2. Purpose of Collection</h2>
+      <p>Your personal information is collected solely for the purpose of processing your student accommodation application for Elyse Residence. Specifically, it is used to:</p>
+      <ul>
+        <li>Verify your identity and student status</li>
+        <li>Assess your eligibility for the property you have applied for</li>
+        <li>Contact you regarding the outcome of your application</li>
+        <li>Prepare a lease agreement if your application is approved</li>
+      </ul>
+      <p>We will not use your information for any purpose other than those stated above without your express consent.</p>
+    </section>
+
+    <!-- 3. Who holds it -->
+    <section class="privacy-section" aria-labelledby="pp-responsible">
+      <h2 class="privacy-section__heading" id="pp-responsible">3. Who Holds Your Information</h2>
+      <p><strong>Responsible party:</strong> Grandspace, Stellenbosch, South Africa. Grandspace is the operator of Elyse Residence and is responsible for determining the purpose and means of processing your personal information.</p>
+      <p><strong>Operator (technical services):</strong> Clarke Web Agency acts as an operator on behalf of Grandspace, providing website and form infrastructure. Clarke Web Agency processes your data only on instruction from Grandspace and does not independently access or use your information.</p>
+      <p>For all privacy enquiries, contact us at <a class="privacy-contact-link" href="mailto:admin@gradspace.co.za">admin@gradspace.co.za</a>.</p>
+    </section>
+
+    <!-- 4. Storage and security -->
+    <section class="privacy-section" aria-labelledby="pp-storage">
+      <h2 class="privacy-section__heading" id="pp-storage">4. How Your Information Is Stored</h2>
+      <p>Your application data is transmitted and stored using the following services:</p>
+      <ul>
+        <li><strong>Formspree</strong> — receives form submissions securely over HTTPS and forwards them to our team. Formspree processes data in accordance with GDPR and applicable data protection laws.</li>
+        <li><strong>Supabase</strong> — a secure, encrypted cloud database used to store application records. Supabase infrastructure is hosted on servers that meet industry-standard security certifications.</li>
+      </ul>
+      <p>Your personal information is <strong>never sold, rented, or shared</strong> with third parties for marketing or commercial purposes. It is only accessible to authorised Grandspace staff and the named operator above.</p>
+      <p>We implement reasonable technical and organisational measures to protect your data against unauthorised access, loss, or disclosure.</p>
+    </section>
+
+    <!-- 5. Retention -->
+    <section class="privacy-section" aria-labelledby="pp-retention">
+      <h2 class="privacy-section__heading" id="pp-retention">5. Retention Period</h2>
+      <p>Your personal information will be retained for a maximum of <strong>24 months</strong> from the date of your application, or until you withdraw your application, whichever is sooner.</p>
+      <p>After this period, your data will be securely deleted from all systems. If a lease agreement is entered into, retention will be governed by the terms of that agreement and applicable South African law.</p>
+    </section>
+
+    <!-- 6. Your rights -->
+    <section class="privacy-section" aria-labelledby="pp-rights">
+      <h2 class="privacy-section__heading" id="pp-rights">6. Your Rights Under POPIA</h2>
+      <p>As a data subject under the Protection of Personal Information Act, you have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> the personal information we hold about you</li>
+        <li><strong>Correct or update</strong> inaccurate or incomplete information</li>
+        <li><strong>Request deletion</strong> of your personal information, subject to any legal obligations to retain it</li>
+        <li><strong>Object</strong> to the processing of your information in certain circumstances</li>
+        <li><strong>Withdraw consent</strong> at any time, where processing is based on consent</li>
+        <li><strong>Lodge a complaint</strong> with the Information Regulator of South Africa if you believe your rights have been violated</li>
+      </ul>
+      <p>To exercise any of the above rights, please contact us at <a class="privacy-contact-link" href="mailto:admin@gradspace.co.za">admin@gradspace.co.za</a>. We will respond within a reasonable time and no later than 30 days.</p>
+    </section>
+
+    <!-- 7. Automated decision-making -->
+    <section class="privacy-section" aria-labelledby="pp-automated">
+      <h2 class="privacy-section__heading" id="pp-automated">7. Automated Decision-Making</h2>
+      <p>We do not use automated decision-making or profiling to evaluate your application. All application decisions are made by a human member of the Grandspace team based on a manual review of the information you provide.</p>
+    </section>
+
+    <!-- 8. Changes to this policy -->
+    <section class="privacy-section" aria-labelledby="pp-changes">
+      <h2 class="privacy-section__heading" id="pp-changes">8. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. We encourage you to review this policy periodically.</p>
+      <p>Continued use of our application form following any changes constitutes your acknowledgement of the updated policy.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="privacy-footer">
+      Last updated: April 2026. Grandspace, Stellenbosch, South Africa.
+    </footer>
+
+  </main>
+
+</body>
+</html>
