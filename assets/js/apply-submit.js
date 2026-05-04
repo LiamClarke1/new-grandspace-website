@@ -47,13 +47,27 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
+  var MIME_BY_EXT = {
+    pdf: 'application/pdf',
+    jpg: 'image/jpeg', jpeg: 'image/jpeg',
+    png: 'image/png',  webp: 'image/webp',
+    heic: 'image/heic', heif: 'image/heif',
+  };
+
+  function resolveContentType(file) {
+    if (file.type && file.type !== 'application/octet-stream') return file.type;
+    var ext = file.name.split('.').pop().toLowerCase();
+    return MIME_BY_EXT[ext] || 'application/octet-stream';
+  }
+
   async function uploadFile(file, folder, appId) {
     if (!file) return null;
-    var ext    = file.name.split('.').pop();
-    var path   = folder + '/' + appId + '/' + Date.now() + '.' + ext;
+    var ext         = file.name.split('.').pop().toLowerCase();
+    var contentType = resolveContentType(file);
+    var path        = folder + '/' + appId + '/' + Date.now() + '.' + ext;
     var result = await client.storage
       .from('application-docs')
-      .upload(path, file, { cacheControl: '3600', upsert: false, contentType: file.type });
+      .upload(path, file, { cacheControl: '3600', upsert: false, contentType: contentType, duplex: 'half' });
     if (result.error) throw new Error('File upload failed: ' + result.error.message);
     return { path: result.data.path, name: file.name };
   }

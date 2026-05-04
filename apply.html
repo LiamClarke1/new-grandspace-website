@@ -765,6 +765,18 @@
       .apply-main { padding: 2.5rem 1.5rem 4rem; }
     }
 
+    /* Prevent iOS Safari auto-zoom on input focus (triggers when font-size < 16px) */
+    @media (max-width: 768px) {
+      .gs-field input[type="text"],
+      .gs-field input[type="email"],
+      .gs-field input[type="tel"],
+      .gs-field input[type="date"],
+      .gs-field select,
+      .gs-prop-type {
+        font-size: 1rem !important;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         transition-duration: 0.01ms !important;
@@ -1017,14 +1029,14 @@
               <path d="M3 15v2a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-2" stroke="#555555" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
             <span class="gs-upload-label__text">Click to upload enrolment letter or acceptance letter</span>
-            <span class="gs-upload-label__hint">PDF or JPG, max 2MB</span>
+            <span class="gs-upload-label__hint">PDF, JPG, or PNG — max 15MB</span>
           </label>
           <input
             class="gs-upload-input"
             type="file"
             id="gs-enrolment-upload"
             name="enrolment_upload"
-            accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif"
+            accept="application/pdf,image/*,.pdf,.jpg,.jpeg,.png,.webp,.heic,.heif"
             required
           />
         </div>
@@ -1044,14 +1056,14 @@
               <path d="M3 15v2a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-2" stroke="#555555" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
             <span class="gs-upload-label__text">Click to upload your ID or passport</span>
-            <span class="gs-upload-label__hint">PDF or JPG, max 2MB</span>
+            <span class="gs-upload-label__hint">PDF, JPG, or PNG — max 15MB</span>
           </label>
           <input
             class="gs-upload-input"
             type="file"
             id="gs-id-upload"
             name="id_upload"
-            accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif"
+            accept="application/pdf,image/*,.pdf,.jpg,.jpeg,.png,.webp,.heic,.heif"
             required
           />
         </div>
@@ -1084,15 +1096,15 @@
               </div>
               <div class="gs-prop-body">
                 <span class="gs-prop-name">The Factory</span>
-                <span class="gs-prop-meta">56 rooms · WiFi &amp; water included</span>
-                <span class="gs-prop-price">R8,700 – R16,250 / mo</span>
+                <span class="gs-prop-meta">12 apartments · WiFi &amp; water included</span>
+                <span class="gs-prop-price">R9,200 – R11,500 / mo</span>
                 <div class="gs-prop-type-wrap">
                   <span class="gs-prop-type-label">Room type</span>
                   <select class="gs-prop-type" name="gs-room-factory" data-prop="prop-factory">
                     <option value="">Select room type</option>
-                    <option value="Studio Room">Studio Room (~R8,700/mo)</option>
-                    <option value="Standard Room">Standard Room (~R13,000–R15,000/mo)</option>
-                    <option value="Lead Room">Lead Room (R16,250/mo)</option>
+                    <option value="Standard Room (R9,200/mo)">Standard Room (R9,200/mo)</option>
+                    <option value="En-suite (R10,800/mo)">En-suite (R10,800/mo)</option>
+                    <option value="Duplex (R11,500/mo)">Duplex (R11,500/mo)</option>
                   </select>
                 </div>
               </div>
@@ -1109,14 +1121,15 @@
               </div>
               <div class="gs-prop-body">
                 <span class="gs-prop-name">Union House</span>
-                <span class="gs-prop-meta">20 rooms</span>
-                <span class="gs-prop-price">R13,750 – R15,933 / mo</span>
+                <span class="gs-prop-meta">20 rooms · WiFi &amp; water included</span>
+                <span class="gs-prop-price">R14,384 – R16,632 / mo</span>
                 <div class="gs-prop-type-wrap">
                   <span class="gs-prop-type-label">Room type</span>
                   <select class="gs-prop-type" name="gs-room-union" data-prop="prop-union">
                     <option value="">Select room type</option>
-                    <option value="Standard Room">Standard Room (R13,750/mo)</option>
-                    <option value="Premium Room">Premium Room (R15,933/mo)</option>
+                    <option value="Shared Bathroom (R14,384/mo)">Shared Bathroom (R14,384/mo)</option>
+                    <option value="En-suite (R16,232/mo)">En-suite (R16,232/mo)</option>
+                    <option value="En-suite Premium (R16,632/mo)">En-suite Premium (R16,632/mo)</option>
                   </select>
                 </div>
               </div>
@@ -1133,14 +1146,17 @@
               </div>
               <div class="gs-prop-body">
                 <span class="gs-prop-name">Jonkerzicht</span>
-                <span class="gs-prop-meta">10 rooms</span>
-                <span class="gs-prop-price">R12,600 – R13,600 / mo</span>
+                <span class="gs-prop-meta">5 en-suite rooms · water included</span>
+                <span class="gs-prop-price">R14,112 – R14,952 / mo</span>
                 <div class="gs-prop-type-wrap">
                   <span class="gs-prop-type-label">Room type</span>
                   <select class="gs-prop-type" name="gs-room-jonkerzicht" data-prop="prop-jonkerzicht">
                     <option value="">Select room type</option>
-                    <option value="Standard Room">Standard Room (R12,600/mo)</option>
-                    <option value="Premium Room">Premium Room (R13,600/mo)</option>
+                    <option value="Room 1 En-suite (R14,112/mo)">Room 1 En-suite (R14,112/mo)</option>
+                    <option value="Room 2 En-suite (R14,653/mo)">Room 2 En-suite (R14,653/mo)</option>
+                    <option value="Room 3 En-suite (R14,952/mo)">Room 3 En-suite (R14,952/mo)</option>
+                    <option value="Room 4 En-suite (R14,653/mo)">Room 4 En-suite (R14,653/mo)</option>
+                    <option value="Room 5 En-suite (R14,653/mo)">Room 5 En-suite (R14,653/mo)</option>
                   </select>
                 </div>
               </div>
@@ -1173,8 +1189,16 @@
               </div>
               <div class="gs-prop-body">
                 <span class="gs-prop-name">Akkerhof</span>
-                <span class="gs-prop-meta">Stellenbosch</span>
-                <span class="gs-prop-price">Contact for pricing</span>
+                <span class="gs-prop-meta">2-bed shared apartment · water included</span>
+                <span class="gs-prop-price">R12,470 / mo per tenant</span>
+                <div class="gs-prop-type-wrap">
+                  <span class="gs-prop-type-label">Room type</span>
+                  <select class="gs-prop-type" name="gs-room-akkerhof" data-prop="prop-akkerhof">
+                    <option value="">Select room type</option>
+                    <option value="Bedroom 1 – Shared Apartment (R12,470/mo)">Bedroom 1 – Shared Apartment (R12,470/mo)</option>
+                    <option value="Bedroom 2 – Shared Apartment (R12,470/mo)">Bedroom 2 – Shared Apartment (R12,470/mo)</option>
+                  </select>
+                </div>
               </div>
             </label>
 
@@ -1189,8 +1213,17 @@
               </div>
               <div class="gs-prop-body">
                 <span class="gs-prop-name">The Vineyards</span>
-                <span class="gs-prop-meta">Stellenbosch</span>
-                <span class="gs-prop-price">Contact for pricing</span>
+                <span class="gs-prop-meta">3-bed cottages &amp; bachelor studio · WiFi included</span>
+                <span class="gs-prop-price">R7,500 – R8,500 / mo</span>
+                <div class="gs-prop-type-wrap">
+                  <span class="gs-prop-type-label">Room type</span>
+                  <select class="gs-prop-type" name="gs-room-vineyards" data-prop="prop-vineyards">
+                    <option value="">Select room type</option>
+                    <option value="Cottage – Bedroom 1 or 2 (R8,000/mo)">Cottage – Bedroom 1 or 2 (R8,000/mo)</option>
+                    <option value="Cottage – Bedroom 3 (R7,500/mo)">Cottage – Bedroom 3 (R7,500/mo)</option>
+                    <option value="Bachelor Studio (R8,500/mo)">Bachelor Studio (R8,500/mo)</option>
+                  </select>
+                </div>
               </div>
             </label>
 
@@ -1205,8 +1238,15 @@
               </div>
               <div class="gs-prop-body">
                 <span class="gs-prop-name">24 Cluver Road</span>
-                <span class="gs-prop-meta">Stellenbosch</span>
-                <span class="gs-prop-price">Contact for pricing</span>
+                <span class="gs-prop-meta">4 large bedrooms · WiFi &amp; water included</span>
+                <span class="gs-prop-price">R12,250 / mo per room</span>
+                <div class="gs-prop-type-wrap">
+                  <span class="gs-prop-type-label">Room type</span>
+                  <select class="gs-prop-type" name="gs-room-cluver" data-prop="prop-cluver">
+                    <option value="">Select room type</option>
+                    <option value="Large Bedroom (R12,250/mo)">Large Bedroom (R12,250/mo)</option>
+                  </select>
+                </div>
               </div>
             </label>
 
@@ -1228,12 +1268,13 @@
 
           <div class="gs-field">
             <label for="gs-lease">
-              Lease Duration <span class="gs-req" aria-hidden="true">*</span>
+              Payment Option <span class="gs-req" aria-hidden="true">*</span>
             </label>
             <select id="gs-lease" name="lease_duration" required>
-              <option value="" disabled selected>Select duration</option>
-              <option value="6 months">6 months</option>
-              <option value="12 months">12 months</option>
+              <option value="" disabled selected>Select payment option</option>
+              <option value="Full settlement (1 instalment – before 1 Nov 2026)">Full settlement (1 instalment – before 1 Nov 2026)</option>
+              <option value="3 instalments (Nov 2026, Mar 2027, Jun 2027)">3 instalments (Nov 2026, Mar 2027, Jun 2027)</option>
+              <option value="12 monthly debit orders (Dec 2026 – Nov 2027)">12 monthly debit orders (Dec 2026 – Nov 2027)</option>
             </select>
           </div>
         </div>
@@ -1322,7 +1363,7 @@
 
   <!-- ─── Scripts ──────────────────────────────────────────── -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/apply-nav.js"></script>
-  <script src="assets/js/apply-submit.js"></script>
+  <script src="assets/js/apply-nav.js?v=2"></script>
+  <script src="assets/js/apply-submit.js?v=2"></script>
 </body>
 </html>

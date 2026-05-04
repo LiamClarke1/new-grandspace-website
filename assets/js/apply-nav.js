@@ -50,18 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function isValidFile(file) {
-    const allowedTypes = [
-      'application/pdf',
-      'image/jpeg', 'image/jpg',
-      'image/png', 'image/webp',
-      'image/heic', 'image/heif'
-    ];
-    const maxBytes = 5 * 1024 * 1024; // 5 MB
+    const maxBytes = 15 * 1024 * 1024; // 15 MB — covers phone camera photos
     if (!file) return { ok: false, reason: 'Please upload a file.' };
-    // Accept if MIME type matches, or if browser reports empty type but filename looks right
-    const typeOk = allowedTypes.includes(file.type) || file.type === '' || file.type.startsWith('image/');
+    // Accept PDF or any image type. Also accept empty/unknown MIME (common on mobile).
+    const t = file.type || '';
+    const typeOk = t === 'application/pdf' || t.startsWith('image/') || t === '';
     if (!typeOk) return { ok: false, reason: 'File must be a PDF or image (JPG, PNG).' };
-    if (file.size > maxBytes) return { ok: false, reason: 'File must be 5 MB or smaller.' };
+    if (file.size > maxBytes) return { ok: false, reason: 'File is too large (max 15 MB). Please compress it or send a PDF instead.' };
     return { ok: true };
   }
 
@@ -422,26 +417,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      // Always show file info immediately (synchronously) so UI confirms selection
       fileNameEl.textContent = file.name;
       fileNameEl.title = file.name;
       fileSizeEl.textContent = formatBytes(file.size);
+      previewImg.style.display = 'none';
+      fileIconEl.style.display = '';
+      fileRow.style.display = 'flex';
 
-      if (file.type.startsWith('image/')) {
-        fileRow.style.display = 'none';
-        previewImg.style.display = 'block';
-        previewImg.alt = 'Preview: ' + file.name;
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          previewImg.src = e.target.result;
-          // Show file info below the image
-          fileRow.style.display = 'flex';
-          fileIconEl.style.display = 'none';
-        };
-        reader.readAsDataURL(file);
-      } else {
-        previewImg.style.display = 'none';
-        fileIconEl.style.display = '';
-        fileRow.style.display = 'flex';
+      // Only attempt image preview for formats browsers can actually render
+      const ext = file.name.split('.').pop().toLowerCase();
+      const previewableExts = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+      const previewableType = file.type.startsWith('image/') &&
+        file.type !== 'image/heic' && file.type !== 'image/heif';
+      const canPreview = previewableType || previewableExts.indexOf(ext) !== -1;
+
+      if (canPreview) {
+        try {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            previewImg.src = e.target.result;
+            previewImg.alt = 'Preview: ' + file.name;
+            previewImg.style.display = 'block';
+            fileIconEl.style.display = 'none';
+          };
+          reader.onerror = function () {
+            // Preview failed — file info row already visible, so nothing to do
+          };
+          reader.readAsDataURL(file);
+        } catch (err) {
+          // FileReader not available — file info row already visible
+        }
       }
     });
   }
