@@ -1697,14 +1697,14 @@ a                         { color: #2ea3f2 !important; }
 /* ── 7. Hero section — keep dark (video background) ──── */
 .hero, .hero .full-bg-wrap, .hero .full-bg-inner { background: #000 !important; }
 
-/* Hero title: Montserrat ExtraBold — matches logo font exactly */
+/* Hero title: Montserrat Bold — matches logo font exactly */
 h1.hero-title,
 h1.hero-title .char,
 h1.hero-title [class*="char"],
 h1.hero-title span {
   font-family: 'Montserrat', Arial, sans-serif !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.02em !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
   text-transform: uppercase !important;
 }
 
@@ -1740,25 +1740,22 @@ h1.hero-title span {
   font-family: 'Montserrat', Arial, sans-serif !important;
   font-size: clamp(0.6rem, 1vw, 0.9rem);
   font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-top: 0.2rem;
   white-space: nowrap;
   opacity: 0.85;
   display: block;
   width: 100%;
-  text-align: justify;
-  text-align-last: justify;
-  text-justify: inter-character;
-  -webkit-text-justify: inter-character;
+  text-align: left;
 }
 @media (max-width: 991px) {
   .hero-logo-icon svg { height: 1.8rem; }
-  .hero-logo-sub { font-size: 0.55rem; letter-spacing: 0.1em; }
+  .hero-logo-sub { font-size: 0.55rem; }
 }
 @media (max-width: 479px) {
   .hero-logo-icon svg { height: 1.4rem; }
-  .hero-logo-sub { font-size: 0.48rem; letter-spacing: 0.08em; }
+  .hero-logo-sub { font-size: 0.48rem; }
 }
 
 /* ── Hero photo overlay — darkens static image for text legibility ── */
@@ -2871,15 +2868,29 @@ h1.hero-title span {
     // STUDENT HOUSING fades in after title finishes
     heroTL.to('[data-hero="logo-sub"]', { opacity: 0.8, y: 0, duration: 1, ease: 'power3.out' }, 2.5);
 
-    // Sync STUDENT HOUSING width to match GRADSPACE title exactly
+    // Sync STUDENT HOUSING: spread letters edge-to-edge across GRADSPACE width
     (function() {
       function syncSub() {
         var t = document.querySelector('h1.hero-title');
         var s = document.querySelector('[data-hero="logo-sub"]');
-        if (t && s) { s.style.width = t.offsetWidth + 'px'; s.style.maxWidth = 'none'; }
+        if (!t || !s) return;
+        var targetWidth = t.offsetWidth;
+        // Reset letter-spacing to measure natural text width
+        s.style.letterSpacing = '0px';
+        s.style.width = 'max-content';
+        var naturalWidth = s.getBoundingClientRect().width;
+        var chars = s.textContent.trim().length;
+        // Distribute extra space evenly across all characters
+        if (chars > 1 && targetWidth > naturalWidth) {
+          var ls = (targetWidth - naturalWidth) / chars;
+          s.style.letterSpacing = ls + 'px';
+        }
+        s.style.width = targetWidth + 'px';
+        s.style.maxWidth = 'none';
       }
       syncSub();
-      setTimeout(syncSub, 200);
+      setTimeout(syncSub, 100);
+      setTimeout(syncSub, 500);
       window.addEventListener('resize', syncSub);
     })();
 
