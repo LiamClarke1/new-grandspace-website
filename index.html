@@ -1708,7 +1708,7 @@ a                         { color: #2ea3f2 !important; }
 /* ── 7. Hero section — keep dark (video background) ──── */
 .hero, .hero .full-bg-wrap, .hero .full-bg-inner { background: #000 !important; }
 
-/* Hero title: Arial Black — matches SVG logo exactly */
+/* Hero title: Arial Bold — matches SVG logo exactly */
 h1.hero-title,
 h1.hero-title .char,
 h1.hero-title [class*="char"],
@@ -1718,6 +1718,10 @@ h1.hero-title span {
   letter-spacing: 0.02em !important;
   text-transform: uppercase !important;
   font-style: normal !important;
+}
+h1.hero-title {
+  line-height: 1 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Text inside the hero sits on the video and must stay white */
@@ -1750,11 +1754,11 @@ h1.hero-title span {
 }
 .hero-logo-sub {
   font-family: Arial, Helvetica, sans-serif !important;
-  font-size: clamp(0.6rem, 1vw, 0.9rem);
+  font-size: clamp(0.75rem, 1.25vw, 1.15rem);
   font-weight: 400;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  margin-top: 0.2rem;
+  margin-top: 0.35rem;
   white-space: nowrap;
   opacity: 0.85;
   display: block;
@@ -1763,11 +1767,11 @@ h1.hero-title span {
 }
 @media (max-width: 991px) {
   .hero-logo-icon svg { height: 1.8rem; }
-  .hero-logo-sub { font-size: 0.55rem; }
+  .hero-logo-sub { font-size: 0.65rem; }
 }
 @media (max-width: 479px) {
   .hero-logo-icon svg { height: 1.4rem; }
-  .hero-logo-sub { font-size: 0.48rem; }
+  .hero-logo-sub { font-size: 0.55rem; }
 }
 
 /* ── Hero photo overlay — darkens static image for text legibility ── */
