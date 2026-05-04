@@ -3492,21 +3492,21 @@ h1.hero-title {
       .fromTo(textBoxes[0],   { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.7 }, 0.1);
 
     // Phase 1 [1→2]: slide 0 → slide 1
-    // immediateRender:false on exit tweens prevents their from:{autoAlpha:1} being
-    // applied at timeline creation, which would make slide 0+1 both visible immediately.
+    // Exit tweens use .to() (immediateRender:false by default) so they don't set
+    // opacity:1 at timeline creation and cause garbled overlap at page load.
     master
-      .fromTo(textBoxes[0],   { autoAlpha: 1, y: 0, immediateRender: false  }, { autoAlpha: 0, y: -60, ease: 'power2.in',  duration: 0.4 }, 1.0)
-      .fromTo(bigImages[0],   { autoAlpha: 1, immediateRender: false }, { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 1.0)
-      .fromTo(smallImages[0], { autoAlpha: 1, immediateRender: false }, { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 1.0)
+      .to(textBoxes[0],   { autoAlpha: 0, y: -60, ease: 'power2.in',  duration: 0.4 }, 1.0)
+      .to(bigImages[0],   { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 1.0)
+      .to(smallImages[0], { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 1.0)
       .fromTo(bigImages[1],   { autoAlpha: 0 }, { autoAlpha: 1, ease: 'power2.out', duration: 0.8 }, 1.2)
       .fromTo(smallImages[1], { autoAlpha: 0 }, { autoAlpha: 1, ease: 'power2.out', duration: 0.6 }, 1.3)
       .fromTo(textBoxes[1],   { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.4 }, 1.6);
 
     // Phase 2 [3→4]: slide 1 → slide 2  (after COMMUNAL LIVING hold)
     master
-      .fromTo(textBoxes[1],   { autoAlpha: 1, y: 0, immediateRender: false  }, { autoAlpha: 0, y: -60, ease: 'power2.in',  duration: 0.4 }, 3.0)
-      .fromTo(bigImages[1],   { autoAlpha: 1, immediateRender: false }, { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 3.0)
-      .fromTo(smallImages[1], { autoAlpha: 1, immediateRender: false }, { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 3.0)
+      .to(textBoxes[1],   { autoAlpha: 0, y: -60, ease: 'power2.in',  duration: 0.4 }, 3.0)
+      .to(bigImages[1],   { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 3.0)
+      .to(smallImages[1], { autoAlpha: 0, ease: 'power1.in',  duration: 1.0 }, 3.0)
       .fromTo(bigImages[2],   { autoAlpha: 0 }, { autoAlpha: 1, ease: 'power2.out', duration: 0.8 }, 3.2)
       .fromTo(smallImages[2], { autoAlpha: 0 }, { autoAlpha: 1, ease: 'power2.out', duration: 0.6 }, 3.3)
       .fromTo(textBoxes[2],   { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.4 }, 3.6);
