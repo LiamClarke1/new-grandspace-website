@@ -3472,8 +3472,8 @@ h1.hero-title {
     var master = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top top',
-        end:   'bottom top',
+        start: 'top 80%',
+        end:   'bottom 80%',
         scrub: 1,
         snap: {
           snapTo:   [0, 0.2, 0.4, 0.6, 0.8, 1],
@@ -6175,11 +6175,15 @@ setTimeout(function() {
     document.addEventListener('click', function(e) {
       if (!map.getContainer().contains(e.target)) { map.scrollWheelZoom.disable(); }
     });
-    L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-      attribution:'&copy; Google', maxZoom:21, maxNativeZoom:21
+    // ESRI World Imagery — satellite tiles correctly aligned with WGS84/Web Mercator.
+    // Google mt1.google.com tiles use a different pixel origin and cause markers to
+    // drift to wrong positions as you zoom in/out. ESRI does not have this issue.
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution:'&copy; Esri &mdash; Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN',
+      maxZoom:19, maxNativeZoom:19
     }).addTo(map);
-    L.tileLayer('https://mt1.google.com/vt/lyrs=h&x={x}&y={y}&z={z}', {
-      maxZoom:21, maxNativeZoom:21, opacity:0.9
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom:19, maxNativeZoom:19, opacity:0.85
     }).addTo(map);
     var suIcon = L.divIcon({
       html:'<div style="background:rgba(255,255,255,.92);color:#0a2240;font-size:10px;font-weight:800;letter-spacing:.06em;padding:4px 9px;border-radius:3px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.45);border:1px solid #0a2240;transform:translateX(-50%);display:inline-block">STELLENBOSCH UNIVERSITY</div>',
@@ -6208,7 +6212,16 @@ setTimeout(function() {
         }
       });
     });
-    setTimeout(function(){ map.invalidateSize(); }, 400);
+    // Call invalidateSize() after any CSS reveal animation finishes so Leaflet
+    // recalculates tile positions from the correct container dimensions.
+    var mapFrame = document.getElementById('gs-leaflet-map');
+    var mapWrapper = mapFrame && (mapFrame.closest('.gs-map-frame') || mapFrame.parentElement);
+    if (mapWrapper) {
+      mapWrapper.addEventListener('transitionend', function fixSize(ev) {
+        if (ev.target === mapWrapper) { map.invalidateSize(); mapWrapper.removeEventListener('transitionend', fixSize); }
+      });
+    }
+    setTimeout(function(){ map.invalidateSize(); }, 1500);
   }
 
   function loadLeaflet(cb) {
