@@ -6325,7 +6325,26 @@ setTimeout(function() {
     enhanceProjectTexts();
     injectDrawer();
     injectComparePlusMap();
-    loadLeaflet(initLeafletMap);
+    // Lazy-init: wait until map container is actually in view before loading
+    // Leaflet. This guarantees the container has its final size and Webflow
+    // animations are done, so pins never drift on zoom.
+    (function() {
+      var target = document.getElementById('gs-leaflet-map');
+      if (!target) { loadLeaflet(initLeafletMap); return; }
+      var done = false;
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting && !done) {
+            done = true;
+            io.disconnect();
+            loadLeaflet(function() {
+              setTimeout(initLeafletMap, 50);
+            });
+          }
+        });
+      }, { threshold: 0.1 });
+      io.observe(target);
+    }());
     setTimeout(function() {
       injectTitleButtons();
       injectSliderArrows();
