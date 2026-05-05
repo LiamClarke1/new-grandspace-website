@@ -5519,6 +5519,8 @@ setTimeout(function() {
 .gs-map-h em { font-style:italic; }
 .gs-map-sub { color:rgba(255,255,255,.38);font-size:.84rem;max-width:340px;line-height:1.65; }
 .gs-map-frame { position:relative;border-radius:.65rem;overflow:hidden;border:1px solid rgba(255,255,255,.08);height:400px; }
+.gs-pin-tip { background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important; }
+.gs-pin-tip::before { display:none!important; }
 #gs-leaflet-map { height:100%;width:100%; }
 .gs-map-chips { display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:.75rem;margin-top:1.5rem; }
 .gs-map-chip { display:flex;align-items:center;gap:.6rem;padding:.7rem .9rem;border:1px solid rgba(255,255,255,.07);border-radius:.45rem;background:rgba(255,255,255,.02);cursor:pointer;transition:border-color .2s,background .2s; }
@@ -6194,11 +6196,16 @@ setTimeout(function() {
     MAP_COORDS.forEach(function(p) {
       var prop = PROPS.find(function(x){ return x.name===p.name; }) || {};
       var col = prop.status==='available'?'#4ade80':prop.status==='limited'?'#fbbf24':'#f87171';
-      var icon = L.divIcon({
-        html:'<div style="display:flex;flex-direction:column;align-items:center"><div style="background:#fff;color:#111;font-size:11px;font-weight:700;padding:3px 9px;border-radius:3px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.45);border-left:3px solid '+col+'">'+p.name+'</div><div style="width:2px;height:6px;background:#fff;opacity:.9"></div><div style="width:10px;height:10px;border-radius:50%;background:'+col+';border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.5)"></div></div>',
-        className:'', iconAnchor:[38,19]
-      });
-      var m = L.marker([p.lat,p.lng],{icon:icon}).bindPopup('<strong style="font-size:13px">'+p.name+'</strong><br><span style="font-size:11px;color:#555">'+p.dist+' walk to campus</span>').addTo(map);
+      // L.circleMarker renders as SVG at the exact geographic coordinate —
+      // no iconAnchor calculation, zero drift at any zoom level.
+      var m = L.circleMarker([p.lat,p.lng], {
+        radius:7, fillColor:col, color:'#fff', weight:2.5, fillOpacity:1
+      }).addTo(map);
+      m.bindTooltip(
+        '<div style="background:#fff;color:#111;font-size:11px;font-weight:700;padding:3px 9px;border-radius:3px;white-space:nowrap;border-left:3px solid '+col+'">'+p.name+'</div>',
+        { permanent:true, direction:'top', offset:[0,-4], className:'gs-pin-tip' }
+      );
+      m.bindPopup('<strong style="font-size:13px">'+p.name+'</strong><br><span style="font-size:11px;color:#555">'+p.dist+' walk to campus</span>');
       leafletMarkers[p.name] = { marker:m, lat:p.lat, lng:p.lng };
     });
     document.querySelectorAll('.gs-map-chip').forEach(function(chip){
