@@ -792,11 +792,84 @@
     @media (max-width: 640px) {
       .apply-header { padding: 0 1rem; }
       .apply-header__nav span { display: none; }
-      #gs-dashboard { padding: 1.5rem 0.75rem 4rem; }
+      #gs-dashboard { padding: 1.25rem 0.875rem 4rem; }
       .gs-stats { gap: 0.5rem; }
-      .gs-toolbar { flex-direction: column; align-items: stretch; }
-      .gs-toolbar__right { flex-wrap: wrap; }
+      .gs-stat-card { padding: 0.75rem 1rem; }
+      .gs-stat-card__value { font-size: 1.6rem; }
+
+      /* Toolbar: stack vertically, full-width controls */
+      .gs-toolbar { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+      .gs-toolbar__left { flex-wrap: wrap; gap: 0.35rem; }
+      .gs-toolbar__right { flex-direction: column; gap: 0.4rem; }
       .gs-search-input { width: 100%; }
+      .gs-sort-select { width: 100%; }
+
+      /* Filter pills: wrap freely */
+      .gs-filter-pill { font-size: 0.68rem; padding: 0.4em 0.75em; min-height: 36px; }
+
+      /* ── Table → Card layout ──────────────────────────────── */
+      .gs-table-wrap {
+        overflow-x: visible;
+        border: none;
+        background: transparent;
+        border-radius: 0;
+      }
+      table { min-width: unset !important; display: block; }
+      thead { display: none; }
+      tbody { display: flex; flex-direction: column; gap: 0.5rem; }
+      tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        background: #ffffff;
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        padding: 0.875rem 1rem;
+        cursor: pointer;
+        border-bottom: 1px solid #ebebeb !important;
+        transition: box-shadow 150ms ease;
+      }
+      tbody tr:hover { background: #fafaf8; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+      tbody td {
+        display: block;
+        padding: 0 !important;
+        border: none !important;
+        vertical-align: top;
+      }
+      /* Row 1: name cell — no label */
+      tbody td:nth-child(1) { margin-bottom: 0.5rem; }
+      /* Rows 2–4: show a label prefix */
+      tbody td:nth-child(2)::before { content: 'Properties · '; }
+      tbody td:nth-child(3)::before { content: 'Move-in · '; }
+      tbody td:nth-child(4)::before { content: 'Submitted · '; }
+      tbody td:nth-child(2)::before,
+      tbody td:nth-child(3)::before,
+      tbody td:nth-child(4)::before {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #bbbbbb;
+      }
+      tbody td:nth-child(2) { font-size: 0.78rem; color: #888; margin-bottom: 0.15rem; max-width: none; }
+      tbody td:nth-child(3),
+      tbody td:nth-child(4) { font-size: 0.75rem; color: #aaa; margin-bottom: 0.1rem; }
+      /* Row 5: status */
+      tbody td:nth-child(5) { margin-top: 0.4rem; }
+      /* Row 6: actions — always visible on mobile */
+      .gs-td-actions { opacity: 1 !important; margin-top: 0.6rem; display: flex; gap: 0.4rem; }
+      .gs-td-actions button { flex: 1; min-height: 38px; font-size: 0.7rem; }
+
+      /* Empty/loading state */
+      .gs-table-state {
+        background: #fff;
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+      }
+    }
+    @media (max-width: 380px) {
+      .gs-stats { grid-template-columns: 1fr 1fr; }
+      .gs-stat-card__value { font-size: 1.4rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
