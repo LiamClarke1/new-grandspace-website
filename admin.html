@@ -242,6 +242,21 @@
     .gs-btn-reject:hover { background: #ef4444; color: #ffffff; }
     .gs-btn-reject:disabled { opacity: 0.4; cursor: not-allowed; }
 
+    .gs-btn-neutral {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      background: transparent; color: #555555;
+      border: 1.5px solid #aaaaaa; border-radius: 3px;
+      padding: 0.55em 1.1em;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+      white-space: nowrap;
+    }
+    .gs-btn-neutral:hover { background: #aaaaaa; color: #ffffff; }
+    .gs-btn-neutral:disabled { opacity: 0.4; cursor: not-allowed; }
+
     .gs-btn-message {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
       background: transparent; color: #666666;
@@ -693,7 +708,8 @@
       gap: 0.5rem;
     }
     .gs-drawer__footer-row .gs-btn-approve,
-    .gs-drawer__footer-row .gs-btn-reject { flex: 1; justify-content: center; }
+    .gs-drawer__footer-row .gs-btn-reject,
+    .gs-drawer__footer-row .gs-btn-neutral { flex: 1; justify-content: center; }
 
     /* ─── Compose Overlay ────────────────────────────────────── */
     #gs-compose-overlay {
@@ -1088,6 +1104,10 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
           Reject
         </button>
+        <button class="gs-btn-neutral" id="dw-neutral-btn" style="display:none;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Undo
+        </button>
       </div>
       <button class="gs-btn-message" id="dw-message-btn">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1189,6 +1209,7 @@
     var dwStatusBadge = document.getElementById('dw-status-badge');
     var dwApproveBtn  = document.getElementById('dw-approve-btn');
     var dwRejectBtn   = document.getElementById('dw-reject-btn');
+    var dwNeutralBtn  = document.getElementById('dw-neutral-btn');
     var dwMessageBtn  = document.getElementById('dw-message-btn');
     var dwEnrolmentBtn= document.getElementById('dw-enrolment-btn');
     var dwIdBtn       = document.getElementById('dw-id-btn');
@@ -1343,7 +1364,10 @@
         if (app.status==='pending') {
           quickBtn = '<button class="gs-btn-approve gs-action-approve" style="font-size:0.65rem;padding:0.3em 0.7em;" data-id="'+app.id+'" aria-label="Approve">Approve</button>';
         } else if (app.status==='approved') {
-          quickBtn = '<button class="gs-btn-reject gs-action-reject" style="font-size:0.65rem;padding:0.3em 0.7em;" data-id="'+app.id+'" aria-label="Reject">Reject</button>';
+          quickBtn = '<button class="gs-btn-reject gs-action-reject" style="font-size:0.65rem;padding:0.3em 0.7em;margin-right:0.25rem;" data-id="'+app.id+'" aria-label="Reject">Reject</button>'
+                   + '<button class="gs-btn-neutral gs-action-undo" style="font-size:0.65rem;padding:0.3em 0.7em;" data-id="'+app.id+'" aria-label="Undo">Undo</button>';
+        } else if (app.status==='rejected') {
+          quickBtn = '<button class="gs-btn-neutral gs-action-undo" style="font-size:0.65rem;padding:0.3em 0.7em;" data-id="'+app.id+'" aria-label="Undo">Undo</button>';
         }
         tr.innerHTML =
           '<td>' +
@@ -1373,6 +1397,7 @@
         e.stopPropagation();
         if (btn.classList.contains('gs-action-approve')) { updateStatus(id, 'approved'); return; }
         if (btn.classList.contains('gs-action-reject'))  { updateStatus(id, 'rejected'); return; }
+        if (btn.classList.contains('gs-action-undo'))    { updateStatus(id, 'pending');  return; }
       }
       var row = e.target.closest('tr[data-id]');
       if (row) openDrawer(row.dataset.id);
@@ -1398,6 +1423,7 @@
       dwStatusBadge.innerHTML = '<span class="gs-status__dot"></span>' + capitalise(status);
       dwApproveBtn.disabled = (status === 'approved');
       dwRejectBtn.disabled  = (status === 'rejected');
+      dwNeutralBtn.style.display = (status === 'approved' || status === 'rejected') ? '' : 'none';
     }
 
     // ── Drawer ─────────────────────────────────────────────────
@@ -1478,6 +1504,9 @@
     });
     dwRejectBtn.addEventListener('click', function() {
       if (currentApplication) updateStatus(currentApplication.id, 'rejected');
+    });
+    dwNeutralBtn.addEventListener('click', function() {
+      if (currentApplication) updateStatus(currentApplication.id, 'pending');
     });
     dwMessageBtn.addEventListener('click', function() {
       if (!currentApplication) return;
